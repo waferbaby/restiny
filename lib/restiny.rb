@@ -2,6 +2,7 @@
 
 $LOAD_PATH.unshift(__dir__)
 
-PLATFORM_ALL = -1
-
+require 'restiny/version'
 require 'restiny/client'
+require 'restiny/user'
+require 'restiny/membership'
