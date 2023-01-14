@@ -2,12 +2,11 @@
 
 module Restiny
   class User
-    attr_reader :display_name, :display_name_code, :membership_id, :memberships
+    attr_reader :display_name, :display_name_code, :memberships
 
-    def initialize(display_name:, display_name_code:, membership_id:, memberships:)
+    def initialize(display_name:, display_name_code:, memberships:)
       @display_name = display_name
       @display_name_code = display_name_code
-      @membership_id = membership_id
       
       self.memberships = memberships
     end
