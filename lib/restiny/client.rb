@@ -13,19 +13,50 @@ module Restiny
       @api_key = api_key
     end
 
+    # Profile methods
+
+    def get_profile(membership_id, membership_type, components = [])
+      component_query = components.join(",")
+      response = get("/Destiny2/#{membership_type}/Profile/#{membership_id}?components=#{component_query}")
+
+      puts response.body
+    end
+
     # Account methods
 
-    def search_users(name, page = 0)
-      response = post("/User/Search/GlobalName/#{page}", { displayNamePrefix: name })
-      search_results = response.body&.dig('Response', 'searchResults')
+    def get_user_by_bungie_name(full_display_name, membership_type = PLATFORM_ALL)
+      display_name, display_name_code = full_display_name.split('#')
+      raise "You must provide a valid Bungie name" if display_name.nil? || display_name_code.nil?
 
+      params = {
+        displayName: display_name,
+        displayNameCode: display_name_code
+      }
+
+      response = post("/Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/", params)
+      result = response.body.dig('Response')
+
+      return [] if result.nil?
+
+      Restiny::User.new(
+        display_name: result[0]['bungieGlobalDisplayName'],
+        display_name_code: result[0]['bungieGlobalDisplayNameCode'],
+        memberships: result
+      )
+    end
+
+    def search_users(name, page = 0)
+      params = { displayNamePrefix: name }
+      response = post("/User/Search/GlobalName/#{page}", params).body
+      return [] if response.empty?
+
+      search_results = response.dig('Response', 'searchResults')
       return [] if search_results.empty?
 
       search_results.map do |user|
         Restiny::User.new(
           display_name: user['bungieGlobalDisplayName'],
           display_name_code: user['bungieGlobalDisplayNameCode'],
-          membership_id: user['bungieNetMembershipId'],
           memberships: user['destinyMemberships']
         )
       end
