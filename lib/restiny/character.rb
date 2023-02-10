@@ -11,6 +11,7 @@ module Restiny
       @stats = stats
       @emblem = emblem
       @progression = progression
+    end
   end
 end
 
