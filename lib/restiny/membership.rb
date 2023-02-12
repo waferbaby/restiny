@@ -12,6 +12,8 @@ module Restiny
         :playstation
       when PLATFORM_STEAM
         :steam
+      when PLATFORM_EPIC
+        :epic
       end
     end
 
