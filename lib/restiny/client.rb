@@ -16,10 +16,19 @@ module Restiny
     # Profile methods
 
     def get_profile(membership_id, membership_type, components = [])
+      raise "You must provide at least one component" if components.empty?
+
       component_query = components.join(",")
       response = get("/Destiny2/#{membership_type}/Profile/#{membership_id}?components=#{component_query}")
 
-      puts response.body
+      {}.tap do |output|
+        components.each do |component|
+          case component.downcase
+          when 'characters'
+            output[:characters] = parse_profile_characters_response(response)
+          end
+        end
+      end
     end
 
     # Account methods
@@ -48,10 +57,10 @@ module Restiny
     def search_users(name, page = 0)
       params = { displayNamePrefix: name }
       response = post("/User/Search/GlobalName/#{page}", params).body
-      return [] if response.empty?
+      return [] if response.nil?
 
       search_results = response.dig('Response', 'searchResults')
-      return [] if search_results.empty?
+      return [] if search_results.nil?
 
       search_results.map do |user|
         Restiny::User.new(
@@ -71,6 +80,27 @@ module Restiny
     end
 
     private
+
+    def parse_profile_characters_response(response)
+      characters = response.body.dig('Response', 'characters', 'data')
+      return [] if characters.nil?
+
+      result = []
+
+      [].tap do |result|
+        characters.each_value do |character|
+          result << Restiny::Character.new(
+            id: character['characterId'],
+            session_playtime: character['minutesPlayedThisSession'],
+            total_playtime: character['minutesPlayedTotal'],
+            light_level: character['light'],
+            stats: [],
+            emblem: [],
+            progression: character['progression']
+          )
+        end
+      end
+    end
 
     def default_headers
       {
