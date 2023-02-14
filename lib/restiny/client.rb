@@ -19,9 +19,6 @@ module Restiny
     def download_manifest(locale = 'en')
       response = get("/Destiny2/Manifest/")
 
-      # puts response.body
-      # exit
-
       manifest_path = response.body.dig('Response', 'mobileWorldContentPaths', locale)
       raise "Unable to determine manifest URL" if manifest_path.nil?
 
