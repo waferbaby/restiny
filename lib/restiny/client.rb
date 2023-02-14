@@ -5,12 +5,27 @@ require 'faraday/follow_redirects'
 
 module Restiny
   class Client
-    API_BASE_URL = "https://www.bungie.net/Platform"
+    BUNGIE_URL = "https://www.bungie.net"
+    API_BASE_URL = BUNGIE_URL + "/Platform"
 
-    attr_accessor :api_key
+    attr_accessor :api_key, :manifest
 
     def initialize(api_key)
       @api_key = api_key
+    end
+
+    # Manifest methods
+
+    def download_manifest(locale = 'en')
+      response = get("/Destiny2/Manifest/")
+
+      # puts response.body
+      # exit
+
+      manifest_path = response.body.dig('Response', 'mobileWorldContentPaths', locale)
+      raise "Unable to determine manifest URL" if manifest_path.nil?
+
+      Manifest.download(BUNGIE_URL + manifest_path)
     end
 
     # Profile methods
