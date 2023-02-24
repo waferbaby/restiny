@@ -106,6 +106,8 @@ module Restiny
           key = key.gsub(/(\B[A-Z])/, '_\1') if key =~ /\B[A-Z]/
           output[key.downcase] = if value.is_a?(Hash)
                                    clean_row_keys(value)
+                                 elsif value.is_a?(Array)
+                                   value.map { |item| item.is_a?(Hash) ? clean_row_keys(item) : value }
                                  else
                                    value
                                  end
