@@ -20,10 +20,12 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'faraday', '~> 2.0'
   s.add_runtime_dependency 'faraday-follow_redirects', '~> 0.3'
+  s.add_runtime_dependency 'oauth2', '~> 2.0'
   s.add_runtime_dependency 'sqlite3', '~> 1.3'
   s.add_runtime_dependency 'down', '~> 5.4'
   s.add_runtime_dependency 'rubyzip', '~> 2.3'
 
   s.add_development_dependency 'rake', '~> 12.3.3'
   s.add_development_dependency 'rspec', '~> 3.10'
+  s.add_development_dependency 'vcr'
 end
