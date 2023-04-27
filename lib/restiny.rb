@@ -18,11 +18,13 @@ module Restiny
   BUNGIE_URL = "https://www.bungie.net"
   API_BASE_URL = BUNGIE_URL + "/platform"
 
-  attr_accessor :api_key, :oauth_token, :manifest
+  attr_accessor :api_key, :oauth_client_id, :oauth_token, :manifest
 
   # OAuth methods
 
   def authorise_url(state, redirect_url = nil)
+    raise "You need to set an OAuth client ID (Restiny.oauth_client_id = XXX)" unless @oauth_client_id
+
     params = {
       response_type: 'code',
       client_id: @oauth_client_id
@@ -112,6 +114,8 @@ module Restiny
   private
 
   def make_api_request(type, endpoint_url, params)
+    raise "You need to set an API key (Restiny.api_key = XXX)" unless @api_key
+
     url = API_BASE_URL + endpoint_url
     headers = {}
 
