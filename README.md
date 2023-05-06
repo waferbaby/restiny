@@ -32,10 +32,10 @@ You'll first want to include the gem in your code:
 require 'restiny'
 ```
 
-Next, create a `Restiny::Client` instance to talk to the API, which requires a Bungie API key - you can [create and manage your own here](https://www.bungie.net/en/Application "The Bungie developer app portal."). Once you've got your key, pass it to the new client:
+Next, you'll need to tell Restiny your Bungie API key - you can [create and manage your own here](https://www.bungie.net/en/Application "The Bungie developer app portal."). Once you've got your key, pass it to the gem:
 
 ```ruby
-client = Restiny::Client.new('MY-API-KEY')
+Restiny.api_key = 'MY-API-KEY'
 ```
 
 And away you go! I'll add more details soon, but the code is hopefully obvious enough to muddle through things yourself for now.
