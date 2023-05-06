@@ -4,6 +4,7 @@ $LOAD_PATH.unshift(__dir__)
 
 require 'restiny/version'
 require 'restiny/constants'
+require 'restiny/errors'
 require 'restiny/manifest'
 require 'restiny/user'
 require 'restiny/membership'
@@ -11,6 +12,7 @@ require 'restiny/character'
 
 require 'faraday'
 require 'faraday/follow_redirects'
+require 'securerandom'
 
 module Restiny
   extend self
@@ -18,16 +20,19 @@ module Restiny
   BUNGIE_URL = "https://www.bungie.net"
   API_BASE_URL = BUNGIE_URL + "/platform"
 
-  attr_accessor :api_key, :oauth_client_id, :oauth_token, :manifest
+  attr_accessor :api_key, :oauth_state, :oauth_client_id, :access_token, :refresh_token, :manifest
 
   # OAuth methods
 
-  def authorise_url(state, redirect_url = nil)
-    raise "You need to set an OAuth client ID (Restiny.oauth_client_id = XXX)" unless @oauth_client_id
+  def authorise_url(redirect_url = nil, state = nil)
+    check_oauth_client_id
+
+    @oauth_state = state || SecureRandom.hex(15)
 
     params = {
       response_type: 'code',
-      client_id: @oauth_client_id
+      client_id: @oauth_client_id,
+      state: @oauth_state
     }
 
     params[:redirect_url] = redirect_url unless redirect_url.nil?
@@ -35,13 +40,30 @@ module Restiny
     connection.build_url(BUNGIE_URL + "/en/oauth/authorize", params).to_s
   end
 
+  def request_access_token(code, redirect_url = nil)
+    check_oauth_client_id
+
+    params = {
+      code: code,
+      grant_type: 'authorization_code',
+      client_id: @oauth_client_id
+    }
+
+    params[:redirect_url] = redirect_url unless redirect_url.nil?
+
+    post('/platform/app/oauth/token/', params, "Content-Type" => "application/x-www-form-urlencoded")
+  end
+
+  def request_refresh_token
+  end
+
   # Manifest methods
 
   def download_manifest(locale = 'en')
-    response = get("/Destiny2/Manifest/")
+    response = get("/platform/Destiny2/Manifest/")
 
     manifest_path = response.dig('Response', 'mobileWorldContentPaths', locale)
-    raise "Unable to determine manifest URL" if manifest_path.nil?
+    raise Restiny::Error.new("Unable to determine manifest URL") if manifest_path.nil?
 
     Manifest.download(BUNGIE_URL + manifest_path)
   end
@@ -49,10 +71,10 @@ module Restiny
   # Profile methods
 
   def get_profile(membership_id, membership_type, components = [])
-    raise "You must provide at least one component" if components.empty?
+    raise Restiny::Error.new("You must provide at least one component") if components.empty?
 
     component_query = components.join(",")
-    response = get("/Destiny2/#{membership_type}/Profile/#{membership_id}?components=#{component_query}")
+    response = get("/platform/Destiny2/#{membership_type}/Profile/#{membership_id}?components=#{component_query}")
 
     {}.tap do |output|
       components.each do |component|
@@ -68,14 +90,14 @@ module Restiny
 
   def get_user_by_bungie_name(full_display_name, membership_type = PLATFORM_ALL)
     display_name, display_name_code = full_display_name.split('#')
-    raise "You must provide a valid Bungie name" if display_name.nil? || display_name_code.nil?
+    raise Restiny::Error.new("You must provide a valid Bungie name") if display_name.nil? || display_name_code.nil?
 
     params = {
       displayName: display_name,
       displayNameCode: display_name_code
     }
 
-    response = post("/Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/", params)
+    response = post("/platform/Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/", params)
     result = response.dig('Response')
 
     return [] if result.nil?
@@ -88,7 +110,7 @@ module Restiny
   end
 
   def search_users(name, page = 0)
-    response = post("/User/Search/GlobalName/#{page}", displayNamePrefix: name)
+    response = post("/platform/User/Search/GlobalName/#{page}", displayNamePrefix: name)
     return [] if response.nil?
 
     search_results = response.dig('Response', 'searchResults')
@@ -103,25 +125,20 @@ module Restiny
     end
   end
 
-  def get(endpoint_url, params = {})
-    make_api_request(:get, endpoint_url, params)
+  def get(endpoint_url, params = {}, headers = {})
+    make_api_request(:get, endpoint_url, params, headers)
   end
 
-  def post(endpoint_url, body)
-    make_api_request(:post, endpoint_url, body)
+  def post(endpoint_url, body, headers = {})
+    make_api_request(:post, endpoint_url, body, headers)
   end
 
   private
 
-  def make_api_request(type, endpoint_url, params)
-    raise "You need to set an API key (Restiny.api_key = XXX)" unless @api_key
+  def make_api_request(type, url, params, headers = {})
+    raise Restiny::Error.new("You need to set an API key (Restiny.api_key = XXX)") unless @api_key
 
-    url = API_BASE_URL + endpoint_url
-    headers = {}
-
-    if @oauth_token
-      # headers[whatever oauth token is] = oauth_token
-    end
+    headers[:authorization] = "Bearer #{@oauth_token}" if @oauth_token
 
     response = case type
                when :get
@@ -157,6 +174,10 @@ module Restiny
     end
   end
 
+  def check_oauth_client_id
+    raise Restiny::Error.new("You need to set an OAuth client ID (Restiny.oauth_client_id = XXX)") unless @oauth_client_id
+  end
+
   def default_headers
     {
       'User-Agent': "restiny v#{Restiny::VERSION}",
@@ -165,7 +186,7 @@ module Restiny
   end
 
   def connection
-    @connection ||= Faraday.new(headers: default_headers) do |faraday|
+    @connection ||= Faraday.new(url: API_BASE_URL, headers: default_headers) do |faraday|
       faraday.request :json
       faraday.request :url_encoded
       faraday.response :json
