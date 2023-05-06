@@ -88,6 +88,21 @@ module Restiny
 
   # Account methods
 
+  def get_user_by_membership_id(membership_id, membership_type = PLATFORM_ALL)
+    raise Restiny::Error.new("You must provide a valid membership ID") if membership_id.nil?
+
+    response = get("/platform/User/GetMembershipsById/#{membership_id}/#{membership_type}/")
+    results = response.dig('Response')
+
+    return nil if results.nil?
+
+    Restiny::User.new(
+      display_name: results['bungieNetUser']['cachedBungieGlobalDisplayName'],
+      display_name_code: results['bungieNetUser']['cachedBungieGlobalDisplayNameCode'],
+      memberships: results['destinyMemberships']
+    )
+  end
+
   def get_user_by_bungie_name(full_display_name, membership_type = PLATFORM_ALL)
     display_name, display_name_code = full_display_name.split('#')
     raise Restiny::Error.new("You must provide a valid Bungie name") if display_name.nil? || display_name_code.nil?
@@ -100,7 +115,7 @@ module Restiny
     response = post("/platform/Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/", params)
     result = response.dig('Response')
 
-    return [] if result.nil?
+    return nil if result.nil?
 
     Restiny::User.new(
       display_name: result[0]['bungieGlobalDisplayName'],
@@ -111,8 +126,6 @@ module Restiny
 
   def search_users(name, page = 0)
     response = post("/platform/User/Search/GlobalName/#{page}", displayNamePrefix: name)
-    return [] if response.nil?
-
     search_results = response.dig('Response', 'searchResults')
     return [] if search_results.nil?
 
@@ -125,6 +138,8 @@ module Restiny
     end
   end
 
+  private
+
   def get(endpoint_url, params = {}, headers = {})
     make_api_request(:get, endpoint_url, params, headers)
   end
@@ -132,8 +147,6 @@ module Restiny
   def post(endpoint_url, body, headers = {})
     make_api_request(:post, endpoint_url, body, headers)
   end
-
-  private
 
   def make_api_request(type, url, params, headers = {})
     raise Restiny::Error.new("You need to set an API key (Restiny.api_key = XXX)") unless @api_key
