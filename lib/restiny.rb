@@ -63,7 +63,7 @@ module Restiny
     response = get("/platform/Destiny2/Manifest/")
 
     manifest_path = response.dig('Response', 'mobileWorldContentPaths', locale)
-    raise Restiny::Error.new("Unable to determine manifest URL") if manifest_path.nil?
+    raise Restiny::ResponseError.new("Unable to determine manifest URL") if manifest_path.nil?
 
     Manifest.download(BUNGIE_URL + manifest_path)
   end
@@ -71,7 +71,7 @@ module Restiny
   # Profile methods
 
   def get_profile(membership_id, membership_type, components = [])
-    raise Restiny::Error.new("You must provide at least one component") if components.empty?
+    raise Restiny::InvalidParamsError.new("You must provide at least one component") if components.empty?
 
     component_query = components.join(",")
     response = get("/platform/Destiny2/#{membership_type}/Profile/#{membership_id}?components=#{component_query}")
@@ -89,7 +89,7 @@ module Restiny
   # Account methods
 
   def get_user_by_membership_id(membership_id, membership_type = PLATFORM_ALL)
-    raise Restiny::Error.new("You must provide a valid membership ID") if membership_id.nil?
+    raise Restiny::InvalidParamsError.new("You must provide a valid membership ID") if membership_id.nil?
 
     response = get("/platform/User/GetMembershipsById/#{membership_id}/#{membership_type}/")
     results = response.dig('Response')
@@ -105,7 +105,7 @@ module Restiny
 
   def get_user_by_bungie_name(full_display_name, membership_type = PLATFORM_ALL)
     display_name, display_name_code = full_display_name.split('#')
-    raise Restiny::Error.new("You must provide a valid Bungie name") if display_name.nil? || display_name_code.nil?
+    raise Restiny::InvalidParamsError.new("You must provide a valid Bungie name") if display_name.nil? || display_name_code.nil?
 
     params = {
       displayName: display_name,
@@ -149,7 +149,7 @@ module Restiny
   end
 
   def make_api_request(type, url, params, headers = {})
-    raise Restiny::Error.new("You need to set an API key (Restiny.api_key = XXX)") unless @api_key
+    raise Restiny::InvalidParamsError.new("You need to set an API key (Restiny.api_key = XXX)") unless @api_key
 
     headers[:authorization] = "Bearer #{@oauth_token}" if @oauth_token
 
@@ -160,10 +160,19 @@ module Restiny
                  connection.post(url, params, headers)
                end
 
-    # look at the status, raise an exception if it's not a 200
-    # check for rate limiting here, etc.
-
     response.body
+  rescue Faraday::Error => error
+    message = if error.response_body
+      JSON.parse(error.response_body)['Message']
+    else
+      error.message
+    end
+
+    case error
+    when Faraday::ClientError, Faraday::ServerError, Faraday::ConnectionFailed
+      raise Restiny::NetworkError.new(message, error.response_status)
+    else
+    end
   end
 
   def parse_profile_characters_response(response)
@@ -188,7 +197,7 @@ module Restiny
   end
 
   def check_oauth_client_id
-    raise Restiny::Error.new("You need to set an OAuth client ID (Restiny.oauth_client_id = XXX)") unless @oauth_client_id
+    raise Restiny::RequestError.new("You need to set an OAuth client ID (Restiny.oauth_client_id = XXX)") unless @oauth_client_id
   end
 
   def default_headers
