@@ -23,7 +23,7 @@ module Restiny
       'DestinyDamageTypeDefinition': { item: 'damage_type', items: 'damage_types' },
       'DestinyDestinationDefinition': { item: 'destination', items: 'destinations' },
       'DestinyEnergyTypeDefinition': { item: 'energy_type', items: 'energy_types' },
-      'DestinyEquipmentSlotDefinition': { item: 'eqiupment_slot', items: 'equipment_slots' },
+      'DestinyEquipmentSlotDefinition': { item: 'equipment_slot', items: 'equipment_slots' },
       'DestinyEventCardDefinition': { item: 'event_card', items: 'event_cards' },
       'DestinyFactionDefinition': { item: 'faction', items: 'factions' },
       'DestinyGenderDefinition': { item: 'gender', items: 'genders' },
@@ -85,14 +85,16 @@ module Restiny
       Zip::File.open(zipped_file) { |file| file.first.extract(manifest_path) }
 
       self.new(manifest_path)
-    rescue Down::Error
-      raise "Unable to download the manifest from Bungie"
-    rescue Zip::Error
-      raise "Unable to unzip the manifest file"
+    rescue Down::ResponseError => error
+      raise Restiny::NetworkError.new("Unable to download the manifest file", error.response.code)
+    rescue Zip::Error => error
+      raise Restiny::Error.new("Unable to unzip the manifest file (#{e})")
     end
 
     def initialize(file_path)
-      raise "You must provide the file path for the manifest file" if file_path.empty?
+      if file_path.empty? || !File.exist?(file_path) || !File.file?(file_path)
+        raise Restiny::InvalidParamsError.new("You must provide a valid path for the manifest file")
+      end
 
       @database = SQLite3::Database.new(file_path, results_as_hash: true)
       @file_path = file_path
@@ -135,7 +137,7 @@ module Restiny
         Manifest::clean_row_keys(JSON.parse(row['json'])) unless row['json'].nil?
       end
     rescue SQLite3::Exception => e
-      raise "Error while querying the manifest (#{e})"
+      raise Restiny::Error.new("Error while querying the manifest (#{e})")
     end
   end
 end
