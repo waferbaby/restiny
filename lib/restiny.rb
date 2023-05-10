@@ -162,7 +162,7 @@ module Restiny
 
     response.body
   rescue Faraday::Error => error
-    message = if error.response_body
+    message = if error.response_body && error.response_headers['content-type'] =~ /application\/json;/i
       JSON.parse(error.response_body)['Message']
     else
       error.message
