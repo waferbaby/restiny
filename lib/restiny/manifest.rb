@@ -1,5 +1,4 @@
 # frozen_string/literal: true
-
 require 'down'
 require 'json'
 require 'sqlite3'
@@ -69,12 +68,26 @@ module Restiny
     attr_reader :file_path
 
     TABLES.each do |table_name, method_names|
-      define_method method_names[:item] do |id|
-        query_table(table_name, id: id)[0]
+      define_method method_names[:item] do |hash|
+        query = "SELECT json FROM #{table_name} WHERE json_extract(json, '$.hash')=?"
+
+        perform_query(query, [hash]).map do |row|
+          Manifest::clean_row_keys(JSON.parse(row['json']))
+        end
       end
 
       define_method method_names[:items] do |limit: nil|
-        query_table(table_name, limit: limit)
+        query = "SELECT json_extract(json, '$.hash') AS hash, json_extract(json, '$.displayProperties.name') AS name 
+                 FROM #{table_name} ORDER BY json_extract(json, '$.index')"
+
+        bindings = []
+
+        if limit
+          query << " LIMIT ?"
+          bindings << limit
+        end
+
+        perform_query(query, bindings)
       end
     end
 
@@ -102,6 +115,12 @@ module Restiny
 
     private
 
+    def perform_query(query, bindings)
+      @database.execute(query, bindings)
+    rescue SQLite3::Exception => e
+      raise Restiny::Error.new("Error while querying the manifest (#{e})")
+    end
+
     def self.clean_row_keys(row_hash)
       OpenStruct.new.tap do |output|
         row_hash.each_pair do |key, value|
@@ -115,29 +134,6 @@ module Restiny
                                  end
         end
       end
-    end
-
-    def query_table(table_name, id: nil, limit: nil)
-      query = "SELECT json FROM #{table_name}"
-      bindings = []
-
-      if id
-        query << " WHERE id=?"
-        bindings << id
-      end
-
-      query << " ORDER BY json_extract(json, '$.index')" unless id
-
-      if limit
-        query << " LIMIT ?"
-        bindings << limit
-      end
-
-      @database.execute(query, bindings).map do |row|
-        Manifest::clean_row_keys(JSON.parse(row['json'])) unless row['json'].nil?
-      end
-    rescue SQLite3::Exception => e
-      raise Restiny::Error.new("Error while querying the manifest (#{e})")
     end
   end
 end
