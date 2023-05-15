@@ -71,14 +71,17 @@ module Restiny
       define_method method_names[:item] do |hash|
         query = "SELECT json FROM #{table_name} WHERE json_extract(json, '$.hash')=?"
 
-        perform_query(query, [hash]).map do |row|
+        perform_query(query, [hash]) do |row|
           Manifest::clean_row_keys(JSON.parse(row['json']))
         end
       end
 
-      define_method method_names[:items] do |limit: nil|
+      define_method method_names[:items] do |limit: nil, filter_empty: false, &block|
         query = "SELECT json_extract(json, '$.hash') AS hash, json_extract(json, '$.displayProperties.name') AS name 
-                 FROM #{table_name} ORDER BY json_extract(json, '$.index')"
+                 FROM #{table_name} "
+
+        query << "WHERE json_extract(json, '$.displayProperties.name') IS NOT NULL " if filter_empty
+        query << "ORDER BY json_extract(json, '$.index')"
 
         bindings = []
 
@@ -87,7 +90,7 @@ module Restiny
           bindings << limit
         end
 
-        perform_query(query, bindings)
+        perform_query(query, bindings, &block)
       end
     end
 
@@ -115,10 +118,14 @@ module Restiny
 
     private
 
-    def perform_query(query, bindings)
-      @database.execute(query, bindings)
+    def perform_query(query, bindings, &block)
+      if block_given?
+        @database.execute(query, bindings).each { |row| yield row }
+      else
+        @database.execute(query, bindings)
+      end
     rescue SQLite3::Exception => e
-      raise Restiny::Error.new("Error while querying the manifest (#{e})")
+      raise Restiny::RequestError.new("Error while querying the manifest (#{e})")
     end
 
     def self.clean_row_keys(row_hash)
