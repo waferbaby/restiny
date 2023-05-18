@@ -17,7 +17,7 @@ module Restiny
       'Bond': { item: 'bond', items: 'bonds' },
       'BreakerType': { item: 'breaker_type', items: 'breaker_types' },
       'Checklist': { item: 'checklist', items: 'checklists' },
-      'Class': { item: 'class', items: 'classes' },
+      'Class': { item: 'guardian_class', items: 'guardian_classes' },
       'Collectible': { item: 'collectible', items: 'collectibles' },
       'DamageType': { item: 'damage_type', items: 'damage_types' },
       'Destination': { item: 'destination', items: 'destinations' },
@@ -72,9 +72,14 @@ module Restiny
 
       define_method method_names[:item] do |hash|
         query = "SELECT json FROM #{full_table_name} WHERE json_extract(json, '$.hash')=?"
-
         result = perform_query(query, [hash])
-        result = JSON.parse(result[0]['json']) unless result.nil?
+
+        return nil if result.nil? || result.count < 1 || !result[0].include?('json')
+
+        item = JSON.parse(result[0]['json'])
+        return nil if item.nil?
+
+        Restiny::Entry.new(item)
       end
 
       define_method method_names[:items] do |limit: nil, filter_empty: false, &block|
