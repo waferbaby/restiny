@@ -10,7 +10,7 @@ module Restiny
       'Achievement': { item: 'achievement', items: 'achievements' },
       'Activity': { item: 'activity', items: 'activities' },
       'ActivityGraph': { item: 'activity_graph', items: 'activity_graphs' },
-      'ActivityMode': { item: 'activity_modes', items: 'activity_modes' },
+      'ActivityMode': { item: 'activity_mode', items: 'activity_modes' },
       'ActivityModifier': { item: 'activity_modifier', items: 'activity_modifiers' },
       'ActivityType': { item: 'activity_type', items: 'activity_types' },
       'Artifact': { item: 'artifact', items: 'artifacts' },
@@ -58,7 +58,6 @@ module Restiny
       'Stat': { item: 'stat', items: 'stats' },
       'StatGroup': { item: 'stat_group', items: 'stat_groups' },
       'TalentGrid': { item: 'talent_grid', items: 'talent_grids' },
-      'TraitCategory': { item: 'trait_category', items: 'trait_categories' },
       'Trait': { item: 'trait', items: 'traits' },
       'Unlock': { item: 'unlock', items: 'unlocks' },
       'Vendor': { item: 'vendor', items: 'vendors' },
@@ -76,10 +75,7 @@ module Restiny
 
         return nil if result.nil? || result.count < 1 || !result[0].include?('json')
 
-        item = JSON.parse(result[0]['json'])
-        return nil if item.nil?
-
-        Restiny::Entry.new(item)
+        JSON.parse(result[0]['json'])
       end
 
       define_method method_names[:items] do |limit: nil, filter_empty: false, &block|
