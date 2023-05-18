@@ -6,13 +6,6 @@ require 'restiny/version'
 require 'restiny/constants'
 require 'restiny/errors'
 require 'restiny/manifest'
-require 'restiny/user'
-require 'restiny/membership'
-require 'restiny/character'
-
-require 'restiny/entry'
-
-require 'restiny/hash_with_snake_case_and_dot_notation'
 
 require 'faraday'
 require 'faraday/follow_redirects'
@@ -96,15 +89,7 @@ module Restiny
     raise Restiny::InvalidParamsError.new("You must provide a valid membership ID") if membership_id.nil?
 
     response = get("/platform/User/GetMembershipsById/#{membership_id}/#{membership_type}/")
-    results = response.dig('Response')
-
-    return nil if results.nil?
-
-    Restiny::User.new(
-      display_name: results['bungieNetUser']['cachedBungieGlobalDisplayName'],
-      display_name_code: results['bungieNetUser']['cachedBungieGlobalDisplayNameCode'],
-      memberships: results['destinyMemberships']
-    )
+    response.dig('Response')
   end
 
   def get_user_by_bungie_name(full_display_name, membership_type = PLATFORM_ALL)
@@ -117,29 +102,12 @@ module Restiny
     }
 
     response = post("/platform/Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/", params)
-    result = response.dig('Response')
-
-    return nil if result.nil?
-
-    Restiny::User.new(
-      display_name: result[0]['bungieGlobalDisplayName'],
-      display_name_code: result[0]['bungieGlobalDisplayNameCode'],
-      memberships: result
-    )
+    response.dig('Response')
   end
 
   def search_users(name, page = 0)
     response = post("/platform/User/Search/GlobalName/#{page}", displayNamePrefix: name)
-    search_results = response.dig('Response', 'searchResults')
-    return [] if search_results.nil?
-
-    search_results.map do |user|
-      Restiny::User.new(
-        display_name: user['bungieGlobalDisplayName'],
-        display_name_code: user['bungieGlobalDisplayNameCode'],
-        memberships: user['destinyMemberships']
-      )
-    end
+    response.dig('Response', 'searchResults')
   end
 
   private
@@ -176,27 +144,6 @@ module Restiny
     when Faraday::ClientError, Faraday::ServerError, Faraday::ConnectionFailed
       raise Restiny::NetworkError.new(message, error.response_status)
     else
-    end
-  end
-
-  def parse_profile_characters_response(response)
-    characters = response.dig('Response', 'characters', 'data')
-    return [] if characters.nil?
-
-    result = []
-
-    [].tap do |result|
-      characters.each_value do |character|
-        result << Restiny::Character.new(
-          id: character['characterId'],
-          session_playtime: character['minutesPlayedThisSession'],
-          total_playtime: character['minutesPlayedTotal'],
-          light_level: character['light'],
-          stats: [],
-          emblem: [],
-          progression: character['progression']
-        )
-      end
     end
   end
 
