@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Restiny
-  class Attribute < Hash
+  class HashWithSnakeCaseAndDotNotation < Hash
     def self.snake_case(key)
       key.to_s.gsub(/([a-z\d])([A-Z])/, '\1_\2').downcase
     end
@@ -20,9 +20,9 @@ module Restiny
     def prepare(data)
       case data
       when Hash
-        Restiny::Attribute.new(data)
+        Restiny::HashWithSnakeCaseAndDotNotation.new(data)
       when Array
-        data.map { |item| item.is_a?(Hash) ? Restiny::Attribute.new(item) : item }
+        data.map { |item| item.is_a?(Hash) ? Restiny::HashWithSnakeCaseAndDotNotation.new(item) : item }
       else
         data
       end
