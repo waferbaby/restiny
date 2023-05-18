@@ -10,6 +10,10 @@ require 'restiny/user'
 require 'restiny/membership'
 require 'restiny/character'
 
+require 'restiny/entry'
+
+require 'restiny/hash_with_snake_case_and_dot_notation'
+
 require 'faraday'
 require 'faraday/follow_redirects'
 require 'securerandom'
