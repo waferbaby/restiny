@@ -70,29 +70,11 @@ module Restiny
       full_table_name = "Destiny#{table_name}Definition"
 
       define_method method_names[:item] do |hash|
-        query = "SELECT json FROM #{full_table_name} WHERE json_extract(json, '$.hash')=?"
-        result = perform_query(query, [hash])
-
-        return nil if result.nil? || result.count < 1 || !result[0].include?('json')
-
-        JSON.parse(result[0]['json'])
+        fetch_item(full_table_name, hash)
       end
 
-      define_method method_names[:items] do |limit: nil, filter_empty: false, &block|
-        query = "SELECT json_extract(json, '$.hash') AS hash, json_extract(json, '$.displayProperties.name') AS name 
-                 FROM #{full_table_name} "
-
-        query << "WHERE json_extract(json, '$.displayProperties.name') IS NOT NULL " if filter_empty
-        query << "ORDER BY json_extract(json, '$.index')"
-
-        bindings = []
-
-        if limit
-          query << " LIMIT ?"
-          bindings << limit
-        end
-
-        perform_query(query, bindings)
+      define_method method_names[:items] do |**args|
+        fetch_items(full_table_name, args)
       end
     end
 
@@ -120,10 +102,34 @@ module Restiny
 
     private
 
-    def perform_query(query, bindings, &block)
+    def fetch_item(table_name, hash)
+      query = "SELECT json FROM #{table_name} WHERE json_extract(json, '$.hash')=?"
+      result = @database.execute(query, hash)
+
+      return nil if result.nil? || result.count < 1 || !result[0].include?('json')
+
+      JSON.parse(result[0]['json'])
+    rescue SQLite3::Exception => e
+      raise Restiny::RequestError.new("Error while fetching item (#{e})")
+    end
+
+    def fetch_items(table_name, limit: nil, filter_empty: false)
+      query = "SELECT json_extract(json, '$.hash') AS hash, json_extract(json, '$.displayProperties.name') AS name 
+                 FROM #{table_name} "
+
+      query << "WHERE json_extract(json, '$.displayProperties.name') != '' " if filter_empty
+      query << "ORDER BY json_extract(json, '$.index')"
+
+      bindings = []
+
+      if limit
+        query << " LIMIT ?"
+        bindings << limit
+      end
+
       @database.execute(query, bindings)
     rescue SQLite3::Exception => e
-      raise Restiny::RequestError.new("Error while querying the manifest (#{e})")
+      raise Restiny::RequestError.new("Error while fetching item (#{e})")
     end
   end
 end
