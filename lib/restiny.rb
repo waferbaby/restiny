@@ -2,14 +2,14 @@
 
 $LOAD_PATH.unshift(__dir__)
 
-require 'restiny/version'
-require 'restiny/constants'
-require 'restiny/errors'
-require 'restiny/manifest'
+require "restiny/version"
+require "restiny/constants"
+require "restiny/errors"
+require "restiny/manifest"
 
-require 'faraday'
-require 'faraday/follow_redirects'
-require 'securerandom'
+require "faraday"
+require "faraday/follow_redirects"
+require "securerandom"
 
 module Restiny
   extend self
@@ -27,7 +27,7 @@ module Restiny
     @oauth_state = state || SecureRandom.hex(15)
 
     params = {
-      response_type: 'code',
+      response_type: "code",
       client_id: @oauth_client_id,
       state: @oauth_state
     }
@@ -42,13 +42,13 @@ module Restiny
 
     params = {
       code: code,
-      grant_type: 'authorization_code',
+      grant_type: "authorization_code",
       client_id: @oauth_client_id
     }
 
     params[:redirect_url] = redirect_url unless redirect_url.nil?
 
-    post('/platform/app/oauth/token/', params, "Content-Type" => "application/x-www-form-urlencoded")
+    post("/platform/app/oauth/token/", params, "Content-Type" => "application/x-www-form-urlencoded")
   end
 
   def request_refresh_token
@@ -56,10 +56,10 @@ module Restiny
 
   # Manifest methods
 
-  def download_manifest(locale = 'en')
+  def download_manifest(locale = "en")
     response = get("/platform/Destiny2/Manifest/")
 
-    manifest_path = response.dig('Response', 'mobileWorldContentPaths', locale)
+    manifest_path = response.dig("Response", "mobileWorldContentPaths", locale)
     raise Restiny::ResponseError.new("Unable to determine manifest URL") if manifest_path.nil?
 
     Manifest.download(BUNGIE_URL + manifest_path)
@@ -76,7 +76,7 @@ module Restiny
     {}.tap do |output|
       components.each do |component|
         case component.downcase
-        when 'characters'
+        when "characters"
           output[:characters] = parse_profile_characters_response(response)
         end
       end
@@ -89,11 +89,11 @@ module Restiny
     raise Restiny::InvalidParamsError.new("You must provide a valid membership ID") if membership_id.nil?
 
     response = get("/platform/User/GetMembershipsById/#{membership_id}/#{membership_type}/")
-    response.dig('Response')
+    response.dig("Response")
   end
 
   def get_user_by_bungie_name(full_display_name, membership_type = PLATFORM_ALL)
-    display_name, display_name_code = full_display_name.split('#')
+    display_name, display_name_code = full_display_name.split("#")
     raise Restiny::InvalidParamsError.new("You must provide a valid Bungie name") if display_name.nil? || display_name_code.nil?
 
     params = {
@@ -102,12 +102,12 @@ module Restiny
     }
 
     response = post("/platform/Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/", params)
-    response.dig('Response')
+    response.dig("Response")
   end
 
   def search_users(name, page = 0)
     response = post("/platform/User/Search/GlobalName/#{page}", displayNamePrefix: name)
-    response.dig('Response', 'searchResults')
+    response.dig("Response", "searchResults")
   end
 
   private
@@ -126,24 +126,28 @@ module Restiny
     headers[:authorization] = "Bearer #{@oauth_token}" if @oauth_token
 
     response = case type
-               when :get
-                 connection.get(url, params, headers)
-               when :post
-                 connection.post(url, params, headers)
-               end
+    when :get
+      connection.get(url, params, headers)
+    when :post
+      connection.post(url, params, headers)
+    end
 
     response.body
   rescue Faraday::Error => error
-    message = if error.response_body && error.response_headers['content-type'] =~ /application\/json;/i
-      JSON.parse(error.response_body)['Message']
+    message = if error.response_body && error.response_headers["content-type"] =~ /application\/json;/i
+      error_response = JSON.parse(error.response_body)
+      "#{error_response["error_description"]} (#{error_response["error"]})"
     else
       error.message
     end
 
     case error
-    when Faraday::ClientError, Faraday::ServerError, Faraday::ConnectionFailed
-      raise Restiny::NetworkError.new(message, error.response_status)
+    when Faraday::ClientError
+      raise Restiny::RequestError.new(message, error.response_status)
+    when Faraday::ServerError
+      raise Restiny::ResponseError.new(message, error.response_status)
     else
+      raise Restiny::Error.new(message)
     end
   end
 
@@ -153,8 +157,8 @@ module Restiny
 
   def default_headers
     {
-      'User-Agent': "restiny v#{Restiny::VERSION}",
-      'X-API-KEY': @api_key
+      "User-Agent": "restiny v#{Restiny::VERSION}",
+      "X-API-KEY": @api_key
     }
   end
 
