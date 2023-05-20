@@ -88,7 +88,7 @@ module Restiny
     rescue Down::ResponseError => error
       raise Restiny::NetworkError.new("Unable to download the manifest file", error.response.code)
     rescue Zip::Error => error
-      raise Restiny::Error.new("Unable to unzip the manifest file (#{e})")
+      raise Restiny::Error.new("Unable to unzip the manifest file (#{error})")
     end
 
     def initialize(file_path)
