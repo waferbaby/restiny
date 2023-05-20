@@ -73,8 +73,8 @@ module Restiny
         fetch_item(full_table_name, hash)
       end
 
-      define_method method_names[:items] do |**args|
-        fetch_items(full_table_name, args)
+      define_method method_names[:items] do |options = {}|
+        fetch_items(full_table_name, options)
       end
     end
 
@@ -113,21 +113,31 @@ module Restiny
       raise Restiny::RequestError.new("Error while fetching item (#{e})")
     end
 
-    def fetch_items(table_name, limit: nil, filter_empty: false)
-      query = "SELECT json_extract(json, '$.hash') AS hash, json_extract(json, '$.displayProperties.name') AS name
-                 FROM #{table_name} "
-
-      query << "WHERE json_extract(json, '$.displayProperties.name') != '' " if filter_empty
-      query << "ORDER BY json_extract(json, '$.index')"
-
+    def fetch_items(table_name, options = {})
       bindings = []
 
-      if limit
+      query = "SELECT json FROM #{table_name} "
+      query << "WHERE json_extract(json, '$.displayProperties.name') != '' " if options[:filter_empty]
+      query << "ORDER BY json_extract(json, '$.index')"
+
+      if options[:limit]
         query << " LIMIT ?"
-        bindings << limit
+        bindings << options[:limit]
       end
 
-      @database.execute(query, bindings)
+      result = []
+
+      @database.execute(query, bindings) do |row|
+        item = JSON.parse(row["json"])
+
+        if block_given?
+          yield item
+        else
+          result << item
+        end
+      end
+
+      result unless block_given?
     rescue SQLite3::Exception => e
       raise Restiny::RequestError.new("Error while fetching item (#{e})")
     end
