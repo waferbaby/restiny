@@ -51,9 +51,6 @@ module Restiny
     post("/platform/app/oauth/token/", params, "Content-Type" => "application/x-www-form-urlencoded")
   end
 
-  def request_refresh_token
-  end
-
   # Manifest methods
 
   def download_manifest(locale = "en")
@@ -69,27 +66,14 @@ module Restiny
 
   def get_profile(membership_id, membership_type, components = [])
     raise Restiny::InvalidParamsError.new("You must provide at least one component") if components.empty?
-
-    component_query = components.join(",")
-    response = get("/platform/Destiny2/#{membership_type}/Profile/#{membership_id}?components=#{component_query}")
-
-    {}.tap do |output|
-      components.each do |component|
-        case component.downcase
-        when "characters"
-          output[:characters] = parse_profile_characters_response(response)
-        end
-      end
-    end
+    get("/platform/Destiny2/#{membership_type}/Profile/#{membership_id}?components=#{components.join(",")}")
   end
 
   # Account methods
 
   def get_user_by_membership_id(membership_id, membership_type = PLATFORM_ALL)
     raise Restiny::InvalidParamsError.new("You must provide a valid membership ID") if membership_id.nil?
-
-    response = get("/platform/User/GetMembershipsById/#{membership_id}/#{membership_type}/")
-    response.dig("Response")
+    get("/platform/User/GetMembershipsById/#{membership_id}/#{membership_type}/")
   end
 
   def get_user_by_bungie_name(full_display_name, membership_type = PLATFORM_ALL)
@@ -101,13 +85,11 @@ module Restiny
       displayNameCode: display_name_code
     }
 
-    response = post("/platform/Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/", params)
-    response.dig("Response")
+    post("/platform/Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/", params)
   end
 
   def search_users(name, page = 0)
-    response = post("/platform/User/Search/GlobalName/#{page}", displayNamePrefix: name)
-    response.dig("Response", "searchResults")
+    post("/platform/User/Search/GlobalName/#{page}", displayNamePrefix: name)
   end
 
   private
@@ -132,7 +114,7 @@ module Restiny
       connection.post(url, params, headers)
     end
 
-    response.body
+    response.body&.dig("Response")
   rescue Faraday::Error => error
     message = if error.response_body && error.response_headers["content-type"] =~ /application\/json;/i
       error_response = JSON.parse(error.response_body)
