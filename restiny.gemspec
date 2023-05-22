@@ -24,9 +24,9 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "down", "~> 5.4"
   s.add_runtime_dependency "rubyzip", "~> 2.3"
 
-  s.add_development_dependency "rake"
-  s.add_development_dependency "rspec"
-  s.add_development_dependency "rubocop-rspec"
-  s.add_development_dependency "standard"
-  s.add_development_dependency "vcr"
+  s.add_development_dependency "rake", "~> 13.0"
+  s.add_development_dependency "rspec", "~> 3.12"
+  s.add_development_dependency "rubocop-rspec", "~> 2.22"
+  s.add_development_dependency "standard", "~> 1.28"
+  s.add_development_dependency "vcr", "~> 6.1"
 end

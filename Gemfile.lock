@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    restiny (0.3.0)
+    restiny (0.4.0)
       down (~> 5.4)
       faraday (~> 2.0)
       faraday-follow_redirects (~> 0.3)
@@ -94,12 +94,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  rake
+  rake (~> 13.0)
   restiny!
-  rspec
-  rubocop-rspec
-  standard
-  vcr
+  rspec (~> 3.12)
+  rubocop-rspec (~> 2.22)
+  standard (~> 1.28)
+  vcr (~> 6.1)
 
 BUNDLED WITH
    2.1.4
