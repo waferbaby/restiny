@@ -56,7 +56,7 @@ module Restiny
   def download_manifest(locale = "en")
     response = get("/platform/Destiny2/Manifest/")
 
-    manifest_path = response.dig("Response", "mobileWorldContentPaths", locale)
+    manifest_path = response.dig("mobileWorldContentPaths", locale)
     raise Restiny::ResponseError.new("Unable to determine manifest URL") if manifest_path.nil?
 
     Manifest.download(BUNGIE_URL + manifest_path)
