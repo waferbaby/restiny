@@ -47,8 +47,7 @@ module Restiny
     }
 
     params[:redirect_url] = redirect_url unless redirect_url.nil?
-
-    post("/platform/app/oauth/token/", params, "Content-Type" => "application/x-www-form-urlencoded")
+    make_api_request(:post, "/platform/app/oauth/token/", params, "Content-Type" => "application/x-www-form-urlencoded")
   end
 
   # Manifest methods
@@ -71,12 +70,12 @@ module Restiny
 
   # Account methods
 
-  def get_user_by_membership_id(membership_id, membership_type = PLATFORM_ALL)
+  def get_user_by_membership_id(membership_id, membership_type = Platform::ALL)
     raise Restiny::InvalidParamsError.new("You must provide a valid membership ID") if membership_id.nil?
     get("/platform/User/GetMembershipsById/#{membership_id}/#{membership_type}/")
   end
 
-  def get_user_by_bungie_name(full_display_name, membership_type = PLATFORM_ALL)
+  def get_user_by_bungie_name(full_display_name, membership_type = Platform::ALL)
     display_name, display_name_code = full_display_name.split("#")
     raise Restiny::InvalidParamsError.new("You must provide a valid Bungie name") if display_name.nil? || display_name_code.nil?
 
@@ -95,11 +94,11 @@ module Restiny
   private
 
   def get(endpoint_url, params = {}, headers = {})
-    make_api_request(:get, endpoint_url, params, headers)
+    make_api_request(:get, endpoint_url, params, headers).dig("Response")
   end
 
   def post(endpoint_url, body, headers = {})
-    make_api_request(:post, endpoint_url, body, headers)
+    make_api_request(:post, endpoint_url, body, headers).dig("Response")
   end
 
   def make_api_request(type, url, params, headers = {})
@@ -114,7 +113,7 @@ module Restiny
       connection.post(url, params, headers)
     end
 
-    response.body&.dig("Response")
+    response.body
   rescue Faraday::Error => error
     message = if error.response_body && error.response_headers["content-type"] =~ /application\/json;/i
       error_response = JSON.parse(error.response_body)
