@@ -10,10 +10,17 @@ module Restiny
   end
 
   module ComponentType
+    CHARACTERS = "Characters"
+    CHARACTER_EQUIPMENT = "CharacterEquipment"
+    CHARACTER_INVENTORIES = "CharacterInventories"
+    CHARACTER_LOADOUTS = "CharacterLoadouts"
     PROFILES = "Profiles"
     PROFILE_INVENTORIES = "ProfileInventories"
-    CHARACTERS = "Characters"
-    CHARACTER_INVENTORIES = "CharacterInventories"
+    ITEM_INSTANCES = "ItemInstances",
+    ITEM_SOCKETS = "ItemSockets",
+    ITEM_COMMON_DATA = "ItemCommonData",
+    ITEM_PLUG_STATES = "ItemPlugStates",
+    ITEM_REUSABLE_PLUGS = "ItemReusablePlugs"
   end
 
   module ItemLocation
@@ -34,8 +41,3 @@ module Restiny
     EXOTIC = 6
   end
 end
-
-COMPONENT_TYPE_PROFILES = "Profiles"
-COMPONENT_TYPE_PROFILE_INVENTORIES = "ProfileInventories"
-COMPONENT_TYPE_CHARACTERS = "Characters"
-COMPONENT_TYPE_CHARACTER_INVENTORIES = "CharacterInventories"
