@@ -16,10 +16,10 @@ module Restiny
     CHARACTER_LOADOUTS = "CharacterLoadouts"
     PROFILES = "Profiles"
     PROFILE_INVENTORIES = "ProfileInventories"
-    ITEM_INSTANCES = "ItemInstances",
-    ITEM_SOCKETS = "ItemSockets",
-    ITEM_COMMON_DATA = "ItemCommonData",
-    ITEM_PLUG_STATES = "ItemPlugStates",
+    ITEM_INSTANCES = "ItemInstances"
+    ITEM_SOCKETS = "ItemSockets"
+    ITEM_COMMON_DATA = "ItemCommonData"
+    ITEM_PLUG_STATES = "ItemPlugStates"
     ITEM_REUSABLE_PLUGS = "ItemReusablePlugs"
   end
 

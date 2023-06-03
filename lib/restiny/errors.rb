@@ -8,13 +8,18 @@ module Restiny
     end
   end
 
-  class RequestError < Error; end
+  class RequestError < Error
+  end
 
-  class InvalidParamsError < RequestError; end
+  class InvalidParamsError < RequestError
+  end
 
-  class RateLimitedError < RequestError; end
+  class RateLimitedError < RequestError
+  end
 
-  class ResponseError < Error; end
+  class ResponseError < Error
+  end
 
-  class AuthenticationError < ResponseError; end
+  class AuthenticationError < ResponseError
+  end
 end
