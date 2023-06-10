@@ -116,27 +116,24 @@ module Restiny
 
     response.body
   rescue Faraday::Error => error
-    message =
-      if error.response_body && error.response_headers["content-type"] =~ %r{application/json;}i
-        error_response = JSON.parse(error.response_body)
-        "#{error_response["error_description"]} (#{error_response["error"]})"
+    begin
+      error_body = JSON.parse(error.response_body)
+      status, message = error_body["ErrorStatus"], error_body["Message"]
+    rescue JSON::ParserError
+      status, message = error.response_status, error.message
+    end
+
+    klass =
+      case error
+      when Faraday::ClientError
+        Restiny::RequestError
+      when Faraday::ServerError
+        Restiny::ResponseError
       else
-        error.message
+        Restiny::Error
       end
 
-    case error
-    when Faraday::ClientError
-      raise case error.response_status
-            when 403, 406
-              Restiny::AuthenticationError.new(message, error.response_status)
-            else
-              Restiny::RequestError.new(message, error.response_status)
-            end
-    when Faraday::ServerError
-      raise Restiny::ResponseError.new(message, error.response_status)
-    else
-      raise Restiny::Error.new(message)
-    end
+    raise klass.new(message, status)
   end
 
   def check_oauth_client_id
