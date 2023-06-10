@@ -2,8 +2,8 @@
 
 module Restiny
   class Error < StandardError
-    def initialize(message, details = nil)
-      @details = details
+    def initialize(message, status = nil)
+      @status = status
       super(message)
     end
   end
@@ -18,8 +18,5 @@ module Restiny
   end
 
   class ResponseError < Error
-  end
-
-  class AuthenticationError < ResponseError
   end
 end
