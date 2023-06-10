@@ -267,6 +267,11 @@ module Restiny
 
     private
 
+    def get_tables
+      query = "SELECT name from sqlite_schema WHERE name LIKE 'Destiny%'"
+      @database.execute(query).map { |row| row["name"].gsub(/(Destiny|Definition)/, '') }
+    end
+
     def fetch_item(table_name, hash)
       query = "SELECT json FROM #{table_name} WHERE json_extract(json, '$.hash')=?"
       result = @database.execute(query, hash)
