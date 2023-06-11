@@ -91,8 +91,6 @@ module Restiny
     post("User/Search/GlobalName/#{page}", displayNamePrefix: name)
   end
 
-  private
-
   def get(endpoint_url, params = {}, headers = {})
     make_api_request(:get, endpoint_url, params, headers).dig("Response")
   end
@@ -100,6 +98,8 @@ module Restiny
   def post(endpoint_url, body, headers = {})
     make_api_request(:post, endpoint_url, body, headers).dig("Response")
   end
+
+  private
 
   def make_api_request(type, url, params, headers = {})
     raise Restiny::InvalidParamsError.new("You need to set an API key") unless @api_key
