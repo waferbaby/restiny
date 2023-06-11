@@ -6,240 +6,84 @@ require "zip"
 
 module Restiny
   class Manifest
-    TABLES = {
-      Achievement: {
-        item: "achievement",
-        items: "achievements"
-      },
-      Activity: {
-        item: "activity",
-        items: "activities"
-      },
-      ActivityGraph: {
-        item: "activity_graph",
-        items: "activity_graphs"
-      },
-      ActivityMode: {
-        item: "activity_mode",
-        items: "activity_modes"
-      },
-      ActivityModifier: {
-        item: "activity_modifier",
-        items: "activity_modifiers"
-      },
-      ActivityType: {
-        item: "activity_type",
-        items: "activity_types"
-      },
-      Artifact: {
-        item: "artifact",
-        items: "artifacts"
-      },
-      Bond: {
-        item: "bond",
-        items: "bonds"
-      },
-      BreakerType: {
-        item: "breaker_type",
-        items: "breaker_types"
-      },
-      Checklist: {
-        item: "checklist",
-        items: "checklists"
-      },
-      Class: {
-        item: "guardian_class",
-        items: "guardian_classes"
-      },
-      Collectible: {
-        item: "collectible",
-        items: "collectibles"
-      },
-      DamageType: {
-        item: "damage_type",
-        items: "damage_types"
-      },
-      Destination: {
-        item: "destination",
-        items: "destinations"
-      },
-      EnergyType: {
-        item: "energy_type",
-        items: "energy_types"
-      },
-      EquipmentSlot: {
-        item: "equipment_slot",
-        items: "equipment_slots"
-      },
-      EventCard: {
-        item: "event_card",
-        items: "event_cards"
-      },
-      Faction: {
-        item: "faction",
-        items: "factions"
-      },
-      Gender: {
-        item: "gender",
-        items: "genders"
-      },
-      HistoricalStats: {
-        item: "historical_stat",
-        items: "historical_stats"
-      },
-      InventoryBucket: {
-        item: "inventory_bucket",
-        items: "inventory_buckets"
-      },
-      InventoryItem: {
-        item: "inventory_item",
-        items: "inventory_items"
-      },
-      ItemCategory: {
-        item: "item_category",
-        items: "item_categories"
-      },
-      ItemTierType: {
-        item: "item_tier_type",
-        items: "item_tier_types"
-      },
-      Location: {
-        item: "location",
-        items: "locations"
-      },
-      Lore: {
-        item: "lore",
-        items: "lore_entries"
-      },
-      MaterialRequirementSet: {
-        item: "material_requirement_set",
-        items: "material_requirement_sets"
-      },
-      MedalTier: {
-        item: "medal_tier",
-        items: "medal_tiers"
-      },
-      Metric: {
-        item: "metric",
-        items: "metrics"
-      },
-      Milestone: {
-        item: "milestone",
-        items: "milestones"
-      },
-      Objective: {
-        item: "objective",
-        items: "objectives"
-      },
-      Place: {
-        item: "place",
-        items: "places"
-      },
-      PlugSet: {
-        item: "plug_set",
-        items: "plug_sets"
-      },
-      PowerCap: {
-        item: "power_cap",
-        items: "power_caps"
-      },
-      PresentationNode: {
-        item: "presentation_node",
-        items: "presentation_nodes"
-      },
-      Progression: {
-        item: "progression",
-        items: "progression_data"
-      },
-      ProgressionLevelRequirement: {
-        item: "progression_level_requirement",
-        items: "progression_level_requirements"
-      },
-      Race: {
-        item: "race",
-        items: "races"
-      },
-      Record: {
-        item: "record",
-        items: "records"
-      },
-      ReportReasonCategory: {
-        item: "report_reason_category",
-        items: "report_reason_categories"
-      },
-      RewardSource: {
-        item: "reward_source",
-        items: "reward_sources"
-      },
-      SackRewardItemList: {
-        item: "sack_reward_item_list",
-        items: "sack_reward_item_lists"
-      },
-      SandboxPattern: {
-        item: "sandbox_pattern",
-        items: "sandbox_patterns"
-      },
-      SandboxPerk: {
-        item: "sandbox_perk",
-        items: "sandbox_perks"
-      },
-      Season: {
-        item: "season",
-        items: "seasons"
-      },
-      SeasonPass: {
-        item: "season_pass",
-        items: "season_passes"
-      },
-      SocketCategory: {
-        item: "socket_category",
-        items: "socket_categories"
-      },
-      SocketType: {
-        item: "socket_type",
-        items: "socket_types"
-      },
-      Stat: {
-        item: "stat",
-        items: "stats"
-      },
-      StatGroup: {
-        item: "stat_group",
-        items: "stat_groups"
-      },
-      TalentGrid: {
-        item: "talent_grid",
-        items: "talent_grids"
-      },
-      Trait: {
-        item: "trait",
-        items: "traits"
-      },
-      Unlock: {
-        item: "unlock",
-        items: "unlocks"
-      },
-      Vendor: {
-        item: "vendor",
-        items: "vendors"
-      },
-      VendorGroup: {
-        item: "vendor_group",
-        items: "vendor_groups"
-      }
+    ENTITIES = {
+      Achievement: %w[achievement achievements],
+      Activity: %w[activity activities],
+      ActivityGraph: %w[activity_graph activity_graphs],
+      ActivityMode: %w[activity_mode activity_modes],
+      ActivityModifier: %w[activity_modifier activity_modifiers],
+      ActivityType: %w[activity_type activity_types],
+      Artifact: %w[artifact artifacts],
+      Bond: %w[bonds bonds],
+      BreakerType: %w[breaker_type breaker_types],
+      Checklist: %w[checklist checklists],
+      Class: %w[guardian_class guardian_classes],
+      Collectible: %w[collectible collectibles],
+      DamageType: %w[damage_type damage_types],
+      Destination: %w[destination destinations],
+      EnergyType: %w[energy_type energy_types],
+      EquipmentSlot: %w[equipment_slot equipment_slots],
+      EventCard: %w[event_card event_cards],
+      Faction: %w[faction factions],
+      Gender: %w[guardian_gender guardian_genders],
+      GuardianRank: %w[guardian_rank guardian_ranks],
+      GuardianRankConstants: %w[guardian_rank_constant guardian_rank_constants],
+      HistoricalStats: %w[historical_stat historical_stats],
+      InventoryBucket: %w[inventory_bucket inventory_buckets],
+      InventoryItem: %w[inventory_item inventory_items],
+      ItemCategory: %w[item_category item_categories],
+      ItemTierType: %w[item_tier_type item_tier_types],
+      LoadoutColor: %w[loadout_color loadout_colors],
+      LoadoutConstants: %w[loadout_constant loadout_constants],
+      LoadoutIcon: %w[loadout_icon loadout_icons],
+      LoadoutName: %w[loadout_name loadout_names],
+      Location: %w[location locations],
+      Lore: %w[lore_entry lore_entries],
+      MaterialRequirementSet: %w[material_requirement_set material_requirement_sets],
+      MedalTier: %w[medal_tier medal_tiers],
+      Metric: %w[metric metrics],
+      Milestone: %w[milestone milestones],
+      Objective: %w[objective objectives],
+      Place: %w[place places],
+      PlugSet: %w[plug_set plug_sets],
+      PowerCap: %w[power_cap power_caps],
+      PresentationNode: %w[presentation_node presentation_nodes],
+      Progression: %w[progression progressions],
+      ProgressionLevelRequirement: %w[progression_level_requirement progression_level_requirements],
+      Race: %w[guardian_race guardian_races],
+      Record: %w[record records],
+      ReportReasonCategory: %w[report_reason_category report_reason_categories],
+      RewardSource: %w[reward_source reward_sources],
+      SackRewardItemList: %w[sack_reward_item_list sack_reward_item_lists],
+      SandboxPattern: %w[sandbox_pattern sandbox_patterns],
+      SandboxPerk: %w[sandbox_perk sandbox_perks],
+      Season: %w[season seasons],
+      SeasonPass: %w[season_pass season_passes],
+      SocialCommendation: %w[commendation commendations],
+      SocialCommendationNode: %w[commendation_node commendation_nodes],
+      SocketCategory: %w[socket_category socket_categories],
+      SocketType: %w[socket_type socket_types],
+      Stat: %w[stat stats],
+      StatGroup: %w[stat_group stat_groups],
+      TalentGrid: %w[talent_grid talent_grids],
+      Trait: %w[trait traits],
+      Unlock: %w[unlock unlocks],
+      Vendor: %w[vendor vendors],
+      VendorGroup: %w[vendor_group vendor_groups]
     }
 
     attr_reader :file_path
 
-    TABLES.each do |table_name, method_names|
-      full_table_name = "Destiny#{table_name}Definition"
+    ENTITIES.each do |entity, method_names|
+      full_table_name = "Destiny#{entity}Definition"
+      single_method_name, plural_method_name = method_names
 
-      define_method method_names[:item] do |hash|
-        fetch_item(full_table_name, hash)
+      define_method single_method_name do |id|
+        fetch_item(full_table_name, id)
       end
 
-      define_method method_names[:items] do |options = {}|
-        fetch_items(full_table_name, options)
+      define_method plural_method_name do |limit = nil|
+        fetch_items(full_table_name, limit)
       end
     end
 
@@ -267,14 +111,14 @@ module Restiny
 
     private
 
-    def get_tables
+    def get_entity_names
       query = "SELECT name from sqlite_schema WHERE name LIKE 'Destiny%'"
-      @database.execute(query).map { |row| row["name"].gsub(/(Destiny|Definition)/, '') }
+      @database.execute(query).map { |row| row["name"].gsub(/(Destiny|Definition)/, "") }
     end
 
-    def fetch_item(table_name, hash)
+    def fetch_item(table_name, id)
       query = "SELECT json FROM #{table_name} WHERE json_extract(json, '$.hash')=?"
-      result = @database.execute(query, hash)
+      result = @database.execute(query, id)
 
       return nil if result.nil? || result.count < 1 || !result[0].include?("json")
 
@@ -283,35 +127,28 @@ module Restiny
       raise Restiny::RequestError.new("Error while fetching item (#{e})")
     end
 
-    def fetch_items(table_name, options = {})
+    def fetch_items(table_name, limit = nil)
       bindings = []
 
-      query = "SELECT json FROM #{table_name} "
-      if options[:filter_empty]
-        query << "WHERE json_extract(json, '$.displayProperties.name') != '' "
-      end
-      query << "ORDER BY json_extract(json, '$.index')"
+      query = "SELECT json FROM #{table_name} ORDER BY json_extract(json, '$.index')"
 
-      if options[:limit]
+      if limit
         query << " LIMIT ?"
-        bindings << options[:limit]
+        bindings << limit
       end
 
-      result = []
+      items = []
 
       @database.execute(query, bindings) do |row|
         item = JSON.parse(row["json"])
+        yield item if block_given?
 
-        if block_given?
-          yield item
-        else
-          result << item
-        end
+        items << item
       end
 
-      result unless block_given?
+      items unless block_given?
     rescue SQLite3::Exception => e
-      raise Restiny::RequestError.new("Error while fetching item (#{e})")
+      raise Restiny::RequestError.new("Error while fetching items (#{e})")
     end
   end
 end
