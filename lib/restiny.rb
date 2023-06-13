@@ -49,13 +49,23 @@ module Restiny
   # Manifest methods
 
   def download_manifest(locale = "en")
+
+    manifest_path, version = get_manifest_info()
+
+    Manifest.new(Manifest.download(BUNGIE_URL + manifest_path), version)
+  end
+
+  def get_manifest_info
     response = get("Destiny2/Manifest/")
 
     manifest_path = response.dig("mobileWorldContentPaths", locale)
     raise Restiny::ResponseError.new("Unable to determine manifest URL") if manifest_path.nil?
 
-    Manifest.download(BUNGIE_URL + manifest_path)
+    version = response.dig("version")
+
+    return manifest_path, version
   end
+
 
   # Profile methods
 

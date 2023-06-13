@@ -87,26 +87,53 @@ module Restiny
       end
     end
 
-    def self.download(url)
+    def self.download(url, version = nil)
       zipped_file = Down.download(url)
       manifest_path = zipped_file.path + ".db"
 
       Zip::File.open(zipped_file) { |file| file.first.extract(manifest_path) }
 
-      new(manifest_path)
+      return manifest_path
     rescue Down::ResponseError => error
       raise Restiny::NetworkError.new("Unable to download the manifest file", error.response.code)
     rescue Zip::Error => error
       raise Restiny::Error.new("Unable to unzip the manifest file (#{error})")
     end
 
-    def initialize(file_path)
+    def self.remote_manifest_version
+      Restiny.get("Destiny2/Manifest/").dig("version")
+    end
+
+    def initialize(file_path, version)
+      new_data!(file_path, version)
+    end
+
+    def up_to_date?
+      @version == self.remote_manifest_version
+    end  
+
+    def new_data!(file_path)         
       if file_path.empty? || !File.exist?(file_path) || !File.file?(file_path)
         raise Restiny::InvalidParamsError.new("You must provide a valid path for the manifest file")
       end
 
+      # delete existing manifest db file if present
+      if @file_path
+        File.delete(@file_path)
+      end
+
       @database = SQLite3::Database.new(file_path, results_as_hash: true)
       @file_path = file_path
+      @version = version
+
+    end
+
+    def update
+      unless up_to_date?
+        manifest_path, version = Restiny.get_manifest_info
+    
+        new_data!(Manifest.download(BUNGIE_URL + manifest_path), version)
+      end
     end
 
     private
