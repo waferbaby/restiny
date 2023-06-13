@@ -50,12 +50,12 @@ module Restiny
 
   def download_manifest(locale = "en")
 
-    manifest_path, version = get_manifest_info()
+    manifest_path, version = get_manifest_info(locale)
 
     Manifest.new(Manifest.download(BUNGIE_URL + manifest_path), version)
   end
 
-  def get_manifest_info
+  def get_manifest_info(locale)
     response = get("Destiny2/Manifest/")
 
     manifest_path = response.dig("mobileWorldContentPaths", locale)
