@@ -67,15 +67,15 @@ module Restiny
     get("Destiny2/#{membership_type}/Profile/#{membership_id}?components=#{components.join(",")}")
   end
 
-  # Account methods
+  # User methods
 
-  def get_user_by_membership_id(membership_id, membership_type = Platform::ALL)
+  def get_user_memberships(membership_id, membership_type = Platform::ALL)
     raise Restiny::InvalidParamsError.new("Please provide a membership ID") if membership_id.nil?
 
     get("User/GetMembershipsById/#{membership_id}/#{membership_type}/")
   end
 
-  def get_user_by_bungie_name(full_display_name, membership_type = Platform::ALL)
+  def find_user_by_bungie_name(full_display_name, membership_type = Platform::ALL)
     display_name, display_name_code = full_display_name.split("#")
     if display_name.nil? || display_name_code.nil?
       raise Restiny::InvalidParamsError.new("You must provide a valid Bungie name")
@@ -90,6 +90,8 @@ module Restiny
   def search_users(name, page = 0)
     post("User/Search/GlobalName/#{page}", displayNamePrefix: name)
   end
+
+  # General request methods
 
   def get(endpoint_url, params = {}, headers = {})
     make_api_request(:get, endpoint_url, params, headers).dig("Response")
