@@ -79,15 +79,15 @@ module Restiny
       single_method_name, plural_method_name = method_names
 
       define_method single_method_name do |id|
-        fetch_item(full_table_name, id)
+        fetch_item(table_name: full_table_name, id: id)
       end
 
-      define_method plural_method_name do |limit = nil|
-        fetch_items(full_table_name, limit)
+      define_method plural_method_name do |limit: nil|
+        fetch_items(table_name: full_table_name, limit: limit)
       end
     end
 
-    def self.download(url)
+    def self.download_by_url(url)
       zipped_file = Down.download(url)
       manifest_path = zipped_file.path + ".db"
 
@@ -116,7 +116,7 @@ module Restiny
       @database.execute(query).map { |row| row["name"].gsub(/(Destiny|Definition)/, "") }
     end
 
-    def fetch_item(table_name, id)
+    def fetch_item(table_name:, id:)
       query = "SELECT json FROM #{table_name} WHERE json_extract(json, '$.hash')=?"
       result = @database.execute(query, id)
 
@@ -127,7 +127,7 @@ module Restiny
       raise Restiny::RequestError.new("Error while fetching item (#{e})")
     end
 
-    def fetch_items(table_name, limit = nil)
+    def fetch_items(table_name:, limit: nil)
       bindings = []
 
       query = "SELECT json FROM #{table_name} ORDER BY json_extract(json, '$.index')"
