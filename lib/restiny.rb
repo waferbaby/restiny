@@ -21,7 +21,7 @@ module Restiny
 
   # OAuth methods
 
-  def authorise_url(redirect_url = nil, state = nil)
+  def authorise_url(redirect_url: nil, state: nil)
     check_oauth_client_id
 
     @oauth_state = state || SecureRandom.hex(15)
@@ -32,78 +32,102 @@ module Restiny
     connection.build_url(BUNGIE_URL + "/en/oauth/authorize", params).to_s
   end
 
-  def request_access_token(code, redirect_url = nil)
+  def request_access_token(code:, redirect_url: nil)
     check_oauth_client_id
 
     params = { code: code, grant_type: "authorization_code", client_id: @oauth_client_id }
     params[:redirect_url] = redirect_url unless redirect_url.nil?
 
     make_api_request(
-      :post,
-      "app/oauth/token/",
-      params,
-      "Content-Type" => "application/x-www-form-urlencoded"
+      type: :post,
+      url: "app/oauth/token/",
+      params: params,
+      headers: {
+        "Content-Type" => "application/x-www-form-urlencoded"
+      }
     )
   end
 
   # Manifest methods
 
-  def download_manifest(locale = "en")
-    response = get("Destiny2/Manifest/")
+  def download_manifest(locale: "en")
+    response = get(url: "Destiny2/Manifest/")
 
     manifest_path = response.dig("mobileWorldContentPaths", locale)
     raise Restiny::ResponseError.new("Unable to determine manifest URL") if manifest_path.nil?
 
-    Manifest.download(BUNGIE_URL + manifest_path)
+    Manifest.download(url: BUNGIE_URL + manifest_path)
   end
 
-  # Profile methods
+  # Profile and related methods
 
-  def get_profile(membership_id, membership_type, components = [])
-    if components.empty?
-      raise Restiny::InvalidParamsError.new("Please provide at least one component")
-    end
+  def get_profile(membership_id:, membership_type:, components:)
+    check_components(components)
 
-    get("Destiny2/#{membership_type}/Profile/#{membership_id}?components=#{components.join(",")}")
+    get(
+      url:
+        "Destiny2/#{membership_type}/Profile/#{membership_id}/?components=#{components.join(",")}"
+    )
   end
 
-  # User methods
+  def get_character(character_id:, membership_id:, membership_type:, components:)
+    check_components(components)
 
-  def get_user_memberships(membership_id, membership_type = Platform::ALL)
+    get(
+      url:
+        "Destiny2/#{membership_type}/Profile/#{membership_id}/Character/#{character_id}/?components=#{components.join(",")}"
+    )
+  end
+
+  def get_instanced_item(item_id:, membership_id:, membership_type:, components:)
+    check_components(components)
+
+    get(
+      url:
+        "Destiny2/#{membership_type}/Profile/#{membership_id}/Item/#{item_id}/?components=#{components.join(",")}"
+    )
+  end
+
+  # User methods.
+
+  def get_user_memberships_by_id(membership_id, membership_type: Platform::ALL)
     raise Restiny::InvalidParamsError.new("Please provide a membership ID") if membership_id.nil?
 
-    get("User/GetMembershipsById/#{membership_id}/#{membership_type}/")
+    get(url: "User/GetMembershipsById/#{membership_id}/#{membership_type}/")
   end
 
-  def find_user_by_bungie_name(full_display_name, membership_type = Platform::ALL)
-    display_name, display_name_code = full_display_name.split("#")
+  def find_user_by_bungie_name(name, membership_type: Platform::ALL)
+    display_name, display_name_code = name.split("#")
     if display_name.nil? || display_name_code.nil?
       raise Restiny::InvalidParamsError.new("You must provide a valid Bungie name")
     end
 
     post(
-      "Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/",
-      { displayName: display_name, displayNameCode: display_name_code }
+      url: "Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/",
+      params: {
+        displayName: display_name,
+        displayNameCode: display_name_code
+      }
     )
   end
 
-  def search_users(name, page = 0)
-    post("User/Search/GlobalName/#{page}", displayNamePrefix: name)
+  def search_users(name:, page: 0)
+    post(url: "User/Search/GlobalName/#{page}", params: { displayNamePrefix: name })
   end
 
   # General request methods
 
-  def get(endpoint_url, params = {}, headers = {})
-    make_api_request(:get, endpoint_url, params, headers).dig("Response")
+  def get(url:, params: {}, headers: {})
+    make_api_request(type: :get, url: url, params: params, headers: headers).dig("Response")
   end
 
-  def post(endpoint_url, body, headers = {})
-    make_api_request(:post, endpoint_url, body, headers).dig("Response")
+  def post(url:, body:, headers: {})
+    make_api_request(type: :post, url: url, body: body, headers: headers).dig("Response")
   end
 
   private
 
-  def make_api_request(type, url, params, headers = {})
+  def make_api_request(type:, url:, params:, headers: {})
     raise Restiny::InvalidParamsError.new("You need to set an API key") unless @api_key
 
     headers[:authorization] = "Bearer #{@oauth_token}" if @oauth_token
@@ -140,6 +164,12 @@ module Restiny
 
   def check_oauth_client_id
     raise Restiny::RequestError.new("You need to set an OAuth client ID") unless @oauth_client_id
+  end
+
+  def check_components(components)
+    if !components.is_a(Array) || components.empty?
+      raise Restiny::InvalidParamsError.new("Please provide at least one component")
+    end
   end
 
   def default_headers
