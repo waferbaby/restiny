@@ -104,16 +104,16 @@ module Restiny
       Restiny.get("Destiny2/Manifest/").dig("version")
     end
 
-    def initialize(file_path, version, locale)
+    def initialize(file_path, version, locale = "en")
       @locale = locale
-      new_data!(file_path, version)
+      new_data(file_path, version)
     end
 
     def up_to_date?
       @version == self.remote_manifest_version
     end  
 
-    def new_data!(file_path, version)         
+    def new_data(file_path, version)         
       if file_path.empty? || !File.exist?(file_path) || !File.file?(file_path)
         raise Restiny::InvalidParamsError.new("You must provide a valid path for the manifest file")
       end
@@ -133,7 +133,7 @@ module Restiny
       unless up_to_date?
         manifest_path, version = Restiny.get_manifest_info(@locale)
     
-        new_data!(Manifest.download(BUNGIE_URL + manifest_path), version)
+        new_data(Manifest.download(BUNGIE_URL + manifest_path), version)
       end
     end
 
