@@ -39,8 +39,8 @@ module Restiny
     params[:redirect_url] = redirect_url unless redirect_url.nil?
 
     make_api_request(
+      "app/oauth/token/",
       type: :post,
-      url: "app/oauth/token/",
       params: params,
       headers: {
         "Content-Type" => "application/x-www-form-urlencoded"
@@ -56,7 +56,7 @@ module Restiny
     manifest_path = response.dig("mobileWorldContentPaths", locale)
     raise Restiny::ResponseError.new("Unable to determine manifest URL") if manifest_path.nil?
 
-    Manifest.download(url: BUNGIE_URL + manifest_path)
+    Manifest.download_by_url(BUNGIE_URL + manifest_path)
   end
 
   # Profile and related methods
@@ -113,11 +113,11 @@ module Restiny
   # General request methods
 
   def get(url, params: {}, headers: {})
-    make_api_request(type: :get, url: url, params: params, headers: headers).dig("Response")
+    make_api_request(url, type: :get, params: params, headers: headers).dig("Response")
   end
 
   def post(url, body:, headers: {})
-    make_api_request(type: :post, url: url, body: body, headers: headers).dig("Response")
+    make_api_request(url, type: :post, body: body, headers: headers).dig("Response")
   end
 
   private
@@ -162,7 +162,7 @@ module Restiny
   end
 
   def prepare_profile_components(components)
-    if !components.is_a(Array) || components.empty?
+    if !components.is_a?(Array) || components.empty?
       raise Restiny::InvalidParamsError.new("Please provide at least one component")
     end
 
