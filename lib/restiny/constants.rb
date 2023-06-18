@@ -40,4 +40,32 @@ module Restiny
     SUPERIOR = 5
     EXOTIC = 6
   end
+
+  module Class
+    TITAN = 0
+    HUNTER = 1
+    WARLOCK = 2
+    UNKNOWN = 3
+  end
+
+  module Race
+    HUMAN = 0
+    AWOKEN = 1
+    EXO = 2
+    UNKNOWN = 3
+  end
+
+  module Gender
+    MASCULINE = 0
+    FEMININE = 1
+    UNKNOWN = 2
+  end
+
+  module Ammunition
+    NONE = 0
+    PRIMARY = 1
+    SPECIAL = 2
+    HEAVY = 3
+    UNKNOWN = 4
+  end
 end
