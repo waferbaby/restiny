@@ -17,6 +17,9 @@ module Restiny
   class RateLimitedError < RequestError
   end
 
+  class AuthenticationError < RequestError
+  end
+
   class ResponseError < Error
   end
 end
