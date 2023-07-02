@@ -10,6 +10,7 @@ require "restiny/manifest"
 require "faraday"
 require "faraday/follow_redirects"
 require "faraday/destiny/api"
+require "faraday/destiny/auth"
 require "securerandom"
 
 module Restiny
@@ -30,7 +31,7 @@ module Restiny
     params = { response_type: "code", client_id: @oauth_client_id, state: @oauth_state }
     params[:redirect_url] = redirect_url unless redirect_url.nil?
 
-    connection.build_url(BUNGIE_URL + "/en/oauth/authorize", params).to_s
+    auth_connection.build_url(BUNGIE_URL + "/en/oauth/authorize/", params).to_s
   end
 
   def request_access_token(code:, redirect_url: nil)
@@ -39,17 +40,13 @@ module Restiny
     params = { code: code, grant_type: "authorization_code", client_id: @oauth_client_id }
     params[:redirect_url] = redirect_url unless redirect_url.nil?
 
-    connection.post(
-      "app/oauth/token",
-      params,
-      "Content-Type" => "application/x-www-form-urlencoded"
-    ).body
+    auth_post("app/oauth/token/", params)
   end
 
   # Manifest methods
 
   def get_manifest_url(locale: "en")
-    result = connection.get("Destiny2/Manifest/").body.dig("mobileWorldContentPaths", locale)
+    result = api_get("Destiny2/Manifest/").dig("mobileWorldContentPaths", locale)
     BUNGIE_URL + result
   end
 
@@ -71,7 +68,7 @@ module Restiny
     url += type_url if type_url
     url += "?components=#{components.join(",")}"
 
-    connection.get(url).body
+    api_get(url)
   end
 
   def get_character_profile(character_id:, membership_id:, membership_type:, components:)
@@ -79,7 +76,7 @@ module Restiny
       membership_id: membership_id,
       membership_type: membership_type,
       components: components,
-      type_url: "Character/#{character_id}"
+      type_url: "Character/#{character_id}/"
     )
   end
 
@@ -88,7 +85,7 @@ module Restiny
       membership_id: membership_id,
       membership_type: membership_type,
       components: components,
-      type_url: "Item/#{item_id}"
+      type_url: "Item/#{item_id}/"
     )
   end
 
@@ -96,8 +93,7 @@ module Restiny
 
   def get_user_memberships_by_id(membership_id, membership_type: Platform::ALL)
     raise Restiny::InvalidParamsError.new("Please provide a membership ID") if membership_id.nil?
-
-    connection.get("User/GetMembershipsById/#{membership_id}/#{membership_type}/").body
+    api_get("User/GetMembershipsById/#{membership_id}/#{membership_type}/")
   end
 
   def search_player_by_bungie_name(name, membership_type: Platform::ALL)
@@ -106,18 +102,30 @@ module Restiny
       raise Restiny::InvalidParamsError.new("You must provide a valid Bungie name")
     end
 
-    connection.post(
+    api_post(
       "Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/",
       displayName: display_name,
       displayNameCode: display_name_code
-    ).body
+    )
   end
 
   def search_users_by_global_name(name:, page: 0)
-    connection.post("User/Search/GlobalName/#{page}", displayNamePrefix: name).body
+    api_post("User/Search/GlobalName/#{page}/", displayNamePrefix: name)
   end
 
   # General request methods
+
+  def api_get(url, params)
+    api_connection.get(url, params, token_header).body
+  end
+
+  def api_post(url, params)
+    api_connection.post(url, params, token_header).body
+  end
+
+  def auth_post(url, params)
+    auth_connection.post(url, params, "Content-Type" => "application/x-www-form-urlencoded").body
+  end
 
   private
 
@@ -126,24 +134,37 @@ module Restiny
   end
 
   def default_headers
-    {
-      "User-Agent": "restiny v#{Restiny::VERSION}",
-      "X-API-KEY": @api_key,
-      "Content-Type": "application/json"
-    }
+    { "User-Agent": "restiny v#{Restiny::VERSION}" }
   end
 
-  def connection
+  def api_connection
     raise Restiny::InvalidParamsError.new("You need to set an API key") unless @api_key
 
-    headers = default_headers
-    headers["authorization"] = "Bearer #{@oauth_token}" if @oauth_token
+    @connection ||=
+      Faraday.new(
+        url: API_BASE_URL,
+        headers: default_headers.merge("X-API-KEY": @api_key)
+      ) do |faraday|
+        faraday.request :url_encoded
+        faraday.request :json
+        faraday.response :follow_redirects
+        faraday.response :destiny_api
+        faraday.response :json
+      end
+  end
 
-    Faraday.new(url: API_BASE_URL, headers: headers) do |faraday|
-      faraday.request :url_encoded
-      faraday.request :json
-      faraday.response :follow_redirects
-      faraday.response :destiny_api
-    end
+  def auth_connection
+    @auth_connection ||=
+      Faraday.new(url: API_BASE_URL, headers: default_headers) do |faraday|
+        faraday.request :url_encoded
+        faraday.request :json
+        faraday.response :follow_redirects
+        faraday.response :destiny_auth
+        faraday.response :json
+      end
+  end
+
+  def token_header
+    {}.tap { |headers| headers["authorization"] = "Bearer #{@oauth_token}" if @oauth_token }
   end
 end
