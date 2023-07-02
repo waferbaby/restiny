@@ -7,11 +7,10 @@ module Faraday
 
     class Api < Middleware
       def on_complete(env)
-        return if env["response_body"].empty?
+        return if env["response_body"].empty? || !env["response_body"].dig("ErrorCode")
 
-        payload = JSON.parse(env["response_body"])
-        if payload["ErrorCode"] == 1
-          env[:body] = payload.dig("Response")
+        if env["response_body"]["ErrorCode"] == 1
+          env[:body] = env["response_body"].dig("Response")
           return
         end
 
@@ -25,9 +24,7 @@ module Faraday
             ::Restiny::Error
           end
 
-        raise klass.new(payload["Message"], payload["ErrorStatus"])
-      rescue JSON::ParserError
-        raise ::Restiny::ResponseError.new("Unable to parse API response")
+        raise klass.new(env["response_body"]["Message"], env["response_body"]["ErrorStatus"])
       end
     end
   end
