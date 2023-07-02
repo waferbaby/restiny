@@ -104,22 +104,24 @@ module Restiny
 
     api_post(
       "Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/",
-      displayName: display_name,
-      displayNameCode: display_name_code
+      params: {
+        displayName: display_name,
+        displayNameCode: display_name_code
+      }
     )
   end
 
   def search_users_by_global_name(name:, page: 0)
-    api_post("User/Search/GlobalName/#{page}/", displayNamePrefix: name)
+    api_post("User/Search/GlobalName/#{page}/", params: { displayNamePrefix: name })
   end
 
   # General request methods
 
-  def api_get(url, params)
+  def api_get(url, params: {})
     api_connection.get(url, params, token_header).body
   end
 
-  def api_post(url, params)
+  def api_post(url, params: {})
     api_connection.post(url, params, token_header).body
   end
 
