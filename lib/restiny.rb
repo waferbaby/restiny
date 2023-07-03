@@ -11,6 +11,7 @@ require "faraday"
 require "faraday/follow_redirects"
 require "faraday/destiny/api"
 require "faraday/destiny/auth"
+
 require "securerandom"
 
 module Restiny
@@ -29,7 +30,7 @@ module Restiny
     @oauth_state = state || SecureRandom.hex(15)
 
     params = { response_type: "code", client_id: @oauth_client_id, state: @oauth_state }
-    params[:redirect_url] = redirect_url unless redirect_url.nil?
+    params["redirect_url"] = redirect_url unless redirect_url.nil?
 
     auth_connection.build_url(BUNGIE_URL + "/en/oauth/authorize/", params).to_s
   end
@@ -38,7 +39,7 @@ module Restiny
     check_oauth_client_id
 
     params = { code: code, grant_type: "authorization_code", client_id: @oauth_client_id }
-    params[:redirect_url] = redirect_url unless redirect_url.nil?
+    params["redirect_url"] = redirect_url unless redirect_url.nil?
 
     auth_post("app/oauth/token/", params)
   end
