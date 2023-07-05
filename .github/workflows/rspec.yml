@@ -17,4 +17,6 @@ jobs:
       with:
         ruby-version: "3.1"
     - name: Run specs
-      run: bundle exec rspec
+      run: |
+        bundle install
+        bundle exec rspec
