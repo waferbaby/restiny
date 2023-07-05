@@ -1,0 +1,21 @@
+name: Run rspec tests
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: "3.1"
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Run specs
+      run: bundle exec rspec
