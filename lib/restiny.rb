@@ -55,7 +55,9 @@ module Restiny
     manifest_url = get_manifest_url
     raise Restiny::ResponseError.new("Unable to determine manifest URL") if manifest_url.nil?
 
-    Manifest.download_by_url(BUNGIE_URL + manifest_url)
+    Manifest.download_by_url(manifest_url)
+  rescue Down::Error => e
+    raise Restiny::RequestError.new("Error downloading manifest: #{e.message}")
   end
 
   # Profile and related methods
