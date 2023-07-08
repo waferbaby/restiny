@@ -9,20 +9,6 @@ module Restiny
     EPIC = 6
   end
 
-  module ComponentType
-    CHARACTERS = "Characters"
-    CHARACTER_EQUIPMENT = "CharacterEquipment"
-    CHARACTER_INVENTORIES = "CharacterInventories"
-    CHARACTER_LOADOUTS = "CharacterLoadouts"
-    PROFILES = "Profiles"
-    PROFILE_INVENTORIES = "ProfileInventories"
-    ITEM_INSTANCES = "ItemInstances"
-    ITEM_SOCKETS = "ItemSockets"
-    ITEM_COMMON_DATA = "ItemCommonData"
-    ITEM_PLUG_STATES = "ItemPlugStates"
-    ITEM_REUSABLE_PLUGS = "ItemReusablePlugs"
-  end
-
   module ItemLocation
     UNKNOWN = 0
     INVENTORY = 1
@@ -41,7 +27,7 @@ module Restiny
     EXOTIC = 6
   end
 
-  module Class
+  module GuardianClass
     TITAN = 0
     HUNTER = 1
     WARLOCK = 2
@@ -67,5 +53,19 @@ module Restiny
     SPECIAL = 2
     HEAVY = 3
     UNKNOWN = 4
+  end
+
+  module ComponentType
+    CHARACTERS = "Characters"
+    CHARACTER_EQUIPMENT = "CharacterEquipment"
+    CHARACTER_INVENTORIES = "CharacterInventories"
+    CHARACTER_LOADOUTS = "CharacterLoadouts"
+    PROFILES = "Profiles"
+    PROFILE_INVENTORIES = "ProfileInventories"
+    ITEM_INSTANCES = "ItemInstances"
+    ITEM_SOCKETS = "ItemSockets"
+    ITEM_COMMON_DATA = "ItemCommonData"
+    ITEM_PLUG_STATES = "ItemPlugStates"
+    ITEM_REUSABLE_PLUGS = "ItemReusablePlugs"
   end
 end
