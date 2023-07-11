@@ -12,7 +12,10 @@ require "faraday/follow_redirects"
 require "faraday/destiny/api"
 require "faraday/destiny/auth"
 
+require "down"
+require "json"
 require "securerandom"
+require "zip"
 
 module Restiny
   extend self
@@ -20,7 +23,7 @@ module Restiny
   BUNGIE_URL = "https://www.bungie.net"
   API_BASE_URL = BUNGIE_URL + "/platform"
 
-  attr_accessor :api_key, :oauth_state, :oauth_client_id, :access_token, :refresh_token, :manifest
+  attr_accessor :api_key, :oauth_state, :oauth_client_id, :access_token
 
   # OAuth methods
 
@@ -46,18 +49,29 @@ module Restiny
 
   # Manifest methods
 
-  def get_manifest_url(locale: "en")
-    result = api_get("Destiny2/Manifest/").dig("mobileWorldContentPaths", locale)
-    BUNGIE_URL + result
-  end
+  def get_manifest(locale: "en", force_download: false)
+    result = api_get("Destiny2/Manifest/")
+    raise Restiny::ResponseError.new("Unable to determine manifest details") if result.nil?
 
-  def download_manifest(locale: "en")
-    manifest_url = get_manifest_url
-    raise Restiny::ResponseError.new("Unable to determine manifest URL") if manifest_url.nil?
+    live_version = result.dig("version")
 
-    Manifest.download_by_url(manifest_url)
+    if force_download || @manifest.nil? || @manifest_version != live_version
+      url = BUNGIE_URL + result.dig("mobileWorldContentPaths", locale)
+
+      zipped_file = Down.download(url)
+      database_file_path = zipped_file.path + ".db"
+
+      Zip::File.open(zipped_file) { |file| file.first.extract(database_file_path) }
+
+      @manifest = Manifest.new(database_file_path, live_version)
+      @manifest_version = live_version
+    end
+
+    @manifest
   rescue Down::Error => e
-    raise Restiny::RequestError.new("Error downloading manifest: #{e.message}")
+    raise Restiny::NetworkError.new("Unable to download the manifest file", error.response.code)
+  rescue Zip::Error => error
+    raise Restiny::Error.new("Unable to unzip the manifest file (#{error})")
   end
 
   # Profile and related methods

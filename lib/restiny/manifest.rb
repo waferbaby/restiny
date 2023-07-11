@@ -1,8 +1,6 @@
 # frozen_string/literal: true
-require "down"
-require "json"
+
 require "sqlite3"
-require "zip"
 
 module Restiny
   class Manifest
@@ -72,7 +70,7 @@ module Restiny
       VendorGroup: %w[vendor_group vendor_groups]
     }
 
-    attr_reader :file_path
+    attr_reader :file_path, :version
 
     ENTITIES.each do |entity, method_names|
       full_table_name = "Destiny#{entity}Definition"
@@ -87,26 +85,14 @@ module Restiny
       end
     end
 
-    def self.download_by_url(url)
-      zipped_file = Down.download(url)
-      manifest_path = zipped_file.path + ".db"
-
-      Zip::File.open(zipped_file) { |file| file.first.extract(manifest_path) }
-
-      new(manifest_path)
-    rescue Down::ResponseError => error
-      raise Restiny::NetworkError.new("Unable to download the manifest file", error.response.code)
-    rescue Zip::Error => error
-      raise Restiny::Error.new("Unable to unzip the manifest file (#{error})")
-    end
-
-    def initialize(file_path)
+    def initialize(file_path, version)
       if file_path.empty? || !File.exist?(file_path) || !File.file?(file_path)
         raise Restiny::InvalidParamsError.new("You must provide a valid path for the manifest file")
       end
 
       @database = SQLite3::Database.new(file_path, results_as_hash: true)
       @file_path = file_path
+      @version = version
     end
 
     private
