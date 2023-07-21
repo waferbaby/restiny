@@ -55,7 +55,10 @@ module Restiny
 
     live_version = result.dig("version")
 
-    if force_download || @manifest.nil? || @manifest_version != live_version
+    @manifests = {} if @manifests.nil?
+    @manifest_versions = {} if @manifest_versions.nil?
+    
+    if force_download || @manifests[locale].nil? || @manifest_versions[locale] != live_version
       url = BUNGIE_URL + result.dig("mobileWorldContentPaths", locale)
 
       zipped_file = Down.download(url)
@@ -63,11 +66,11 @@ module Restiny
 
       Zip::File.open(zipped_file) { |file| file.first.extract(database_file_path) }
 
-      @manifest = Manifest.new(database_file_path, live_version)
-      @manifest_version = live_version
+      @manifests[locale] = Manifest.new(database_file_path, live_version)
+      @manifest_versions[locale] = live_version
     end
 
-    @manifest
+    @manifests[locale]
   rescue Down::Error => e
     raise Restiny::NetworkError.new("Unable to download the manifest file", error.response.code)
   rescue Zip::Error => error
