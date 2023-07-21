@@ -23,7 +23,7 @@ module Restiny
   BUNGIE_URL = "https://www.bungie.net"
   API_BASE_URL = BUNGIE_URL + "/platform"
 
-  attr_accessor :api_key, :oauth_state, :oauth_client_id, :access_token
+  attr_accessor :api_key, :oauth_state, :oauth_client_id, :access_token, :user_agent
 
   # OAuth methods
 
@@ -156,7 +156,7 @@ module Restiny
   end
 
   def default_headers
-    { "User-Agent": "restiny v#{Restiny::VERSION}" }
+    { "User-Agent": @user_agent || "restiny v#{Restiny::VERSION}" }
   end
 
   def api_connection
