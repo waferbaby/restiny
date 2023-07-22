@@ -55,8 +55,8 @@ module Restiny
 
     live_version = result.dig("version")
 
-    @manifests = {} if @manifests.nil?
-    @manifest_versions = {} if @manifest_versions.nil?
+    @manifests ||= {}
+    @manifest_versions ||= {}
     
     if force_download || @manifests[locale].nil? || @manifest_versions[locale] != live_version
       url = BUNGIE_URL + result.dig("mobileWorldContentPaths", locale)
