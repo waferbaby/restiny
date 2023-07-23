@@ -8,6 +8,9 @@ module Restiny
     end
   end
 
+  class NetworkError < Error
+  end
+
   class RequestError < Error
   end
 
