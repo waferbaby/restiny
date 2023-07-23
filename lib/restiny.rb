@@ -71,7 +71,7 @@ module Restiny
     end
 
     @manifests[locale]
-  rescue Down::Error => e
+  rescue Down::Error => error
     raise Restiny::NetworkError.new("Unable to download the manifest file", error.response.code)
   rescue Zip::Error => error
     raise Restiny::Error.new("Unable to unzip the manifest file (#{error})")
