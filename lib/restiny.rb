@@ -57,7 +57,7 @@ module Restiny
 
     @manifests ||= {}
     @manifest_versions ||= {}
-    
+
     if force_download || @manifests[locale].nil? || @manifest_versions[locale] != live_version
       url = BUNGIE_URL + result.dig("mobileWorldContentPaths", locale)
 
@@ -114,6 +114,17 @@ module Restiny
   def get_user_memberships_by_id(membership_id, membership_type: Platform::ALL)
     raise Restiny::InvalidParamsError.new("Please provide a membership ID") if membership_id.nil?
     api_get("User/GetMembershipsById/#{membership_id}/#{membership_type}/")
+  end
+
+  def get_primary_membership(parent_membership_id, use_fallback: true)
+    result = get_user_memberships_by_id(parent_membership_id)
+    return nil if result.nil? || result["primaryMembershipId"].nil?
+
+    result["destinyMemberships"].each do |membership|
+      return membership if membership["membershipID"] == result["primaryMembershipId"]
+    end
+
+    return result["destinyMemberships"][0] if use_fallback
   end
 
   def search_player_by_bungie_name(name, membership_type: Platform::ALL)
