@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Restiny do
-  describe "#get_manifest", vcr: { cassette_name: "restiny/get_manifest" } do
+  describe "#get_manifest", vcr: {cassette_name: "restiny/get_manifest"} do
     let(:manifest_pattern) do
       Regexp.new(
         "https://www.bungie.net/common/destiny2_content/sqlite/#{locale}/world_sql_content_([a-z0-9]+).content"
@@ -10,7 +10,7 @@ describe Restiny do
 
     context "without a locale" do
       it "returns the correct manifest" do
-        manifest = subject.get_manifest()
+        manifest = subject.get_manifest
 
         puts manifest
       end

@@ -32,7 +32,7 @@ module Restiny
 
     @oauth_state = state || SecureRandom.hex(15)
 
-    params = { response_type: "code", client_id: @oauth_client_id, state: @oauth_state }
+    params = {response_type: "code", client_id: @oauth_client_id, state: @oauth_state}
     params["redirect_url"] = redirect_url unless redirect_url.nil?
 
     auth_connection.build_url(BUNGIE_URL + "/en/oauth/authorize/", params).to_s
@@ -41,7 +41,7 @@ module Restiny
   def request_access_token(code:, redirect_url: nil)
     check_oauth_client_id
 
-    params = { code: code, grant_type: "authorization_code", client_id: @oauth_client_id }
+    params = {code: code, grant_type: "authorization_code", client_id: @oauth_client_id}
     params["redirect_url"] = redirect_url unless redirect_url.nil?
 
     auth_post("app/oauth/token/", params)
@@ -143,7 +143,7 @@ module Restiny
   end
 
   def search_users_by_global_name(name:, page: 0)
-    api_post("User/Search/GlobalName/#{page}/", params: { displayNamePrefix: name })
+    api_post("User/Search/GlobalName/#{page}/", params: {displayNamePrefix: name})
   end
 
   # General request methods
@@ -167,7 +167,7 @@ module Restiny
   end
 
   def default_headers
-    { "User-Agent": @user_agent || "restiny v#{Restiny::VERSION}" }
+    {"User-Agent": @user_agent || "restiny v#{Restiny::VERSION}"}
   end
 
   def api_connection

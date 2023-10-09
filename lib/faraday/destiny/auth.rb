@@ -11,9 +11,9 @@ module Faraday
 
         if env["response_body"]["error"]
           raise ::Restiny::AuthenticationError.new(
-                  env["response_body"]["error_description"],
-                  env["response_body"]["error"]
-                )
+            env["response_body"]["error_description"],
+            env["response_body"]["error"]
+          )
         end
       end
     end
