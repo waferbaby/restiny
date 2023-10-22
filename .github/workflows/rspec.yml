@@ -23,3 +23,4 @@ jobs:
         bundle exec rspec
       env:
         DESTINY_API_KEY: ${{ vars.DESTINY_API_KEY }}
+        DESTINY_OAUTH_CLIENT_ID: ${{ vars.DESTINY_OAUTH_CLIENT_ID }}
