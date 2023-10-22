@@ -2,6 +2,7 @@
 
 require 'restiny'
 require 'vcr'
+require 'webmock/rspec'
 
 Restiny.api_key = ENV.fetch('DESTINY_API_KEY')
 Restiny.oauth_client_id = ENV.fetch('DESTINY_OAUTH_CLIENT_ID')
