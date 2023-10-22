@@ -13,8 +13,14 @@ describe Restiny do
       zip_path = File.join(__dir__, 'data', 'manifest', locale, 'manifest.zip')
 
       if File.exist?(zip_path)
-        stub_request(:get, manifest_url).to_return(body: File.read(zip_path), status: 200)
+        body = File.read(zip_path)
+        status = 200
+      else
+        body = nil
+        status = 404
       end
+
+      stub_request(:get, manifest_url).to_return(body: body, status: status)
     end
 
     context 'without a locale' do
@@ -48,8 +54,6 @@ describe Restiny do
     context 'with a file that no longer exists' do
       let(:manifest_hash) { 'a1bcaffd9fd418cfdd80176695f1f9c0' }
       let(:locale) { 'pl' }
-
-      before { stub_request(:get, manifest_url).to_return(status: 404) }
 
       it 'raises an error' do
         expect {
