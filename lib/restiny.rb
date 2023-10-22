@@ -49,7 +49,7 @@ module Restiny
 
   # Manifest methods
 
-  def get_manifest(locale: 'en', force_download: false)
+  def download_manifest(locale: 'en', force_download: false)
     result = api_get('Destiny2/Manifest/')
     raise Restiny::ResponseError, 'Unable to determine manifest details' if result.nil?
 
@@ -59,9 +59,10 @@ module Restiny
     @manifest_versions ||= {}
 
     if force_download || @manifests[locale].nil? || @manifest_versions[locale] != live_version
-      url = BUNGIE_URL + result.dig('mobileWorldContentPaths', locale)
+      manifest_db_url = result.dig('mobileWorldContentPaths', locale)
+      raise Restiny::RequestError, 'Unknown locale' if manifest_db_url.nil?
 
-      zipped_file = Down.download(url)
+      zipped_file = Down.download(BUNGIE_URL + manifest_db_url)
       database_file_path = "#{zipped_file.path}.db"
 
       Zip::File.open(zipped_file) { |file| file.first.extract(database_file_path) }
