@@ -4,7 +4,10 @@ require 'spec_helper'
 
 describe Restiny do
   describe '#download_manifest', vcr: { cassette_name: 'restiny/download_manifest' } do
-    let(:manifest_url) { "https://www.bungie.net/common/destiny2_content/sqlite/#{locale}/world_sql_content_#{manifest_hash}.content" }
+    let(:locale) { 'en' }
+    let(:manifest_url) {
+      "https://www.bungie.net/common/destiny2_content/sqlite/#{locale}/world_sql_content_#{manifest_hash}.content"
+    }
 
     before do
       zip_path = File.join(__dir__, 'data', 'manifest', locale, 'manifest.zip')
@@ -16,7 +19,6 @@ describe Restiny do
 
     context 'without a locale' do
       let(:manifest_hash) { '82c377013bea4b9c80747756ba4d9726' }
-      let(:locale) { 'en' }
 
       it 'downloads the default English manifest' do
         subject.download_manifest
@@ -40,6 +42,20 @@ describe Restiny do
 
       it 'raises an error' do
         expect { subject.download_manifest(locale: locale) }.to raise_error(Restiny::RequestError, 'Unknown locale')
+      end
+    end
+
+    context 'with a file that no longer exists' do
+      let(:manifest_hash) { 'a1bcaffd9fd418cfdd80176695f1f9c0' }
+      let(:locale) { 'pl' }
+
+      before { stub_request(:get, manifest_url).to_return(status: 404) }
+
+      it 'raises an error' do
+        expect {
+          subject.download_manifest(locale: locale)
+        }.to raise_error(Restiny::NetworkError,
+                         'Unable to download the manifest file')
       end
     end
   end
