@@ -2,26 +2,26 @@
 
 $LOAD_PATH.unshift(__dir__)
 
-require "restiny/version"
-require "restiny/constants"
-require "restiny/errors"
-require "restiny/manifest"
+require 'restiny/version'
+require 'restiny/constants'
+require 'restiny/errors'
+require 'restiny/manifest'
 
-require "faraday"
-require "faraday/follow_redirects"
-require "faraday/destiny/api"
-require "faraday/destiny/auth"
+require 'faraday'
+require 'faraday/follow_redirects'
+require 'faraday/destiny/api'
+require 'faraday/destiny/auth'
 
-require "down"
-require "json"
-require "securerandom"
-require "zip"
+require 'down'
+require 'json'
+require 'securerandom'
+require 'zip'
 
 module Restiny
   extend self
 
-  BUNGIE_URL = "https://www.bungie.net"
-  API_BASE_URL = BUNGIE_URL + "/platform"
+  BUNGIE_URL = 'https://www.bungie.net'
+  API_BASE_URL = "#{BUNGIE_URL}/platform".freeze
 
   attr_accessor :api_key, :oauth_state, :oauth_client_id, :access_token, :user_agent
 
@@ -32,37 +32,37 @@ module Restiny
 
     @oauth_state = state || SecureRandom.hex(15)
 
-    params = {response_type: "code", client_id: @oauth_client_id, state: @oauth_state}
-    params["redirect_url"] = redirect_url unless redirect_url.nil?
+    params = { response_type: 'code', client_id: @oauth_client_id, state: @oauth_state }
+    params['redirect_url'] = redirect_url unless redirect_url.nil?
 
-    auth_connection.build_url(BUNGIE_URL + "/en/oauth/authorize/", params).to_s
+    auth_connection.build_url("#{BUNGIE_URL}/en/oauth/authorize/", params).to_s
   end
 
   def request_access_token(code:, redirect_url: nil)
     check_oauth_client_id
 
-    params = {code: code, grant_type: "authorization_code", client_id: @oauth_client_id}
-    params["redirect_url"] = redirect_url unless redirect_url.nil?
+    params = { code:, grant_type: 'authorization_code', client_id: @oauth_client_id }
+    params['redirect_url'] = redirect_url unless redirect_url.nil?
 
-    auth_post("app/oauth/token/", params)
+    auth_post('app/oauth/token/', params)
   end
 
   # Manifest methods
 
-  def get_manifest(locale: "en", force_download: false)
-    result = api_get("Destiny2/Manifest/")
-    raise Restiny::ResponseError.new("Unable to determine manifest details") if result.nil?
+  def get_manifest(locale: 'en', force_download: false)
+    result = api_get('Destiny2/Manifest/')
+    raise Restiny::ResponseError, 'Unable to determine manifest details' if result.nil?
 
-    live_version = result.dig("version")
+    live_version = result['version']
 
     @manifests ||= {}
     @manifest_versions ||= {}
 
     if force_download || @manifests[locale].nil? || @manifest_versions[locale] != live_version
-      url = BUNGIE_URL + result.dig("mobileWorldContentPaths", locale)
+      url = BUNGIE_URL + result.dig('mobileWorldContentPaths', locale)
 
       zipped_file = Down.download(url)
-      database_file_path = zipped_file.path + ".db"
+      database_file_path = "#{zipped_file.path}.db"
 
       Zip::File.open(zipped_file) { |file| file.first.extract(database_file_path) }
 
@@ -71,40 +71,40 @@ module Restiny
     end
 
     @manifests[locale]
-  rescue Down::Error => error
-    raise Restiny::NetworkError.new("Unable to download the manifest file", error.response.code)
-  rescue Zip::Error => error
-    raise Restiny::Error.new("Unable to unzip the manifest file (#{error})")
+  rescue Down::Error => e
+    raise Restiny::NetworkError.new('Unable to download the manifest file', e.response.code)
+  rescue Zip::Error => e
+    raise Restiny::Error, "Unable to unzip the manifest file (#{e})"
   end
 
   # Profile and related methods
 
   def get_profile(membership_id:, membership_type:, components:, type_url: nil)
     if !components.is_a?(Array) || components.empty?
-      raise Restiny::InvalidParamsError.new("Please provide at least one component")
+      raise Restiny::InvalidParamsError, 'Please provide at least one component'
     end
 
     url = "Destiny2/#{membership_type}/Profile/#{membership_id}/"
     url += type_url if type_url
-    url += "?components=#{components.join(",")}"
+    url += "?components=#{components.join(',')}"
 
     api_get(url)
   end
 
   def get_character_profile(character_id:, membership_id:, membership_type:, components:)
     get_profile(
-      membership_id: membership_id,
-      membership_type: membership_type,
-      components: components,
+      membership_id:,
+      membership_type:,
+      components:,
       type_url: "Character/#{character_id}/"
     )
   end
 
   def get_instanced_item_profile(item_id:, membership_id:, membership_type:, components:)
     get_profile(
-      membership_id: membership_id,
-      membership_type: membership_type,
-      components: components,
+      membership_id:,
+      membership_type:,
+      components:,
       type_url: "Item/#{item_id}/"
     )
   end
@@ -112,25 +112,26 @@ module Restiny
   # User methods.
 
   def get_user_memberships_by_id(membership_id, membership_type: Platform::ALL)
-    raise Restiny::InvalidParamsError.new("Please provide a membership ID") if membership_id.nil?
+    raise Restiny::InvalidParamsError, 'Please provide a membership ID' if membership_id.nil?
+
     api_get("User/GetMembershipsById/#{membership_id}/#{membership_type}/")
   end
 
   def get_primary_membership(parent_membership_id, use_fallback: true)
     result = get_user_memberships_by_id(parent_membership_id)
-    return nil if result.nil? || result["primaryMembershipId"].nil?
+    return nil if result.nil? || result['primaryMembershipId'].nil?
 
-    result["destinyMemberships"].each do |membership|
-      return membership if membership["membershipID"] == result["primaryMembershipId"]
+    result['destinyMemberships'].each do |membership|
+      return membership if membership['membershipID'] == result['primaryMembershipId']
     end
 
-    return result["destinyMemberships"][0] if use_fallback
+    return result['destinyMemberships'][0] if use_fallback
   end
 
   def search_player_by_bungie_name(name, membership_type: Platform::ALL)
-    display_name, display_name_code = name.split("#")
+    display_name, display_name_code = name.split('#')
     if display_name.nil? || display_name_code.nil?
-      raise Restiny::InvalidParamsError.new("You must provide a valid Bungie name")
+      raise Restiny::InvalidParamsError, 'You must provide a valid Bungie name'
     end
 
     api_post(
@@ -143,7 +144,7 @@ module Restiny
   end
 
   def search_users_by_global_name(name:, page: 0)
-    api_post("User/Search/GlobalName/#{page}/", params: {displayNamePrefix: name})
+    api_post("User/Search/GlobalName/#{page}/", params: { displayNamePrefix: name })
   end
 
   # General request methods
@@ -157,26 +158,26 @@ module Restiny
   end
 
   def auth_post(url, params)
-    auth_connection.post(url, params, "Content-Type" => "application/x-www-form-urlencoded").body
+    auth_connection.post(url, params, 'Content-Type' => 'application/x-www-form-urlencoded').body
   end
 
   private
 
   def check_oauth_client_id
-    raise Restiny::RequestError.new("You need to set an OAuth client ID") unless @oauth_client_id
+    raise Restiny::RequestError, 'You need to set an OAuth client ID' unless @oauth_client_id
   end
 
   def default_headers
-    {"User-Agent": @user_agent || "restiny v#{Restiny::VERSION}"}
+    { 'User-Agent': @user_agent || "restiny v#{Restiny::VERSION}" }
   end
 
   def api_connection
-    raise Restiny::InvalidParamsError.new("You need to set an API key") unless @api_key
+    raise Restiny::InvalidParamsError, 'You need to set an API key' unless @api_key
 
     @connection ||=
       Faraday.new(
         url: API_BASE_URL,
-        headers: default_headers.merge("X-API-KEY": @api_key)
+        headers: default_headers.merge('X-API-KEY': @api_key)
       ) do |faraday|
         faraday.request :url_encoded
         faraday.request :json
@@ -198,6 +199,6 @@ module Restiny
   end
 
   def token_header
-    {}.tap { |headers| headers["authorization"] = "Bearer #{@oauth_token}" if @oauth_token }
+    {}.tap { |headers| headers['authorization'] = "Bearer #{@oauth_token}" if @oauth_token }
   end
 end

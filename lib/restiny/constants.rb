@@ -56,16 +56,16 @@ module Restiny
   end
 
   module ComponentType
-    CHARACTERS = "Characters"
-    CHARACTER_EQUIPMENT = "CharacterEquipment"
-    CHARACTER_INVENTORIES = "CharacterInventories"
-    CHARACTER_LOADOUTS = "CharacterLoadouts"
-    PROFILES = "Profiles"
-    PROFILE_INVENTORIES = "ProfileInventories"
-    ITEM_INSTANCES = "ItemInstances"
-    ITEM_SOCKETS = "ItemSockets"
-    ITEM_COMMON_DATA = "ItemCommonData"
-    ITEM_PLUG_STATES = "ItemPlugStates"
-    ITEM_REUSABLE_PLUGS = "ItemReusablePlugs"
+    CHARACTERS = 'Characters'
+    CHARACTER_EQUIPMENT = 'CharacterEquipment'
+    CHARACTER_INVENTORIES = 'CharacterInventories'
+    CHARACTER_LOADOUTS = 'CharacterLoadouts'
+    PROFILES = 'Profiles'
+    PROFILE_INVENTORIES = 'ProfileInventories'
+    ITEM_INSTANCES = 'ItemInstances'
+    ITEM_SOCKETS = 'ItemSockets'
+    ITEM_COMMON_DATA = 'ItemCommonData'
+    ITEM_PLUG_STATES = 'ItemPlugStates'
+    ITEM_REUSABLE_PLUGS = 'ItemReusablePlugs'
   end
 end

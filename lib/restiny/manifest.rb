@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 # frozen_string/literal: true
 
-require "sqlite3"
+require 'sqlite3'
 
 module Restiny
   class Manifest
@@ -68,7 +70,7 @@ module Restiny
       Unlock: %w[unlock unlocks],
       Vendor: %w[vendor vendors],
       VendorGroup: %w[vendor_group vendor_groups]
-    }
+    }.freeze
 
     attr_reader :file_path, :version
 
@@ -77,17 +79,17 @@ module Restiny
       single_method_name, plural_method_name = method_names
 
       define_method single_method_name do |id|
-        fetch_item(table_name: full_table_name, id: id)
+        fetch_item(table_name: full_table_name, id:)
       end
 
       define_method plural_method_name do |limit: nil|
-        fetch_items(table_name: full_table_name, limit: limit)
+        fetch_items(table_name: full_table_name, limit:)
       end
     end
 
     def initialize(file_path, version)
       if file_path.empty? || !File.exist?(file_path) || !File.file?(file_path)
-        raise Restiny::InvalidParamsError.new("You must provide a valid path for the manifest file")
+        raise Restiny::InvalidParamsError, 'You must provide a valid path for the manifest file'
       end
 
       @database = SQLite3::Database.new(file_path, results_as_hash: true)
@@ -99,18 +101,18 @@ module Restiny
 
     def get_entity_names
       query = "SELECT name from sqlite_schema WHERE name LIKE 'Destiny%'"
-      @database.execute(query).map { |row| row["name"].gsub(/(Destiny|Definition)/, "") }
+      @database.execute(query).map { |row| row['name'].gsub(/(Destiny|Definition)/, '') }
     end
 
     def fetch_item(table_name:, id:)
       query = "SELECT json FROM #{table_name} WHERE json_extract(json, '$.hash')=?"
       result = @database.execute(query, id)
 
-      return nil if result.nil? || result.count < 1 || !result[0].include?("json")
+      return nil if result.nil? || result.count < 1 || !result[0].include?('json')
 
-      JSON.parse(result[0]["json"])
+      JSON.parse(result[0]['json'])
     rescue SQLite3::Exception => e
-      raise Restiny::RequestError.new("Error while fetching item (#{e})")
+      raise Restiny::RequestError, "Error while fetching item (#{e})"
     end
 
     def fetch_items(table_name:, limit: nil)
@@ -119,14 +121,14 @@ module Restiny
       query = "SELECT json FROM #{table_name} ORDER BY json_extract(json, '$.index')"
 
       if limit
-        query << " LIMIT ?"
+        query << ' LIMIT ?'
         bindings << limit
       end
 
       items = []
 
       @database.execute(query, bindings) do |row|
-        item = JSON.parse(row["json"])
+        item = JSON.parse(row['json'])
         yield item if block_given?
 
         items << item
@@ -134,7 +136,7 @@ module Restiny
 
       items unless block_given?
     rescue SQLite3::Exception => e
-      raise Restiny::RequestError.new("Error while fetching items (#{e})")
+      raise Restiny::RequestError, "Error while fetching items (#{e})"
     end
   end
 end
