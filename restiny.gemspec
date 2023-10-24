@@ -15,6 +15,8 @@ Gem::Specification.new do |s|
   s.description = "A gem for interacting with Bungie's Destiny API."
   s.license = 'MIT'
 
+  s.required_ruby_version = '> 3.0'
+
   s.files = Dir['lib/**/*']
   s.require_path = 'lib'
 
@@ -24,10 +26,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'rubyzip', '~> 2.3'
   s.add_runtime_dependency 'sqlite3', '~> 1.3'
 
-  s.add_development_dependency 'rake', '~> 13.0'
-  s.add_development_dependency 'rspec', '~> 3.12'
-  s.add_development_dependency 'rubocop-rspec', '~> 2.22'
-  s.add_development_dependency 'vcr', '~> 6.1'
-  s.add_development_dependency 'webmock', '~> 3.19'
   s.metadata['rubygems_mfa_required'] = 'true'
 end
