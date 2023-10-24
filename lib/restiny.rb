@@ -41,7 +41,7 @@ module Restiny
   def request_access_token(code:, redirect_url: nil)
     check_oauth_client_id
 
-    params = { code:, grant_type: 'authorization_code', client_id: @oauth_client_id }
+    params = { code: code, grant_type: 'authorization_code', client_id: @oauth_client_id }
     params['redirect_url'] = redirect_url unless redirect_url.nil?
 
     auth_post('app/oauth/token/', params)
@@ -94,18 +94,18 @@ module Restiny
 
   def get_character_profile(character_id:, membership_id:, membership_type:, components:)
     get_profile(
-      membership_id:,
-      membership_type:,
-      components:,
+      membership_id: membership_id,
+      membership_type: membership_type,
+      components: components,
       type_url: "Character/#{character_id}/"
     )
   end
 
   def get_instanced_item_profile(item_id:, membership_id:, membership_type:, components:)
     get_profile(
-      membership_id:,
-      membership_type:,
-      components:,
+      membership_id: membership_id,
+      membership_type: membership_type,
+      components: components,
       type_url: "Item/#{item_id}/"
     )
   end

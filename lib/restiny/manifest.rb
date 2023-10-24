@@ -77,11 +77,11 @@ module Restiny
       single_method_name, plural_method_name = method_names
 
       define_method single_method_name do |id|
-        fetch_item(table_name: full_table_name, id:)
+        fetch_item(table_name: full_table_name, id: id)
       end
 
       define_method plural_method_name do |limit: nil|
-        fetch_items(table_name: full_table_name, limit:)
+        fetch_items(table_name: full_table_name, limit: limit)
       end
     end
 
