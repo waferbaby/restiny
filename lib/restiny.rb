@@ -126,7 +126,7 @@ module Restiny
       return membership if membership['membershipID'] == result['primaryMembershipId']
     end
 
-    return result['destinyMemberships'][0] if use_fallback
+    result['destinyMemberships'][0] if use_fallback
   end
 
   def search_player_by_bungie_name(name, membership_type: Platform::ALL)

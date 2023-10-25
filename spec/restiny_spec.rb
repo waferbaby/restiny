@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Restiny do
   describe '#download_manifest', vcr: { cassette_name: 'restiny/download_manifest' } do
     let(:locale) { 'en' }
-    let(:manifest_url) {
+    let(:manifest_url) do
       "https://www.bungie.net/common/destiny2_content/sqlite/#{locale}/world_sql_content_#{manifest_hash}.content"
-    }
+    end
 
     before do
       zip_path = File.join(__dir__, 'data', 'manifest', locale, 'manifest.zip')
@@ -56,10 +56,10 @@ describe Restiny do
       let(:locale) { 'pl' }
 
       it 'raises an error' do
-        expect {
+        expect do
           subject.download_manifest(locale: locale)
-        }.to raise_error(Restiny::NetworkError,
-                         'Unable to download the manifest file')
+        end.to raise_error(Restiny::NetworkError,
+                           'Unable to download the manifest file')
       end
     end
   end
