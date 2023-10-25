@@ -29,6 +29,7 @@ GEM
     faraday-net_http (3.0.2)
     hashdiff (1.0.1)
     json (2.6.3)
+    mini_portile2 (2.8.5)
     parallel (1.23.0)
     parser (3.2.2.1)
       ast (~> 2.4.1)
@@ -94,4 +95,4 @@ DEPENDENCIES
   webmock (~> 3.19)
 
 BUNDLED WITH
-   2.1.4
+   2.2.33
