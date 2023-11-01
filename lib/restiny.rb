@@ -44,7 +44,7 @@ module Restiny
     params = { code: code, grant_type: 'authorization_code', client_id: @oauth_client_id }
     params['redirect_url'] = redirect_url unless redirect_url.nil?
 
-    auth_post('app/oauth/token/', params)
+    auth_connection.post('app/oauth/token/', params).body
   end
 
   # Manifest methods
@@ -119,7 +119,7 @@ module Restiny
   end
 
   def get_user_primary_membership(parent_membership_id, use_fallback: true)
-    result = get_user_memberships(parent_membership_id)
+    result = get_user_memberships_by_id(parent_membership_id)
     return nil if result.nil? || result['primaryMembershipId'].nil?
 
     result['destinyMemberships'].each do |membership|
@@ -158,10 +158,6 @@ module Restiny
     api_connection.post(url, params, token_header).body
   end
 
-  def auth_post(url, params)
-    auth_connection.post(url, params, 'Content-Type' => 'application/x-www-form-urlencoded').body
-  end
-
   private
 
   def check_oauth_client_id
@@ -180,7 +176,6 @@ module Restiny
         url: API_BASE_URL,
         headers: default_headers.merge('X-API-KEY': @api_key)
       ) do |faraday|
-        faraday.request :url_encoded
         faraday.request :json
         faraday.response :follow_redirects
         faraday.response :destiny_api
@@ -192,7 +187,6 @@ module Restiny
     @auth_connection ||=
       Faraday.new(url: API_BASE_URL, headers: default_headers) do |faraday|
         faraday.request :url_encoded
-        faraday.request :json
         faraday.response :follow_redirects
         faraday.response :destiny_auth
         faraday.response :json
@@ -200,6 +194,6 @@ module Restiny
   end
 
   def token_header
-    {}.tap { |headers| headers['authorization'] = "Bearer #{@oauth_token}" if @oauth_token }
+    {}.tap { |headers| headers['authorization'] = "Bearer #{@access_token}" if @access_token }
   end
 end
