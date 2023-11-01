@@ -118,8 +118,8 @@ module Restiny
     api_get("User/GetMembershipsById/#{membership_id}/#{membership_type}/")
   end
 
-  def get_primary_membership(parent_membership_id, use_fallback: true)
-    result = get_user_memberships_by_id(parent_membership_id)
+  def get_user_primary_membership(parent_membership_id, use_fallback: true)
+    result = get_user_memberships(parent_membership_id)
     return nil if result.nil? || result['primaryMembershipId'].nil?
 
     result['destinyMemberships'].each do |membership|
@@ -144,7 +144,7 @@ module Restiny
     )
   end
 
-  def search_users_by_global_name(name:, page: 0)
+  def search_users_by_global_name(name, page: 0)
     api_post("User/Search/GlobalName/#{page}/", params: { displayNamePrefix: name })
   end
 
