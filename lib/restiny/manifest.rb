@@ -70,19 +70,14 @@ module Restiny
       VendorGroup: %w[vendor_group vendor_groups]
     }.freeze
 
-    attr_reader :file_path, :version
+    attr_reader :version
 
     ENTITIES.each do |entity, method_names|
       full_table_name = "Destiny#{entity}Definition"
       single_method_name, plural_method_name = method_names
 
-      define_method single_method_name do |id|
-        fetch_item(table_name: full_table_name, id: id)
-      end
-
-      define_method plural_method_name do |limit: nil|
-        fetch_items(table_name: full_table_name, limit: limit)
-      end
+      define_method(single_method_name) { |id| fetch_item(table_name: full_table_name, id: id) }
+      define_method(plural_method_name) { |limit: nil| fetch_items(table_name: full_table_name, limit: limit) }
     end
 
     def initialize(file_path, version)
@@ -91,24 +86,16 @@ module Restiny
       end
 
       @database = SQLite3::Database.new(file_path, results_as_hash: true)
-      @file_path = file_path
       @version = version
     end
 
     private
 
-    def get_entity_names
-      query = "SELECT name from sqlite_schema WHERE name LIKE 'Destiny%'"
-      @database.execute(query).map { |row| row['name'].gsub(/(Destiny|Definition)/, '') }
-    end
-
     def fetch_item(table_name:, id:)
       query = "SELECT json FROM #{table_name} WHERE json_extract(json, '$.hash')=?"
       result = @database.execute(query, id)
 
-      return nil if result.nil? || result.count < 1 || !result[0].include?('json')
-
-      JSON.parse(result[0]['json'])
+      JSON.parse(result[0]['json']) unless result.nil? || result.count < 1 || !result[0].include?('json')
     rescue SQLite3::Exception => e
       raise Restiny::RequestError, "Error while fetching item (#{e})"
     end
