@@ -7,14 +7,14 @@ require 'restiny/constants'
 require 'restiny/errors'
 require 'restiny/manifest'
 
+require 'down'
 require 'faraday'
 require 'faraday/follow_redirects'
 require 'faraday/destiny/api'
 require 'faraday/destiny/auth'
-
-require 'down'
 require 'json'
 require 'securerandom'
+require 'tmpdir'
 require 'zip'
 
 module Restiny
@@ -62,10 +62,11 @@ module Restiny
       manifest_db_url = result.dig('mobileWorldContentPaths', locale)
       raise Restiny::RequestError, 'Unknown locale' if manifest_db_url.nil?
 
-      zipped_file = Down.download(BUNGIE_URL + manifest_db_url)
-      database_file_path = "#{zipped_file.path}.db"
-
-      Zip::File.open(zipped_file) { |file| file.first.extract(database_file_path) }
+      database_file_path = Zip::File.open(Down.download(BUNGIE_URL + manifest_db_url)) do |zip_file|
+        File.join(Dir.tmpdir, "#{live_version}.en.content.db").tap do |path|
+          zip_file.first.extract(path) unless File.exist?(path)
+        end
+      end
 
       @manifests[locale] = Manifest.new(database_file_path, live_version)
       @manifest_versions[locale] = live_version
