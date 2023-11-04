@@ -1,23 +1,17 @@
 # frozen_string_literal: true
 
-require 'rspec/core/rake_task'
-
-RSpec::Core::RakeTask.new(:spec) do |task|
-  task.pattern = Dir['spec/**/*.rb']
-end
-
-task default: :spec
-
+desc 'Build the gem'
 task :build do
-  Rake::Task['cleanup'].invoke
-  `gem build restiny.gemspec`
+  sh 'gem build restiny.gemspec'
 end
 
+desc 'Publish the gem to rubygems.org'
 task :publish do
-  `gem push restiny*.gem`
-  Rake::Task['cleanup'].invoke
-end
+  require_relative 'lib/restiny/version'
 
-task :cleanup do
-  FileUtils.rm(Dir['restiny*.gem'])
+  version = Restiny::VERSION
+  filename = "restiny-#{version}.gem"
+
+  sh "gem push #{filename}"
+  sh "rm #{filename}"
 end
