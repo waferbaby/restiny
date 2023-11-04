@@ -3,32 +3,25 @@
 require 'spec_helper'
 
 describe Restiny do
+  let(:membership_id) { 4611686018462034842 }
+  let(:membership_type) { 2 }
+  let(:character_id) { 2305843009316446082 }
+
   describe '#download_manifest', vcr: { cassette_name: 'restiny/download_manifest' } do
     let(:locale) { 'en' }
+    let(:manifest_file_path) { File.join(__dir__, 'data', 'manifest', "#{locale}.content.db") }
     let(:manifest_url) do
       "https://www.bungie.net/common/destiny2_content/sqlite/#{locale}/world_sql_content_#{manifest_hash}.content"
-    end
-
-    before do
-      zip_path = File.join(__dir__, 'data', 'manifest', locale, 'manifest.zip')
-
-      if File.exist?(zip_path)
-        body = File.read(zip_path)
-        status = 200
-      else
-        body = nil
-        status = 404
-      end
-
-      stub_request(:get, manifest_url).to_return(body: body, status: status)
     end
 
     context 'without a locale' do
       let(:manifest_hash) { '82c377013bea4b9c80747756ba4d9726' }
 
       it 'downloads the default English manifest' do
-        subject.download_manifest
-        assert_requested(:get, manifest_url)
+        expect(Down).to receive(:download)
+        expect(Zip::File).to receive(:open).and_return(manifest_file_path)
+
+        manifest = subject.download_manifest
       end
     end
 
@@ -37,8 +30,10 @@ describe Restiny do
       let(:locale) { 'fr' }
 
       it 'download the correct manifest' do
-        subject.download_manifest(locale: 'fr')
-        assert_requested(:get, manifest_url)
+        expect(Down).to receive(:download)
+        expect(Zip::File).to receive(:open).and_return(manifest_file_path)
+
+        manifest = subject.download_manifest(locale: 'fr')
       end
     end
 
@@ -60,6 +55,23 @@ describe Restiny do
           subject.download_manifest(locale: locale)
         end.to raise_error(Restiny::NetworkError,
                            'Unable to download the manifest file')
+      end
+    end
+  end
+
+  describe '#get_profile', vcr: { cassette_name: 'restiny/get_profile' } do
+    let(:profile_response) {
+      subject.get_profile(membership_id: membership_id, membership_type: membership_type, components: components)
+    }
+
+    context 'with an invalid component' do
+      let(:components) { ['babydog'] }
+
+      it 'raises an error' do
+        expect {
+          profile_response
+        }.to raise_error(Restiny::ResponseError,
+                         "Unable to parse your parameters.  Please correct them, and try again.")
       end
     end
   end
