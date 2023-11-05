@@ -50,7 +50,7 @@ module Restiny
   # Manifest methods
 
   def download_manifest(locale: 'en', force_download: false)
-    result = api_get('Destiny2/Manifest/')
+    result = api_get(endpoint: 'Destiny2/Manifest/')
     raise Restiny::ResponseError, 'Unable to determine manifest details' if result.nil?
 
     live_version = result['version']
@@ -90,7 +90,7 @@ module Restiny
     url += type_url if type_url
     url += "?components=#{components.join(',')}"
 
-    api_get(url)
+    api_get(endpoint: url)
   end
 
   def get_character_profile(character_id:, membership_id:, membership_type:, components:)
@@ -113,14 +113,14 @@ module Restiny
 
   # User methods.
 
-  def get_user_memberships_by_id(membership_id, membership_type: Platform::ALL)
+  def get_user_memberships_by_id(membership_id:, membership_type: Platform::ALL)
     raise Restiny::InvalidParamsError, 'Please provide a membership ID' if membership_id.nil?
 
-    api_get("User/GetMembershipsById/#{membership_id}/#{membership_type}/")
+    api_get(endpoint: "User/GetMembershipsById/#{membership_id}/#{membership_type}/")
   end
 
-  def get_user_primary_membership(parent_membership_id, use_fallback: true)
-    result = get_user_memberships_by_id(parent_membership_id)
+  def get_primary_user_membership(membership_id:, use_fallback: true)
+    result = get_user_memberships_by_id(membership_id: membership_id)
     return nil if result.nil? || result['primaryMembershipId'].nil?
 
     result['destinyMemberships'].each do |membership|
@@ -130,14 +130,14 @@ module Restiny
     result['destinyMemberships'][0] if use_fallback
   end
 
-  def search_player_by_bungie_name(name, membership_type: Platform::ALL)
+  def search_player_by_bungie_name(name:, membership_type: Platform::ALL)
     display_name, display_name_code = name.split('#')
     if display_name.nil? || display_name_code.nil?
       raise Restiny::InvalidParamsError, 'You must provide a valid Bungie name'
     end
 
     api_post(
-      "Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/",
+      endpoint: "Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/",
       params: {
         displayName: display_name,
         displayNameCode: display_name_code
@@ -145,18 +145,18 @@ module Restiny
     )
   end
 
-  def search_users_by_global_name(name, page: 0)
-    api_post("User/Search/GlobalName/#{page}/", params: { displayNamePrefix: name })
+  def search_users_by_global_name(name:, page: 0)
+    api_post(endpoint: "User/Search/GlobalName/#{page}/", params: { displayNamePrefix: name })
   end
 
   # General request methods
 
-  def api_get(url, params: {})
-    api_connection.get(url, params, token_header).body
+  def api_get(endpoint:, params: {})
+    api_connection.get(endpoint, params, token_header).body
   end
 
-  def api_post(url, params: {})
-    api_connection.post(url, params, token_header).body
+  def api_post(endpoint:, params: {})
+    api_connection.post(endpoint, params, token_header).body
   end
 
   private
