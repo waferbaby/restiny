@@ -172,7 +172,7 @@ module Restiny
   def api_connection
     raise Restiny::InvalidParamsError, 'You need to set an API key' unless @api_key
 
-    @connection ||=
+    @api_connection ||=
       Faraday.new(
         url: API_BASE_URL,
         headers: default_headers.merge('X-API-KEY': @api_key)

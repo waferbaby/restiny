@@ -3,9 +3,9 @@
 require 'spec_helper'
 
 describe Restiny do
-  let(:membership_id) { 4611686018462034842 }
+  let(:membership_id) { 4_611_686_018_462_034_842 }
   let(:membership_type) { 2 }
-  let(:character_id) { 2305843009316446082 }
+  let(:character_id) { 2_305_843_009_316_446_082 }
 
   describe '#download_manifest', vcr: { cassette_name: 'restiny/download_manifest' } do
     let(:locale) { 'en' }
@@ -21,7 +21,7 @@ describe Restiny do
         expect(Down).to receive(:download)
         expect(Zip::File).to receive(:open).and_return(manifest_file_path)
 
-        manifest = subject.download_manifest
+        subject.download_manifest
       end
     end
 
@@ -33,7 +33,7 @@ describe Restiny do
         expect(Down).to receive(:download)
         expect(Zip::File).to receive(:open).and_return(manifest_file_path)
 
-        manifest = subject.download_manifest(locale: 'fr')
+        subject.download_manifest(locale: 'fr')
       end
     end
 
@@ -60,18 +60,18 @@ describe Restiny do
   end
 
   describe '#get_profile', vcr: { cassette_name: 'restiny/get_profile' } do
-    let(:profile_response) {
+    let(:profile_response) do
       subject.get_profile(membership_id: membership_id, membership_type: membership_type, components: components)
-    }
+    end
 
     context 'with an invalid component' do
       let(:components) { ['babydog'] }
 
       it 'raises an error' do
-        expect {
+        expect do
           profile_response
-        }.to raise_error(Restiny::ResponseError,
-                         "Unable to parse your parameters.  Please correct them, and try again.")
+        end.to raise_error(Restiny::ResponseError,
+                           'Unable to parse your parameters.  Please correct them, and try again.')
       end
     end
   end
