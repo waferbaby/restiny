@@ -2,6 +2,8 @@
 
 require_relative 'base'
 
+require 'restiny/manifest'
+
 require 'down'
 require 'tmpdir'
 require 'zip'

@@ -3,9 +3,6 @@
 $LOAD_PATH.unshift(__dir__)
 
 require 'restiny/version'
-require 'restiny/constants'
-require 'restiny/errors'
-require 'restiny/manifest'
 require 'restiny/api/authentication'
 require 'restiny/api/manifest'
 require 'restiny/api/membership'

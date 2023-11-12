@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'restiny/constants'
+require 'restiny/errors'
 require 'faraday'
 require 'faraday/follow_redirects'
 require 'faraday/destiny/api'
