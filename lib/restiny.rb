@@ -11,6 +11,7 @@ require 'restiny/api/manifest'
 require 'restiny/api/membership'
 require 'restiny/api/profile'
 require 'restiny/api/search'
+require 'restiny/api/stats'
 
 # The main Restiny module.
 module Restiny
@@ -21,4 +22,5 @@ module Restiny
   include Api::Membership
   include Api::Profile
   include Api::Search
+  include Api::Stats
 end
