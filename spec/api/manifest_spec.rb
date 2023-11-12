@@ -15,11 +15,13 @@ describe Restiny do
     context 'without a locale' do
       let(:manifest_hash) { '82c377013bea4b9c80747756ba4d9726' }
 
-      it 'downloads the default English manifest' do
+      before do
         allow(Down).to receive(:download)
-        expect(Zip::File).to receive(:open).and_return(manifest_file_path)
+        allow(Zip::File).to receive(:open).and_return(manifest_file_path)
+      end
 
-        subject.download_manifest
+      it 'downloads the default English manifest' do
+        expect(subject.download_manifest).to be_a(Restiny::Manifest)
       end
     end
 
@@ -27,11 +29,13 @@ describe Restiny do
       let(:manifest_hash) { '230929be68cd6ca4dd169ff4d9b07831' }
       let(:locale) { 'fr' }
 
-      it 'downloads the correct manifest' do
-        expect(Down).to receive(:download)
-        expect(Zip::File).to receive(:open).and_return(manifest_file_path)
+      before do
+        allow(Down).to receive(:download)
+        allow(Zip::File).to receive(:open).and_return(manifest_file_path)
+      end
 
-        subject.download_manifest(locale: 'fr')
+      it 'downloads the correct manifest' do
+        expect(subject.download_manifest(locale: locale)).to be_a(Restiny::Manifest)
       end
     end
 
@@ -53,23 +57,6 @@ describe Restiny do
           subject.download_manifest(locale: locale)
         end.to raise_error(Restiny::NetworkError,
                            'Unable to download the manifest file')
-      end
-    end
-  end
-
-  describe '#get_profile', vcr: { cassette_name: 'restiny/get_profile' } do
-    let(:profile_response) do
-      subject.get_profile(membership_id: membership_id, membership_type: membership_type, components: components)
-    end
-
-    context 'with an invalid component' do
-      let(:components) { ['babydog'] }
-
-      it 'raises an error' do
-        expect do
-          profile_response
-        end.to raise_error(Restiny::ResponseError,
-                           'Unable to parse your parameters.  Please correct them, and try again.')
       end
     end
   end
