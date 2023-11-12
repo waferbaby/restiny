@@ -24,9 +24,12 @@ module Restiny
           manifest_db_url = result.dig('mobileWorldContentPaths', locale)
           raise Restiny::RequestError, 'Unknown locale' if manifest_db_url.nil?
 
-          database_file_path = extract_manifest_from_zip_file(Down.download(BUNGIE_URL + manifest_db_url))
+          database_file_path = extract_manifest_from_zip_file(
+            Down.download(BUNGIE_URL + manifest_db_url),
+            live_version
+          )
 
-          @manifests[locale] = Manifest.new(database_file_path, live_version)
+          @manifests[locale] = Restiny::Manifest.new(database_file_path, live_version)
           @manifest_versions[locale] = live_version
         end
 
@@ -36,14 +39,12 @@ module Restiny
       rescue Zip::Error => e
         raise Restiny::Error, "Unable to unzip the manifest file (#{e})"
       end
-    end
 
-    private
-
-    def extract_manifest_from_zip_file(source_path, _version)
-      Zip::File.open(source_path) do |zip_file|
-        File.join(Dir.tmpdir, "#{l_version}.en.content.db").tap do |path|
-          zip_file.first.extract(path) unless File.exist?(path)
+      def extract_manifest_from_zip_file(source_path, version)
+        Zip::File.open(source_path) do |zip_file|
+          File.join(Dir.tmpdir, "#{version}.en.content.db").tap do |path|
+            zip_file.first.extract(path) unless File.exist?(path)
+          end
         end
       end
     end
