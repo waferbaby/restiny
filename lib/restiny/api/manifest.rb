@@ -15,29 +15,19 @@ module Restiny
         result = api_get(endpoint: 'Destiny2/Manifest/')
         raise Restiny::ResponseError, 'Unable to determine manifest details' if result.nil?
 
-        live_version = result['version']
+        return manifests[locale] if !force_download && manifest_version?(locale, result['version'])
 
-        @manifests ||= {}
-        @manifest_versions ||= {}
+        manifests[locale] = download_manifest_by_url(result.dig('mobileWorldContentPaths', locale), result['version'])
+      end
 
-        if force_download || @manifests[locale].nil? || @manifest_versions[locale] != live_version
-          manifest_db_url = result.dig('mobileWorldContentPaths', locale)
-          raise Restiny::RequestError, 'Unknown locale' if manifest_db_url.nil?
+      def download_manifest_by_url(url, version)
+        raise Restiny::RequestError, 'Unknown locale' if url.nil?
 
-          database_file_path = extract_manifest_from_zip_file(
-            Down.download(BUNGIE_URL + manifest_db_url),
-            live_version
-          )
+        database_file_path = extract_manifest_from_zip_file(Down.download(BUNGIE_URL + url), version)
 
-          @manifests[locale] = Restiny::Manifest.new(database_file_path, live_version)
-          @manifest_versions[locale] = live_version
-        end
-
-        @manifests[locale]
+        Restiny::Manifest.new(database_file_path, version)
       rescue Down::Error => e
         raise Restiny::NetworkError.new('Unable to download the manifest file', e.response.code)
-      rescue Zip::Error => e
-        raise Restiny::Error, "Unable to unzip the manifest file (#{e})"
       end
 
       def extract_manifest_from_zip_file(source_path, version)
@@ -46,6 +36,16 @@ module Restiny
             zip_file.first.extract(path) unless File.exist?(path)
           end
         end
+      rescue Zip::Error => e
+        raise Restiny::Error, "Unable to unzip the manifest file (#{e})"
+      end
+
+      def manifests
+        @manifests ||= {}
+      end
+
+      def manifest_version?(locale, version)
+        manifests[locale] && manifests[locale].version == version
       end
     end
   end
