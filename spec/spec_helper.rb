@@ -23,3 +23,9 @@ VCR.configure do |c|
 
   c.configure_rspec_metadata!
 end
+
+shared_context('with api calls') do
+  let(:membership_id) { 4_611_686_018_462_034_842 }
+  let(:membership_type) { 2 }
+  let(:character_id) { 2_305_843_009_316_446_082 }
+end
