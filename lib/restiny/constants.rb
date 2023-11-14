@@ -111,7 +111,7 @@ module Restiny
     end
   end
 
-  # Definitions for the various typos of ammunition in the game.
+  # Definitions for the various types of ammunition used in the game.
   module Ammunition
     NONE = 0
     PRIMARY = 1
