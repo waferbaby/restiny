@@ -15,10 +15,12 @@ module Restiny
 
       def get_primary_user_membership(membership_id:, use_fallback: true)
         result = get_user_memberships_by_id(membership_id: membership_id)
-        return nil if result.nil? || result['primaryMembershipId'].nil?
+        return nil if result.nil?
 
-        result['destinyMemberships'].each do |membership|
-          return membership if membership['membershipID'] == result['primaryMembershipId']
+        unless result['primaryMembershipId'].nil?
+          result['destinyMemberships'].each do |membership|
+            return membership if membership['membershipID'] == result['primaryMembershipId']
+          end
         end
 
         result['destinyMemberships'][0] if use_fallback
