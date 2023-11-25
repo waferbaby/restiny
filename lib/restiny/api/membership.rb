@@ -10,7 +10,7 @@ module Restiny
       def get_user_memberships_by_id(membership_id:, membership_type: Platform::ALL)
         raise Restiny::InvalidParamsError, 'Please provide a membership ID' if membership_id.nil?
 
-        api_get(endpoint: "User/GetMembershipsById/#{membership_id}/#{membership_type}/")
+        get(endpoint: "/User/GetMembershipsById/#{membership_id}/#{membership_type}/")
       end
 
       def get_primary_user_membership(membership_id:, use_fallback: true)

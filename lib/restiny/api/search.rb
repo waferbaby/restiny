@@ -14,17 +14,14 @@ module Restiny
                 'You must provide a valid Bungie name'
         end
 
-        api_post(
-          endpoint: "Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/",
-          params: {
-            displayName: display_name,
-            displayNameCode: display_name_code
-          }
+        post(
+          endpoint: "/Destiny2/SearchDestinyPlayerByBungieName/#{membership_type}/",
+          params: { displayName: display_name, displayNameCode: display_name_code }
         )
       end
 
       def search_users_by_global_name(name:, page: 0)
-        api_post(endpoint: "User/Search/GlobalName/#{page}/", params: { displayNamePrefix: name })
+        post(endpoint: "/User/Search/GlobalName/#{page}/", params: { displayNamePrefix: name })
       end
     end
   end

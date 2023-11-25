@@ -2,10 +2,8 @@
 
 require 'restiny/constants'
 require 'restiny/errors'
-require 'faraday'
-require 'faraday/follow_redirects'
-require 'faraday/destiny/api'
-require 'faraday/destiny/auth'
+require 'httpx'
+require 'json'
 
 module Restiny
   BUNGIE_URL = 'https://www.bungie.net'
@@ -15,51 +13,49 @@ module Restiny
 
   module Api
     module Base
-      def api_get(endpoint:, params: {})
-        api_connection.get(endpoint, params, token_header).body
+      def get(endpoint:)
+        make_api_request(endpoint: endpoint, method: :get)
       end
 
-      def api_post(endpoint:, params: {})
-        api_connection.post(endpoint, params, token_header).body
+      def post(endpoint:, params: {})
+        make_api_request(endpoint: endpoint, method: :post, params: params)
       end
 
       private
 
-      def check_oauth_client_id
-        raise Restiny::RequestError, 'You need to set an OAuth client ID' unless @oauth_client_id
+      def http_client
+        HTTPX.with(headers: api_headers).plugin(:follow_redirects)
       end
 
-      def default_headers
-        { 'User-Agent': @user_agent || "restiny v#{Restiny::VERSION}" }
+      def make_api_request(endpoint:, method: :get, params: {})
+        raise Restiny::InvalidParamsError, 'You need to set an API key (Restiny.api_key)' if @api_key.nil?
+
+        response = http_client.request(method, API_BASE_URL + endpoint, json: params)
+        response.raise_for_status
+
+        response.json['Response']
+      rescue HTTPX::Error => e
+        handle_api_error(e)
       end
 
-      def api_connection
-        raise Restiny::InvalidParamsError, 'You need to set an API key' unless @api_key
+      def handle_api_error(error)
+        klass = case error.response.status
+                when 400..499 then ::Restiny::RequestError
+                when 500..599 then ::Restiny::ResponseError
+                else ::Restiny::Error
+                end
 
-        @api_connection ||=
-          Faraday.new(
-            url: API_BASE_URL,
-            headers: default_headers.merge('X-API-KEY': @api_key)
-          ) do |faraday|
-            faraday.request :json
-            faraday.response :follow_redirects
-            faraday.response :destiny_api
-            faraday.response :json
-          end
+        raise klass, error.response.json
+      rescue HTTPX::Error
+        raise klass, "#{error.response.status}: #{error.response.headers['x-selfurl']}"
       end
 
-      def auth_connection
-        @auth_connection ||=
-          Faraday.new(url: API_BASE_URL, headers: default_headers) do |faraday|
-            faraday.request :url_encoded
-            faraday.response :follow_redirects
-            faraday.response :destiny_auth
-            faraday.response :json
-          end
-      end
-
-      def token_header
-        {}.tap { |headers| headers['authorization'] = "Bearer #{@access_token}" if @access_token }
+      def api_headers
+        {}.tap do |headers|
+          headers['x-api-key'] = @api_key
+          headers['user-agent'] = "restiny v#{Restiny::VERSION}"
+          headers['authentication'] = "Bearer #{@access_token}" unless @access_token.nil?
+        end
       end
     end
   end

@@ -14,7 +14,7 @@ module Restiny
       include Base
 
       def download_manifest(locale: 'en', force_download: false)
-        result = api_get(endpoint: 'Destiny2/Manifest/')
+        result = get(endpoint: 'Destiny2/Manifest/')
         raise Restiny::ResponseError, 'Unable to determine manifest details' if result.nil?
 
         return manifests[locale] if !force_download && manifest_version?(locale, result['version'])
