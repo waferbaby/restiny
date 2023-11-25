@@ -21,8 +21,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
 
   s.add_runtime_dependency 'down', '~> 5.4'
-  s.add_runtime_dependency 'faraday', '~> 2.0'
-  s.add_runtime_dependency 'faraday-follow_redirects', '~> 0.3'
+  s.add_runtime_dependency 'httpx', '~> 1.1'
   s.add_runtime_dependency 'rubyzip', '~> 2.3'
   s.add_runtime_dependency 'sqlite3', '~> 1.3'
 
