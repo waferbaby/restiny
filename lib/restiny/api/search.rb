@@ -10,8 +10,7 @@ module Restiny
       def search_player_by_bungie_name(name:, membership_type: Platform::ALL)
         display_name, display_name_code = name.split('#')
         if display_name.nil? || display_name_code.nil?
-          raise Restiny::InvalidParamsError,
-                'You must provide a valid Bungie name'
+          raise Restiny::InvalidParamsError, 'You must provide a valid Bungie name'
         end
 
         post(
