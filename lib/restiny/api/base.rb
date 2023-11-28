@@ -24,7 +24,7 @@ module Restiny
       private
 
       def http_client
-        HTTPX.with(headers: api_headers).plugin(:follow_redirects)
+        HTTPX.with(headers: api_headers).plugin(:follow_redirects, follow_insecure_redirects: true)
       end
 
       def make_api_request(endpoint:, method: :get, params: {})
@@ -45,15 +45,16 @@ module Restiny
                 else ::Restiny::Error
                 end
 
-        raise klass, error.response.json
+        body = error.response.json
+        raise klass, "#{body['ErrorStatus']} (#{body['ErrorCode']}): #{body['Message']}"
       rescue HTTPX::Error
-        raise klass, "#{error.response.status}: #{error.response.headers['x-selfurl']}"
+        raise klass, error.response.status.to_s if error.response
       end
 
       def api_headers
         {}.tap do |headers|
           headers['x-api-key'] = @api_key
-          headers['user-agent'] = "restiny v#{Restiny::VERSION}"
+          headers['user-agent'] = @user_agent || "restiny v#{Restiny::VERSION}"
           headers['authentication'] = "Bearer #{@access_token}" unless @access_token.nil?
         end
       end
