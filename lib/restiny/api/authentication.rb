@@ -9,10 +9,18 @@ module Restiny
     module Authentication
       include Base
 
+      CODE_RESPONSE_TYPE = 'code'
+      AUTH_CODE_GRANT_TYPE = 'authorization_code'
+
       def get_authorise_url(redirect_url: nil, state: nil)
         check_oauth_client_id
 
-        params = { response_type: 'code', client_id: @oauth_client_id, state: state || SecureRandom.hex(15) }
+        params = {
+          response_type: CODE_RESPONSE_TYPE,
+          client_id: @oauth_client_id,
+          state: state || SecureRandom.hex(15)
+        }
+
         params['redirect_url'] = redirect_url unless redirect_url.nil?
 
         query = params.map { |k, v| "#{k}=#{v}" }.join('&')
@@ -23,7 +31,7 @@ module Restiny
       def request_access_token(code:, redirect_url: nil)
         check_oauth_client_id
 
-        params = { code: code, grant_type: 'authorization_code', client_id: @oauth_client_id }
+        params = { code: code, grant_type: AUTH_CODE_GRANT_TYPE, client_id: @oauth_client_id }
         params['redirect_url'] = redirect_url unless redirect_url.nil?
 
         response = http_client.post("#{API_BASE_URL}/app/oauth/token/", form: params)
