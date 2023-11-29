@@ -34,7 +34,9 @@ module Restiny
         response.raise_for_status
 
         response.json['Response']
-      rescue HTTPX::Error => e
+      rescue HTTPX::TimeoutError, HTTPX::ResolveError => e
+        raise Restiny::RequestError, e.message
+      rescue HTTPX::HTTPError => e
         handle_api_error(e)
       end
 
@@ -45,10 +47,15 @@ module Restiny
                 else ::Restiny::Error
                 end
 
-        body = error.response.json
-        raise klass, "#{body['ErrorStatus']} (#{body['ErrorCode']}): #{body['Message']}"
-      rescue HTTPX::Error
-        raise klass, error.response.status.to_s if error.response
+        raise klass, if error.response.headers['content-type'].match?(%r{^application/json})
+                       parse_error_message_from_json(error.response.json)
+                     else
+                       error.status
+                     end
+      end
+
+      def parse_error_message_from_json(json)
+        "#{json['ErrorStatus']} (#{json['ErrorCode']}): #{json['Message']}"
       end
 
       def api_headers
@@ -57,6 +64,10 @@ module Restiny
           headers['user-agent'] = @user_agent || "restiny v#{Restiny::VERSION}"
           headers['authentication'] = "Bearer #{@access_token}" unless @access_token.nil?
         end
+      end
+
+      def valid_array_param?(param)
+        param.is_a?(Array) && !param.empty?
       end
     end
   end
