@@ -173,6 +173,10 @@ module Restiny
 
   # The categories of data stored in the manifest.
   module ManifestDefinition
+    def self.values
+      constants.map { |c| const_get(c) }
+    end
+
     ACHIEVEMENT = 'DestinyAchievementDefinition'
     ACTIVITY = 'DestinyActivityDefinition'
     ACTIVITY_GRAPH = 'DestinyActivityGraphDefinition'
