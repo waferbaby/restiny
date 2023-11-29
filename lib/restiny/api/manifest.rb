@@ -2,52 +2,49 @@
 
 require_relative 'base'
 
-require 'restiny/manifest'
-
-require 'down'
 require 'tmpdir'
-require 'zip'
+require 'uri'
 
 module Restiny
   module Api
     module Manifest
       include Base
 
-      def download_manifest(locale: 'en', force_download: false)
-        result = get(endpoint: 'Destiny2/Manifest/')
-        raise Restiny::ResponseError, 'Unable to determine manifest details' if result.nil?
+      def fetch_manifest
+        result = get(endpoint: '/Destiny2/Manifest/')
+        return result unless result.nil?
 
-        return manifests[locale] if !force_download && manifest_version?(locale, result['version'])
-
-        manifests[locale] = download_manifest_by_url(result.dig('mobileWorldContentPaths', locale), result['version'])
+        raise Restiny::ResponseError, 'Unable to fetch manifest details'
       end
 
-      def download_manifest_by_url(url, version)
-        raise Restiny::RequestError, 'Unknown locale' if url.nil?
+      def download_manifest_json(locale: 'en', definitions: [])
+        raise Restiny::InvalidParamsError, 'No definitions provided' unless valid_array_param?(definitions)
+        raise Restiny::InvalidParamsError, 'Unknown definitions provided' unless known_definitions?(definitions)
 
-        database_file_path = extract_manifest_from_zip_file(Down.download(BUNGIE_URL + url), version)
+        paths = fetch_manifest.dig('jsonWorldComponentContentPaths', locale)
+        raise Restiny::ResponseError, "Unable to find manifest JSON for locale '#{locale}'" if paths.nil?
 
-        Restiny::Manifest.new(database_file_path, version)
-      rescue Down::Error => e
-        raise Restiny::NetworkError.new('Unable to download the manifest file', e.response.code)
-      end
-
-      def extract_manifest_from_zip_file(source_path, version)
-        Zip::File.open(source_path) do |zip_file|
-          File.join(Dir.tmpdir, "#{version}.en.content.db").tap do |path|
-            zip_file.first.extract(path) unless File.exist?(path)
+        {}.tap do |files|
+          definitions.each do |definition|
+            files[definition] = download_manifest_json_by_url(url: BUNGIE_URL + paths[definition])
           end
         end
-      rescue Zip::Error => e
-        raise Restiny::Error, "Unable to unzip the manifest file (#{e})"
       end
 
-      def manifests
-        @manifests ||= {}
+      def known_definitions?(definitions)
+        definitions.difference(Restiny::ManifestDefinition.values).empty?
       end
 
-      def manifest_version?(locale, version)
-        manifests[locale] && manifests[locale].version == version
+      def download_manifest_json_by_url(url:)
+        filename = URI(url).path.split('/').last
+        path = File.join(Dir.tmpdir, filename)
+
+        HTTPX.get(url).copy_to(path)
+        raise Restiny::Error, "Unable to download JSON from #{url}" unless File.exist?(path)
+
+        path
+      rescue HTTPX::Error
+        raise Restiny::ResponseError, "Unable to download #{definition} JSON file"
       end
     end
   end
