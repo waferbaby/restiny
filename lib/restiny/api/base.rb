@@ -7,7 +7,6 @@ require 'json'
 
 module Restiny
   BUNGIE_URL = 'https://www.bungie.net'
-  API_BASE_URL = "#{BUNGIE_URL}/platform".freeze
 
   attr_accessor :api_key, :oauth_state, :oauth_client_id, :access_token, :user_agent
 
@@ -24,13 +23,13 @@ module Restiny
       private
 
       def http_client
-        HTTPX.with(headers: api_headers).plugin(:follow_redirects, follow_insecure_redirects: true)
+        HTTPX.with(origin: BUNGIE_URL, headers: api_headers).plugin(:follow_redirects, follow_insecure_redirects: true)
       end
 
       def make_api_request(endpoint:, method: :get, params: {})
         raise Restiny::InvalidParamsError, 'You need to set an API key (Restiny.api_key)' if @api_key.nil?
 
-        response = http_client.request(method, API_BASE_URL + endpoint, json: params)
+        response = http_client.with(base_path: '/platform/').request(method, endpoint, json: params)
         response.raise_for_status
 
         response.json['Response']
@@ -48,13 +47,13 @@ module Restiny
                 end
 
         raise klass, if error.response.headers['content-type'].match?(%r{^application/json})
-                       parse_error_message_from_json(error.response.json)
+                       error_message_from_json(error.response.json)
                      else
                        error.status
                      end
       end
 
-      def parse_error_message_from_json(json)
+      def error_message_from_json(json)
         "#{json['ErrorStatus']} (#{json['ErrorCode']}): #{json['Message']}"
       end
 
