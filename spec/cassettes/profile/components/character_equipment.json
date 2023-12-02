@@ -1,0 +1,108 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://www.bungie.net/platform//Destiny2/2/Profile/4611686018462034842/?components=205",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{}"
+        },
+        "headers": {
+          "X-Api-Key": [
+            "<API_KEY>"
+          ],
+          "User-Agent": [
+            "restiny v5.0.1"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "Date": [
+            "Sat, 02 Dec 2023 23:25:39 GMT"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "1021"
+          ],
+          "Cache-Control": [
+            "private"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Expires": [
+            "-1"
+          ],
+          "Vary": [
+            "Origin,Accept-Encoding"
+          ],
+          "X-Bungienext-Mid2": [
+            "189"
+          ],
+          "X-Bungienext-Renderer": [
+            "Frog Blast the Ventcore"
+          ],
+          "X-Ua-Compatible": [
+            "IE=edge"
+          ],
+          "X-Ventcore-Status": [
+            "1"
+          ],
+          "P3p": [
+            "CP=\"ALL DSP COR PSD PSA TAI ADM CUR SAM OUR IND UNI COM INT CNT PRE\""
+          ],
+          "Access-Control-Allow-Origin": [
+            "https://www.bungie.net"
+          ],
+          "X-Selfurl": [
+            "https://www.bungie.net/platform/Destiny2/2/Profile/4611686018462034842/?components=205"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "Bnetlb": [
+            "LB0101"
+          ],
+          "Cf-Cache-Status": [
+            "DYNAMIC"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Cf-Ray": [
+            "82f75490ea1c3779-MEL"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"Response\":{\"responseMintedTimestamp\":\"2023-12-02T23:25:35.432Z\",\"secondaryComponentsMintedTimestamp\":\"0001-01-01T00:00:00Z\",\"characterEquipment\":{\"data\":{\"2305843009316446082\":{\"items\":[{\"itemHash\":3973202132,\"itemInstanceId\":\"6917529112057500512\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":1498876634,\"transferStatus\":1,\"lockable\":true,\"state\":1,\"dismantlePermission\":1,\"overrideStyleItemHash\":3575125069,\"isWrapper\":false,\"tooltipNotificationIndexes\":[],\"versionNumber\":0},{\"itemHash\":3381450498,\"itemInstanceId\":\"6917529959785856359\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":2465295065,\"transferStatus\":1,\"lockable\":false,\"state\":1,\"dismantlePermission\":0,\"isWrapper\":false},{\"itemHash\":3668817296,\"itemInstanceId\":\"6917529959785854181\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":953998645,\"transferStatus\":1,\"lockable\":false,\"state\":1,\"dismantlePermission\":0,\"isWrapper\":false},{\"itemHash\":4196904014,\"itemInstanceId\":\"6917529958816859865\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":3448274439,\"transferStatus\":1,\"lockable\":true,\"state\":4,\"dismantlePermission\":2,\"isWrapper\":false,\"tooltipNotificationIndexes\":[],\"versionNumber\":0},{\"itemHash\":2780717641,\"itemInstanceId\":\"6917529932278038852\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":3551918588,\"transferStatus\":1,\"lockable\":true,\"state\":5,\"dismantlePermission\":1,\"overrideStyleItemHash\":31326870,\"isWrapper\":false,\"tooltipNotificationIndexes\":[],\"versionNumber\":0},{\"itemHash\":3400974073,\"itemInstanceId\":\"6917529958679153497\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":14239492,\"transferStatus\":1,\"lockable\":true,\"state\":0,\"dismantlePermission\":2,\"isWrapper\":false,\"tooltipNotificationIndexes\":[],\"versionNumber\":0},{\"itemHash\":4143357569,\"itemInstanceId\":\"6917529958782361690\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":20886954,\"transferStatus\":1,\"lockable\":true,\"state\":0,\"dismantlePermission\":2,\"isWrapper\":false,\"tooltipNotificationIndexes\":[],\"versionNumber\":0},{\"itemHash\":2694773307,\"itemInstanceId\":\"6917529863438243302\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":1585787867,\"transferStatus\":1,\"lockable\":true,\"state\":5,\"dismantlePermission\":2,\"overrideStyleItemHash\":2931787092,\"isWrapper\":false,\"tooltipNotificationIndexes\":[],\"versionNumber\":0},{\"itemHash\":3299468275,\"itemInstanceId\":\"6917529951954948444\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":4023194814,\"transferStatus\":1,\"lockable\":true,\"state\":4,\"dismantlePermission\":1,\"isWrapper\":false,\"tooltipNotificationIndexes\":[]},{\"itemHash\":2862488837,\"itemInstanceId\":\"6917529951245456368\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":2025709351,\"transferStatus\":1,\"lockable\":true,\"state\":0,\"dismantlePermission\":1,\"isWrapper\":false,\"tooltipNotificationIndexes\":[]},{\"itemHash\":554648945,\"itemInstanceId\":\"6917529959971435974\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":284967655,\"transferStatus\":1,\"lockable\":true,\"state\":0,\"dismantlePermission\":1,\"isWrapper\":false,\"tooltipNotificationIndexes\":[]},{\"itemHash\":3941205951,\"itemInstanceId\":\"6917529759549300753\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":3284755031,\"transferStatus\":3,\"lockable\":false,\"state\":0,\"dismantlePermission\":0,\"isWrapper\":false,\"tooltipNotificationIndexes\":[]},{\"itemHash\":4026763349,\"itemInstanceId\":\"6917529958493818203\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":4292445962,\"transferStatus\":3,\"lockable\":true,\"state\":0,\"dismantlePermission\":2,\"isWrapper\":false,\"tooltipNotificationIndexes\":[]},{\"itemHash\":3936625542,\"itemInstanceId\":\"6917529557941228736\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":4274335291,\"transferStatus\":3,\"lockable\":true,\"state\":1,\"dismantlePermission\":2,\"isWrapper\":false,\"tooltipNotificationIndexes\":[],\"metricHash\":2114794836,\"metricObjective\":{\"objectiveHash\":1456194256,\"progress\":113,\"completionValue\":200,\"complete\":false,\"visible\":true}},{\"itemHash\":152583919,\"itemInstanceId\":\"6917529137719308613\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":3683254069,\"transferStatus\":3,\"lockable\":false,\"state\":0,\"dismantlePermission\":0,\"isWrapper\":false,\"tooltipNotificationIndexes\":[]},{\"itemHash\":3183180185,\"itemInstanceId\":\"6917529055738787507\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":1107761855,\"transferStatus\":3,\"lockable\":false,\"state\":0,\"dismantlePermission\":0,\"isWrapper\":false,\"tooltipNotificationIndexes\":[]},{\"itemHash\":1410465636,\"itemInstanceId\":\"6917529958501554206\",\"quantity\":1,\"bindStatus\":0,\"location\":1,\"bucketHash\":1506418338,\"transferStatus\":3,\"lockable\":false,\"state\":0,\"dismantlePermission\":0,\"isWrapper\":false,\"tooltipNotificationIndexes\":[0]}]}},\"privacy\":1}},\"ErrorCode\":1,\"ThrottleSeconds\":0,\"ErrorStatus\":\"Success\",\"Message\":\"Ok\",\"MessageData\":{}}"
+        }
+      },
+      "recorded_at": "Sat, 02 Dec 2023 23:25:39 GMT"
+    }
+  ],
+  "recorded_with": "VCR 6.2.0"
+}

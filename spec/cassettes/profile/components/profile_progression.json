@@ -1,0 +1,108 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://www.bungie.net/platform//Destiny2/2/Profile/4611686018462034842/?components=104",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{}"
+        },
+        "headers": {
+          "X-Api-Key": [
+            "<API_KEY>"
+          ],
+          "User-Agent": [
+            "restiny v5.0.1"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "Date": [
+            "Sat, 02 Dec 2023 23:25:35 GMT"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2282"
+          ],
+          "Cache-Control": [
+            "private"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Expires": [
+            "-1"
+          ],
+          "Vary": [
+            "Origin,Accept-Encoding"
+          ],
+          "X-Bungienext-Mid2": [
+            "179"
+          ],
+          "X-Bungienext-Renderer": [
+            "Frog Blast the Ventcore"
+          ],
+          "X-Ua-Compatible": [
+            "IE=edge"
+          ],
+          "X-Ventcore-Status": [
+            "1"
+          ],
+          "P3p": [
+            "CP=\"ALL DSP COR PSD PSA TAI ADM CUR SAM OUR IND UNI COM INT CNT PRE\""
+          ],
+          "Access-Control-Allow-Origin": [
+            "https://www.bungie.net"
+          ],
+          "X-Selfurl": [
+            "https://www.bungie.net/platform/Destiny2/2/Profile/4611686018462034842/?components=104"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "Bnetlb": [
+            "LB0102"
+          ],
+          "Cf-Cache-Status": [
+            "DYNAMIC"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Cf-Ray": [
+            "82f754731ad417c9-MEL"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"Response\":{\"responseMintedTimestamp\":\"2023-12-02T23:25:34.836Z\",\"secondaryComponentsMintedTimestamp\":\"0001-01-01T00:00:00Z\",\"profileProgression\":{\"data\":{\"checklists\":{\"1697465175\":{\"3156467474\":true,\"2473593253\":true,\"505173108\":true,\"3557288846\":true,\"3658842337\":true,\"1116639056\":true,\"72017611\":true,\"3212130160\":true,\"97796737\":true,\"113362963\":true,\"2355206132\":true,\"28658981\":true,\"2482079866\":true,\"576743835\":true,\"3307732497\":true,\"823939877\":true,\"908643859\":true,\"1085712440\":true,\"589814471\":true,\"2503906440\":true,\"3609559330\":true,\"4143709398\":true,\"2049004329\":true,\"1780053523\":true,\"2925348591\":true,\"3059588176\":true,\"1281044779\":true,\"131897336\":true,\"1295226450\":true,\"379286227\":true,\"2662231509\":true,\"1881681731\":true,\"3128564200\":true,\"1704777267\":true,\"2779832084\":true,\"4128910789\":true,\"2414643433\":true,\"4048519991\":true,\"517025716\":true,\"1965760095\":true,\"93401344\":true,\"722167505\":true,\"2700275579\":true,\"633083132\":true,\"1105312397\":true,\"2326920926\":false,\"1109476065\":true,\"1007922574\":false,\"2728000495\":true,\"2013384876\":false,\"3986286066\":true,\"216809093\":true,\"3162697940\":false,\"2357751383\":true,\"3947020272\":true,\"3812883599\":true,\"731133614\":true,\"3147488613\":true,\"3364328658\":true,\"2448388435\":true,\"2499619401\":true,\"340933878\":true,\"74989591\":true,\"204962005\":true,\"3138619650\":true,\"3719379523\":true,\"3017060296\":true,\"1845401863\":true,\"2242541542\":true,\"2584781838\":true,\"2686335329\":true,\"144132048\":true,\"2791553137\":true,\"2537351390\":true,\"2631896703\":true,\"2391303040\":true,\"4263661791\":true,\"4169219646\":true,\"2899711728\":true,\"2765575055\":true,\"3978792366\":true,\"3888342093\":true,\"201955226\":true,\"763777083\":true,\"2131720755\":true,\"3206775572\":true,\"260886981\":true,\"1636954546\":true,\"995760197\":true,\"3941648788\":true,\"4180769175\":true,\"1476218840\":true,\"2310431689\":true,\"36550832\":true,\"3879405391\":true,\"331621230\":true,\"2506158573\":true,\"2413985082\":true,\"826419291\":true,\"1343989713\":true,\"2493140158\":true,\"2587582303\":true,\"61217800\":true,\"2442093127\":true,\"4006123814\":true,\"1351660365\":true,\"1960240794\":true,\"2522062651\":true},\"2726513366\":{\"2576690974\":false,\"2420371297\":true,\"2253687296\":false,\"1159650715\":false,\"2853314242\":false,\"56362725\":true,\"4262976548\":false,\"3629051903\":true,\"3255812950\":true},\"2609997025\":{\"1101252171\":true,\"1101252168\":true,\"1101252169\":true,\"1101252174\":false,\"1101252175\":true,\"1101252172\":true,\"1101252173\":true,\"1101252162\":true,\"1101252163\":true,\"1118029885\":false,\"1118029884\":false,\"1118029887\":false,\"1118029886\":false,\"1118029881\":false,\"1118029880\":true,\"1118029883\":false,\"1118029882\":true,\"1118029877\":true,\"1118029876\":false,\"1067696996\":false,\"1067696997\":true,\"1067696998\":true,\"1067696999\":false,\"1067696992\":false,\"1067696993\":true,\"1067696994\":false,\"1067696995\":false,\"1067697004\":false,\"1067697005\":false,\"1084474583\":false,\"1084474582\":true,\"1084474581\":true,\"1084474580\":false,\"1084474579\":false,\"1084474578\":false,\"1084474577\":false,\"1084474576\":false,\"1084474591\":false,\"1084474590\":false,\"1034141726\":false},\"1297424116\":{\"1370818871\":false,\"1370818868\":false,\"1370818869\":false,\"1370818866\":false,\"1370818867\":false,\"1370818864\":false,\"1370818865\":true,\"1370818878\":false,\"1370818879\":false,\"1387596457\":false,\"1387596456\":false,\"1387596459\":false,\"1387596458\":false,\"1387596461\":false,\"1387596460\":false,\"1387596463\":false},\"1856270404\":{\"3060958463\":true,\"165164586\":true,\"1926293609\":true,\"4085847388\":true,\"3553369003\":true,\"1176209846\":true,\"3894429461\":true,\"2780856872\":true,\"795077111\":true,\"3487734533\":true},\"817948795\":{\"1629596387\":true,\"271815222\":true,\"3880966469\":true,\"3420140384\":true,\"3890313479\":true,\"290570570\":true,\"3254863625\":true,\"1313979588\":true,\"1610085355\":true},\"1885088224\":{\"2679813844\":true,\"3482887819\":true,\"1146417010\":true,\"3527611025\":true,\"951414128\":true,\"1217064983\":true,\"2677830030\":true,\"2927552589\":true,\"523132396\":true},\"2568476210\":{\"1287812596\":true,\"2578791723\":true,\"1291596818\":true,\"2717332017\":true,\"3854379920\":true,\"4176343351\":true,\"2039102766\":true,\"3497190125\":true,\"3239366412\":true},\"3373333905\":{\"2904405255\":true,\"3599629642\":true,\"2268955401\":false,\"333170652\":true,\"643688163\":true,\"3580874294\":true,\"2895058245\":false,\"1903309704\":true,\"703052847\":true,\"3466568729\":true},\"3089927156\":{\"2525596425\":false,\"2914357734\":false,\"2976471567\":false,\"668304140\":false,\"926127853\":false,\"1521382762\":false,\"3538365411\":false,\"1283317648\":false,\"146269745\":false,\"1279404415\":false},\"1793940260\":{\"1968232284\":true,\"235152581\":true,\"920968630\":true,\"244499591\":true,\"4069293792\":true,\"3904017033\":true,\"939723978\":true,\"2259238763\":true,\"1963132996\":true},\"703136805\":{\"4254313516\":true,\"771428611\":true,\"387967114\":true,\"4196121769\":true,\"1637614024\":true,\"2267616815\":true,\"3269514502\":true,\"239447509\":true,\"4287738336\":true,\"1526868679\":true,\"1483261694\":true,\"3652767709\":true,\"2724068250\":true,\"3834311763\":true,\"238513217\":true,\"1445055870\":true,\"1488662855\":true,\"3618196612\":true,\"2911802565\":true,\"3471868578\":true,\"3165550331\":true,\"1824740216\":true,\"1862498200\":true,\"2651740159\":true,\"2278501206\":true,\"2926342256\":true,\"3191993111\":true,\"357790862\":true,\"1357665685\":true,\"359774676\":true,\"1162848651\":true,\"3121345138\":true,\"4063596649\":true,\"342198644\":true,\"1633177771\":true,\"345982866\":true,\"1884537451\":true,\"3040709428\":true,\"4094809845\":true}},\"seasonalArtifact\":{\"artifactHash\":2894222926,\"pointProgression\":{\"progressionHash\":2421325160,\"dailyProgress\":2325,\"dailyLimit\":0,\"weeklyProgress\":1475945,\"weeklyLimit\":0,\"currentProgress\":2401865,\"level\":10,\"levelCap\":12,\"stepIndex\":10,\"progressToNextLevel\":26865,\"nextLevelAt\":750000},\"pointsAcquired\":10,\"powerBonusProgression\":{\"progressionHash\":1135646761,\"dailyProgress\":2325,\"dailyLimit\":0,\"weeklyProgress\":1475945,\"weeklyLimit\":0,\"currentProgress\":2401864,\"level\":7,\"levelCap\":71,\"stepIndex\":7,\"progressToNextLevel\":421864,\"nextLevelAt\":715000},\"powerBonus\":7}},\"privacy\":2}},\"ErrorCode\":1,\"ThrottleSeconds\":0,\"ErrorStatus\":\"Success\",\"Message\":\"Ok\",\"MessageData\":{}}"
+        }
+      },
+      "recorded_at": "Sat, 02 Dec 2023 23:25:35 GMT"
+    }
+  ],
+  "recorded_with": "VCR 6.2.0"
+}

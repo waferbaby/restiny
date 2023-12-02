@@ -1,0 +1,108 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://www.bungie.net/platform//Destiny2/2/Profile/4611686018462034842/?components=200",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{}"
+        },
+        "headers": {
+          "X-Api-Key": [
+            "<API_KEY>"
+          ],
+          "User-Agent": [
+            "restiny v5.0.1"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "Date": [
+            "Sat, 02 Dec 2023 23:25:36 GMT"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "685"
+          ],
+          "Cache-Control": [
+            "private"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Expires": [
+            "-1"
+          ],
+          "Vary": [
+            "Origin,Accept-Encoding"
+          ],
+          "X-Bungienext-Mid2": [
+            "189"
+          ],
+          "X-Bungienext-Renderer": [
+            "Frog Blast the Ventcore"
+          ],
+          "X-Ua-Compatible": [
+            "IE=edge"
+          ],
+          "X-Ventcore-Status": [
+            "1"
+          ],
+          "P3p": [
+            "CP=\"ALL DSP COR PSD PSA TAI ADM CUR SAM OUR IND UNI COM INT CNT PRE\""
+          ],
+          "Access-Control-Allow-Origin": [
+            "https://www.bungie.net"
+          ],
+          "X-Selfurl": [
+            "https://www.bungie.net/platform/Destiny2/2/Profile/4611686018462034842/?components=200"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "Bnetlb": [
+            "LB0101"
+          ],
+          "Cf-Cache-Status": [
+            "DYNAMIC"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Cf-Ray": [
+            "82f7547b9eb52b38-MEL"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"Response\":{\"responseMintedTimestamp\":\"2023-12-02T23:25:35.432Z\",\"secondaryComponentsMintedTimestamp\":\"0001-01-01T00:00:00Z\",\"characters\":{\"data\":{\"2305843009316446082\":{\"membershipId\":\"4611686018462034842\",\"membershipType\":2,\"characterId\":\"2305843009316446082\",\"dateLastPlayed\":\"2023-12-02T23:17:26Z\",\"minutesPlayedThisSession\":\"6\",\"minutesPlayedTotal\":\"283946\",\"light\":1814,\"stats\":{\"1935470627\":1814,\"2996146975\":33,\"392767087\":101,\"1943323491\":41,\"1735777505\":56,\"144602215\":33,\"4244567218\":30},\"raceHash\":2803282938,\"genderHash\":2204441813,\"classHash\":2271682572,\"raceType\":1,\"classType\":2,\"genderType\":1,\"emblemPath\":\"/common/destiny2_content/icons/41dfcad1288ac3a5373ec8c7e5fff72f.jpg\",\"emblemBackgroundPath\":\"/common/destiny2_content/icons/bc6631a30e4d7ea340ed65c95bacec60.jpg\",\"emblemHash\":3936625542,\"emblemColor\":{\"red\":1,\"green\":1,\"blue\":1,\"alpha\":255},\"levelProgression\":{\"progressionHash\":1716568313,\"dailyProgress\":0,\"dailyLimit\":0,\"weeklyProgress\":0,\"weeklyLimit\":0,\"currentProgress\":0,\"level\":50,\"levelCap\":50,\"stepIndex\":50,\"progressToNextLevel\":0,\"nextLevelAt\":0},\"baseCharacterLevel\":50,\"percentToNextLevel\":0.0,\"titleRecordHash\":758645239}},\"privacy\":1}},\"ErrorCode\":1,\"ThrottleSeconds\":0,\"ErrorStatus\":\"Success\",\"Message\":\"Ok\",\"MessageData\":{}}"
+        }
+      },
+      "recorded_at": "Sat, 02 Dec 2023 23:25:36 GMT"
+    }
+  ],
+  "recorded_with": "VCR 6.2.0"
+}

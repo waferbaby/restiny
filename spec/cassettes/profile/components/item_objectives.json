@@ -1,0 +1,108 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://www.bungie.net/platform//Destiny2/2/Profile/4611686018462034842/?components=301",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{}"
+        },
+        "headers": {
+          "X-Api-Key": [
+            "<API_KEY>"
+          ],
+          "User-Agent": [
+            "restiny v5.0.1"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "Date": [
+            "Sat, 02 Dec 2023 23:25:41 GMT"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "588"
+          ],
+          "Cache-Control": [
+            "private"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Expires": [
+            "-1"
+          ],
+          "Vary": [
+            "Origin,Accept-Encoding"
+          ],
+          "X-Bungienext-Mid2": [
+            "147"
+          ],
+          "X-Bungienext-Renderer": [
+            "Frog Blast the Ventcore"
+          ],
+          "X-Ua-Compatible": [
+            "IE=edge"
+          ],
+          "X-Ventcore-Status": [
+            "1"
+          ],
+          "P3p": [
+            "CP=\"ALL DSP COR PSD PSA TAI ADM CUR SAM OUR IND UNI COM INT CNT PRE\""
+          ],
+          "Access-Control-Allow-Origin": [
+            "https://www.bungie.net"
+          ],
+          "X-Selfurl": [
+            "https://www.bungie.net/platform/Destiny2/2/Profile/4611686018462034842/?components=301"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "Bnetlb": [
+            "LB0102"
+          ],
+          "Cf-Cache-Status": [
+            "DYNAMIC"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Cf-Ray": [
+            "82f7549b49612b2e-MEL"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"Response\":{\"responseMintedTimestamp\":\"2023-12-02T23:25:41.671Z\",\"secondaryComponentsMintedTimestamp\":\"0001-01-01T00:00:00Z\",\"characterUninstancedItemComponents\":{\"2305843009316446082\":{\"objectives\":{\"data\":{\"432848324\":{\"objectives\":[{\"objectiveHash\":788707520,\"progress\":1,\"completionValue\":1,\"complete\":true,\"visible\":true},{\"objectiveHash\":1977965959,\"progress\":0,\"completionValue\":1,\"complete\":false,\"visible\":true},{\"objectiveHash\":84088458,\"progress\":1,\"completionValue\":1,\"complete\":true,\"visible\":true},{\"objectiveHash\":1935561040,\"progress\":0,\"completionValue\":1,\"complete\":false,\"visible\":true}]},\"2540008660\":{\"objectives\":[{\"objectiveHash\":2432519051,\"progress\":5000,\"completionValue\":5000,\"complete\":true,\"visible\":true}]},\"2101914852\":{\"objectives\":[{\"objectiveHash\":3780775087,\"progress\":0,\"completionValue\":1,\"complete\":false,\"visible\":true}]},\"1562128104\":{\"objectives\":[{\"objectiveHash\":120848446,\"progress\":332,\"completionValue\":500,\"complete\":false,\"visible\":true}]},\"110539500\":{\"objectives\":[{\"objectiveHash\":3795494577,\"progress\":0,\"completionValue\":1,\"complete\":false,\"visible\":true},{\"objectiveHash\":3795494576,\"progress\":0,\"completionValue\":1,\"complete\":false,\"visible\":true},{\"objectiveHash\":3795494579,\"progress\":0,\"completionValue\":1,\"complete\":false,\"visible\":true},{\"objectiveHash\":3795494578,\"progress\":0,\"completionValue\":1,\"complete\":false,\"visible\":true},{\"objectiveHash\":3795494581,\"progress\":0,\"completionValue\":1,\"complete\":false,\"visible\":true},{\"objectiveHash\":3795494580,\"progress\":0,\"completionValue\":1,\"complete\":false,\"visible\":true}]},\"2181873838\":{\"objectives\":[{\"objectiveHash\":3258132943,\"progress\":0,\"completionValue\":1,\"complete\":false,\"visible\":false}]},\"1113229786\":{\"objectives\":[{\"objectiveHash\":2078432139,\"progress\":43,\"completionValue\":200,\"complete\":false,\"visible\":true},{\"objectiveHash\":3884568015,\"progress\":14,\"completionValue\":450,\"complete\":false,\"visible\":true}]},\"7665310\":{\"objectives\":[{\"objectiveHash\":1586211619,\"progress\":0,\"completionValue\":7,\"complete\":false,\"visible\":true},{\"objectiveHash\":2369244651,\"progress\":0,\"completionValue\":1,\"complete\":false,\"visible\":false},{\"objectiveHash\":2211480687,\"progress\":1,\"completionValue\":1,\"complete\":true,\"visible\":true},{\"objectiveHash\":984122744,\"progress\":0,\"completionValue\":1,\"complete\":false,\"visible\":true}]}},\"privacy\":2}}},\"itemComponents\":{\"objectives\":{\"data\":{},\"privacy\":2}}},\"ErrorCode\":1,\"ThrottleSeconds\":0,\"ErrorStatus\":\"Success\",\"Message\":\"Ok\",\"MessageData\":{}}"
+        }
+      },
+      "recorded_at": "Sat, 02 Dec 2023 23:25:41 GMT"
+    }
+  ],
+  "recorded_with": "VCR 6.2.0"
+}

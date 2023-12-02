@@ -1,0 +1,108 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://www.bungie.net/platform//Destiny2/2/Profile/4611686018462034842/?components=100",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{}"
+        },
+        "headers": {
+          "X-Api-Key": [
+            "<API_KEY>"
+          ],
+          "User-Agent": [
+            "restiny v5.0.1"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "Date": [
+            "Sat, 02 Dec 2023 23:25:32 GMT"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "517"
+          ],
+          "Cache-Control": [
+            "private"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Expires": [
+            "-1"
+          ],
+          "Vary": [
+            "Origin,Accept-Encoding"
+          ],
+          "X-Bungienext-Mid2": [
+            "155"
+          ],
+          "X-Bungienext-Renderer": [
+            "Frog Blast the Ventcore"
+          ],
+          "X-Ua-Compatible": [
+            "IE=edge"
+          ],
+          "X-Ventcore-Status": [
+            "1"
+          ],
+          "P3p": [
+            "CP=\"ALL DSP COR PSD PSA TAI ADM CUR SAM OUR IND UNI COM INT CNT PRE\""
+          ],
+          "Access-Control-Allow-Origin": [
+            "https://www.bungie.net"
+          ],
+          "X-Selfurl": [
+            "https://www.bungie.net/platform/Destiny2/2/Profile/4611686018462034842/?components=100"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "Bnetlb": [
+            "LB0101"
+          ],
+          "Cf-Cache-Status": [
+            "DYNAMIC"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Cf-Ray": [
+            "82f754603a342edc-MEL"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"Response\":{\"responseMintedTimestamp\":\"2023-12-02T23:25:32.262Z\",\"secondaryComponentsMintedTimestamp\":\"0001-01-01T00:00:00Z\",\"profile\":{\"data\":{\"userInfo\":{\"crossSaveOverride\":2,\"applicableMembershipTypes\":[1,3,2],\"isPublic\":true,\"membershipType\":2,\"membershipId\":\"4611686018462034842\",\"displayName\":\"waferbaby\",\"bungieGlobalDisplayName\":\"waferbaby\",\"bungieGlobalDisplayNameCode\":7260},\"dateLastPlayed\":\"2023-12-02T23:17:26Z\",\"versionsOwned\":1023,\"characterIds\":[\"2305843009316446082\"],\"seasonHashes\":[1743682818,1743682819,2809059425,2809059424,2809059427,2809059426,2809059429,2809059428,2809059431,2809059430,2809059433,2809059432,2758726568,2758726569,2758726570,2758726571],\"eventCardHashesOwned\":[],\"currentSeasonHash\":2758726571,\"currentSeasonRewardPowerCap\":1810,\"currentGuardianRank\":9,\"lifetimeHighestGuardianRank\":9,\"renewedGuardianRank\":6},\"privacy\":1}},\"ErrorCode\":1,\"ThrottleSeconds\":0,\"ErrorStatus\":\"Success\",\"Message\":\"Ok\",\"MessageData\":{}}"
+        }
+      },
+      "recorded_at": "Sat, 02 Dec 2023 23:25:32 GMT"
+    }
+  ],
+  "recorded_with": "VCR 6.2.0"
+}

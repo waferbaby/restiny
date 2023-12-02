@@ -1,0 +1,587 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://www.bungie.net/platform//Destiny2/Stats/PostGameCarnageReport/fred/",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{}"
+        },
+        "headers": {
+          "X-Api-Key": [
+            "<API_KEY>"
+          ],
+          "User-Agent": [
+            "restiny v5.0.1"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 301,
+          "message": "Moved Permanently"
+        },
+        "headers": {
+          "Date": [
+            "Sat, 02 Dec 2023 23:25:53 GMT"
+          ],
+          "Content-Length": [
+            "0"
+          ],
+          "Location": [
+            "http://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/fred/"
+          ],
+          "Cache-Control": [
+            "public, no-cache=\"Set-Cookie\", max-age=300"
+          ],
+          "Expires": [
+            "Sat, 02 Dec 2023 23:30:53 GMT"
+          ],
+          "Last-Modified": [
+            "Sat, 02 Dec 2023 23:25:53 GMT"
+          ],
+          "Vary": [
+            "*"
+          ],
+          "X-Bungienext-Mid2": [
+            "179"
+          ],
+          "X-Bungienext-Renderer": [
+            "Frog Blast the Ventcore"
+          ],
+          "X-Ua-Compatible": [
+            "IE=edge"
+          ],
+          "P3p": [
+            "CP=\"ALL DSP COR PSD PSA TAI ADM CUR SAM OUR IND UNI COM INT CNT PRE\""
+          ],
+          "Access-Control-Allow-Origin": [
+            "https://www.bungie.net"
+          ],
+          "X-Selfurl": [
+            "https://www.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/fred/"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "Bnetlb": [
+            "LB0102"
+          ],
+          "Cf-Cache-Status": [
+            "DYNAMIC"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Cf-Ray": [
+            "82f754e9cda65abc-MEL"
+          ]
+        },
+        "body": {
+          "encoding": "ASCII-8BIT",
+          "string": ""
+        }
+      },
+      "recorded_at": "Sat, 02 Dec 2023 23:25:53 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/fred/",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{}"
+        },
+        "headers": {
+          "X-Api-Key": [
+            "<API_KEY>"
+          ],
+          "User-Agent": [
+            "restiny v5.0.1"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 301,
+          "message": "Moved Permanently"
+        },
+        "headers": {
+          "Date": [
+            "Sat, 02 Dec 2023 23:25:54 GMT"
+          ],
+          "Content-Type": [
+            "text/html; charset=utf-8"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ],
+          "Connection": [
+            "close"
+          ],
+          "Cache-Control": [
+            "public, max-age=1800"
+          ],
+          "Location": [
+            "https://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/fred/"
+          ],
+          "Vary": [
+            "Origin, Accept-Encoding"
+          ],
+          "X-Bungienext-Mid2": [
+            "149"
+          ],
+          "P3p": [
+            "CP=\"ALL DSP COR PSD PSA TAI ADM CUR SAM OUR IND UNI COM INT CNT PRE\""
+          ],
+          "Access-Control-Allow-Origin": [
+            "https://www.bungie.net"
+          ],
+          "X-Selfurl": [
+            "http://stats.bungie.net:45000/platform/Destiny2/Stats/PostGameCarnageReport/fred/"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "Cf-Cache-Status": [
+            "MISS"
+          ],
+          "Expires": [
+            "Sat, 02 Dec 2023 23:55:54 GMT"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Cf-Ray": [
+            "82f754eb3aba29b9-MEL"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "<html><head><title>Object moved</title></head><body>\r\n<h2>Object moved to <a href=\"https://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/fred/\">here</a>.</h2>\r\n<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317\" integrity=\"sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==\" data-cf-beacon='{\"rayId\":\"82f754eb3aba29b9\",\"b\":1,\"version\":\"2023.10.0\",\"token\":\"d9037c24bdf84e8bb712f1597ca7e783\"}' crossorigin=\"anonymous\"></script>\n</body></html>\r\n"
+        }
+      },
+      "recorded_at": "Sat, 02 Dec 2023 23:25:54 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://www.bungie.net/platform//Destiny2/Stats/PostGameCarnageReport/0/",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{}"
+        },
+        "headers": {
+          "X-Api-Key": [
+            "<API_KEY>"
+          ],
+          "User-Agent": [
+            "restiny v5.0.1"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 301,
+          "message": "Moved Permanently"
+        },
+        "headers": {
+          "Date": [
+            "Sat, 02 Dec 2023 23:25:54 GMT"
+          ],
+          "Content-Length": [
+            "0"
+          ],
+          "Location": [
+            "http://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/0/"
+          ],
+          "Cache-Control": [
+            "public, no-cache=\"Set-Cookie\", max-age=300"
+          ],
+          "Expires": [
+            "Sat, 02 Dec 2023 23:30:54 GMT"
+          ],
+          "Last-Modified": [
+            "Sat, 02 Dec 2023 23:25:54 GMT"
+          ],
+          "Vary": [
+            "*"
+          ],
+          "X-Bungienext-Mid2": [
+            "184"
+          ],
+          "X-Bungienext-Renderer": [
+            "Frog Blast the Ventcore"
+          ],
+          "X-Ua-Compatible": [
+            "IE=edge"
+          ],
+          "P3p": [
+            "CP=\"ALL DSP COR PSD PSA TAI ADM CUR SAM OUR IND UNI COM INT CNT PRE\""
+          ],
+          "Access-Control-Allow-Origin": [
+            "https://www.bungie.net"
+          ],
+          "X-Selfurl": [
+            "https://www.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/0/"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "Bnetlb": [
+            "LB0302"
+          ],
+          "Cf-Cache-Status": [
+            "DYNAMIC"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Cf-Ray": [
+            "82f754ee5c221f60-MEL"
+          ]
+        },
+        "body": {
+          "encoding": "ASCII-8BIT",
+          "string": ""
+        }
+      },
+      "recorded_at": "Sat, 02 Dec 2023 23:25:54 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/0/",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{}"
+        },
+        "headers": {
+          "X-Api-Key": [
+            "<API_KEY>"
+          ],
+          "User-Agent": [
+            "restiny v5.0.1"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 301,
+          "message": "Moved Permanently"
+        },
+        "headers": {
+          "Date": [
+            "Sat, 02 Dec 2023 23:25:54 GMT"
+          ],
+          "Content-Type": [
+            "text/html; charset=utf-8"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ],
+          "Connection": [
+            "close"
+          ],
+          "Cache-Control": [
+            "public, max-age=1800"
+          ],
+          "Location": [
+            "https://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/0/"
+          ],
+          "Vary": [
+            "Origin, Accept-Encoding"
+          ],
+          "X-Bungienext-Mid2": [
+            "150"
+          ],
+          "P3p": [
+            "CP=\"ALL DSP COR PSD PSA TAI ADM CUR SAM OUR IND UNI COM INT CNT PRE\""
+          ],
+          "Access-Control-Allow-Origin": [
+            "https://www.bungie.net"
+          ],
+          "X-Selfurl": [
+            "http://stats.bungie.net:45000/platform/Destiny2/Stats/PostGameCarnageReport/0/"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "Cf-Cache-Status": [
+            "MISS"
+          ],
+          "Expires": [
+            "Sat, 02 Dec 2023 23:55:54 GMT"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Cf-Ray": [
+            "82f754f00a873778-MEL"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "<html><head><title>Object moved</title></head><body>\r\n<h2>Object moved to <a href=\"https://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/0/\">here</a>.</h2>\r\n<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317\" integrity=\"sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==\" data-cf-beacon='{\"rayId\":\"82f754f00a873778\",\"b\":1,\"version\":\"2023.10.0\",\"token\":\"d9037c24bdf84e8bb712f1597ca7e783\"}' crossorigin=\"anonymous\"></script>\n</body></html>\r\n"
+        }
+      },
+      "recorded_at": "Sat, 02 Dec 2023 23:25:54 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://www.bungie.net/platform//Destiny2/Stats/PostGameCarnageReport/14024618384/",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{}"
+        },
+        "headers": {
+          "X-Api-Key": [
+            "<API_KEY>"
+          ],
+          "User-Agent": [
+            "restiny v5.0.1"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 301,
+          "message": "Moved Permanently"
+        },
+        "headers": {
+          "Date": [
+            "Sat, 02 Dec 2023 23:25:55 GMT"
+          ],
+          "Content-Length": [
+            "0"
+          ],
+          "Location": [
+            "http://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/14024618384/"
+          ],
+          "Cache-Control": [
+            "public, no-cache=\"Set-Cookie\", max-age=300"
+          ],
+          "Expires": [
+            "Sat, 02 Dec 2023 23:30:55 GMT"
+          ],
+          "Last-Modified": [
+            "Sat, 02 Dec 2023 23:25:55 GMT"
+          ],
+          "Vary": [
+            "*"
+          ],
+          "X-Bungienext-Mid2": [
+            "167"
+          ],
+          "X-Bungienext-Renderer": [
+            "Frog Blast the Ventcore"
+          ],
+          "X-Ua-Compatible": [
+            "IE=edge"
+          ],
+          "P3p": [
+            "CP=\"ALL DSP COR PSD PSA TAI ADM CUR SAM OUR IND UNI COM INT CNT PRE\""
+          ],
+          "Access-Control-Allow-Origin": [
+            "https://www.bungie.net"
+          ],
+          "X-Selfurl": [
+            "https://www.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/14024618384/"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "Bnetlb": [
+            "LB0102"
+          ],
+          "Cf-Cache-Status": [
+            "DYNAMIC"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Cf-Ray": [
+            "82f754f2e8924ff6-MEL"
+          ]
+        },
+        "body": {
+          "encoding": "ASCII-8BIT",
+          "string": ""
+        }
+      },
+      "recorded_at": "Sat, 02 Dec 2023 23:25:55 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/14024618384/",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{}"
+        },
+        "headers": {
+          "X-Api-Key": [
+            "<API_KEY>"
+          ],
+          "User-Agent": [
+            "restiny v5.0.1"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 301,
+          "message": "Moved Permanently"
+        },
+        "headers": {
+          "Date": [
+            "Sat, 02 Dec 2023 23:25:55 GMT"
+          ],
+          "Content-Type": [
+            "text/html; charset=utf-8"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ],
+          "Connection": [
+            "close"
+          ],
+          "Cache-Control": [
+            "public, max-age=1800"
+          ],
+          "Location": [
+            "https://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/14024618384/"
+          ],
+          "Vary": [
+            "Origin, Accept-Encoding"
+          ],
+          "X-Bungienext-Mid2": [
+            "150"
+          ],
+          "P3p": [
+            "CP=\"ALL DSP COR PSD PSA TAI ADM CUR SAM OUR IND UNI COM INT CNT PRE\""
+          ],
+          "Access-Control-Allow-Origin": [
+            "https://www.bungie.net"
+          ],
+          "X-Selfurl": [
+            "http://stats.bungie.net:45000/platform/Destiny2/Stats/PostGameCarnageReport/14024618384/"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "Cf-Cache-Status": [
+            "MISS"
+          ],
+          "Expires": [
+            "Sat, 02 Dec 2023 23:55:55 GMT"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Cf-Ray": [
+            "82f754f438a45ab8-MEL"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "<html><head><title>Object moved</title></head><body>\r\n<h2>Object moved to <a href=\"https://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/14024618384/\">here</a>.</h2>\r\n<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317\" integrity=\"sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==\" data-cf-beacon='{\"rayId\":\"82f754f438a45ab8\",\"b\":1,\"version\":\"2023.10.0\",\"token\":\"d9037c24bdf84e8bb712f1597ca7e783\"}' crossorigin=\"anonymous\"></script>\n</body></html>\r\n"
+        }
+      },
+      "recorded_at": "Sat, 02 Dec 2023 23:25:55 GMT"
+    }
+  ],
+  "recorded_with": "VCR 6.2.0"
+}

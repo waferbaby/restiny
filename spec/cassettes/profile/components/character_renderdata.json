@@ -1,0 +1,108 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://www.bungie.net/platform//Destiny2/2/Profile/4611686018462034842/?components=203",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{}"
+        },
+        "headers": {
+          "X-Api-Key": [
+            "<API_KEY>"
+          ],
+          "User-Agent": [
+            "restiny v5.0.1"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "Date": [
+            "Sat, 02 Dec 2023 23:25:38 GMT"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "880"
+          ],
+          "Cache-Control": [
+            "private"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Expires": [
+            "-1"
+          ],
+          "Vary": [
+            "Origin,Accept-Encoding"
+          ],
+          "X-Bungienext-Mid2": [
+            "189"
+          ],
+          "X-Bungienext-Renderer": [
+            "Frog Blast the Ventcore"
+          ],
+          "X-Ua-Compatible": [
+            "IE=edge"
+          ],
+          "X-Ventcore-Status": [
+            "1"
+          ],
+          "P3p": [
+            "CP=\"ALL DSP COR PSD PSA TAI ADM CUR SAM OUR IND UNI COM INT CNT PRE\""
+          ],
+          "Access-Control-Allow-Origin": [
+            "https://www.bungie.net"
+          ],
+          "X-Selfurl": [
+            "https://www.bungie.net/platform/Destiny2/2/Profile/4611686018462034842/?components=203"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "Bnetlb": [
+            "LB0101"
+          ],
+          "Cf-Cache-Status": [
+            "DYNAMIC"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Cf-Ray": [
+            "82f754883d4e3777-MEL"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"Response\":{\"responseMintedTimestamp\":\"2023-12-02T23:25:35.432Z\",\"secondaryComponentsMintedTimestamp\":\"0001-01-01T00:00:00Z\",\"characterRenderData\":{\"data\":{\"2305843009316446082\":{\"customDyes\":[],\"customization\":{\"personality\":2166136261,\"face\":2695914755,\"skinColor\":1815484270,\"lipColor\":2571618617,\"eyeColor\":1511637744,\"hairColors\":[1826752905,428677368,3511573271],\"featureColors\":[2166136261,2166136261,3769061211],\"decalColor\":2166136261,\"wearHelmet\":false,\"hairIndex\":3,\"featureIndex\":0,\"decalIndex\":255},\"peerView\":{\"equipment\":[{\"itemHash\":3941205951,\"dyes\":[]},{\"itemHash\":4196904014,\"dyes\":[{\"channelHash\":662199250,\"dyeHash\":725808729},{\"channelHash\":1367384683,\"dyeHash\":1528312552},{\"channelHash\":218592586,\"dyeHash\":89296151}]},{\"itemHash\":2780717641,\"dyes\":[{\"channelHash\":662199250,\"dyeHash\":1300209792},{\"channelHash\":1367384683,\"dyeHash\":2119809365},{\"channelHash\":218592586,\"dyeHash\":2174336812}]},{\"itemHash\":3400974073,\"dyes\":[{\"channelHash\":662199250,\"dyeHash\":725808729},{\"channelHash\":1367384683,\"dyeHash\":1528312552},{\"channelHash\":218592586,\"dyeHash\":89296151}]},{\"itemHash\":4143357569,\"dyes\":[{\"channelHash\":662199250,\"dyeHash\":725808729},{\"channelHash\":1367384683,\"dyeHash\":1528312552},{\"channelHash\":218592586,\"dyeHash\":89296151}]},{\"itemHash\":2694773307,\"dyes\":[{\"channelHash\":662199250,\"dyeHash\":1777028650},{\"channelHash\":1367384683,\"dyeHash\":2332922899},{\"channelHash\":218592586,\"dyeHash\":4010722914}]},{\"itemHash\":3973202132,\"dyes\":[{\"channelHash\":1667433279,\"dyeHash\":1409637015},{\"channelHash\":1667433278,\"dyeHash\":1409637014},{\"channelHash\":1667433277,\"dyeHash\":1409637013}]},{\"itemHash\":3381450498,\"dyes\":[{\"channelHash\":1667433279,\"dyeHash\":376882804},{\"channelHash\":1667433278,\"dyeHash\":376882805},{\"channelHash\":1667433277,\"dyeHash\":376882806}]},{\"itemHash\":3668817296,\"dyes\":[{\"channelHash\":1667433279,\"dyeHash\":1235492782},{\"channelHash\":1667433278,\"dyeHash\":1235492783},{\"channelHash\":1667433277,\"dyeHash\":1235492780}]},{\"itemHash\":554648945,\"dyes\":[{\"channelHash\":3073305669,\"dyeHash\":2040717026},{\"channelHash\":3073305668,\"dyeHash\":2040717027},{\"channelHash\":3073305671,\"dyeHash\":2040717024}]},{\"itemHash\":2862488837,\"dyes\":[{\"channelHash\":1971582085,\"dyeHash\":503448052},{\"channelHash\":1971582084,\"dyeHash\":503448053},{\"channelHash\":1971582087,\"dyeHash\":503448054}]},{\"itemHash\":3299468275,\"dyes\":[{\"channelHash\":373026848,\"dyeHash\":2039240914},{\"channelHash\":373026849,\"dyeHash\":2039240915},{\"channelHash\":373026850,\"dyeHash\":2039240912}]},{\"itemHash\":3936625542,\"dyes\":[]},{\"itemHash\":3183180185,\"dyes\":[]},{\"itemHash\":4026763349,\"dyes\":[]},{\"itemHash\":152583919,\"dyes\":[]},{\"itemHash\":1410465636,\"dyes\":[]}]}}},\"privacy\":1}},\"ErrorCode\":1,\"ThrottleSeconds\":0,\"ErrorStatus\":\"Success\",\"Message\":\"Ok\",\"MessageData\":{}}"
+        }
+      },
+      "recorded_at": "Sat, 02 Dec 2023 23:25:38 GMT"
+    }
+  ],
+  "recorded_with": "VCR 6.2.0"
+}
