@@ -34,7 +34,7 @@ module Restiny
         params = { code: code, grant_type: AUTH_CODE_GRANT_TYPE, client_id: @oauth_client_id }
         params['redirect_url'] = redirect_url unless redirect_url.nil?
 
-        response = http_client.post("#{API_BASE_URL}/app/oauth/token/", form: params)
+        response = http_client.post('/platform/app/oauth/token/', form: params)
         response.raise_for_status
 
         response.json
