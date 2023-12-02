@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Restiny do
   include_context 'with api calls'
 
-  describe '#fetch_manifest', vcr: { cassette_name: 'fetch_manifest' } do
+  describe '#fetch_manifest', vcr: { cassette_name: 'manifest/fetch' } do
     let(:manifest) { described_class.fetch_manifest }
 
     it 'returns all the correct top-level fields' do
