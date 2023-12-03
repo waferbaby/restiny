@@ -581,6 +581,318 @@
         }
       },
       "recorded_at": "Sat, 02 Dec 2023 23:25:55 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/fred/",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{}"
+        },
+        "headers": {
+          "X-Api-Key": [
+            "<API_KEY>"
+          ],
+          "User-Agent": [
+            "restiny v5.0.1"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 500,
+          "message": "Internal Server Error"
+        },
+        "headers": {
+          "Date": [
+            "Sun, 03 Dec 2023 03:21:55 GMT"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "207"
+          ],
+          "Cache-Control": [
+            "public, no-cache=\"Set-Cookie\", max-age=300"
+          ],
+          "Expires": [
+            "Sun, 03 Dec 2023 03:26:55 GMT"
+          ],
+          "Last-Modified": [
+            "Sun, 03 Dec 2023 03:21:55 GMT"
+          ],
+          "Vary": [
+            "*, Accept-Encoding"
+          ],
+          "X-Bungienext-Mid2": [
+            "148"
+          ],
+          "X-Bungienext-Renderer": [
+            "Frog Blast the Ventcore"
+          ],
+          "X-Ua-Compatible": [
+            "IE=edge"
+          ],
+          "X-Ventcore-Status": [
+            "7"
+          ],
+          "P3p": [
+            "CP=\"ALL DSP COR PSD PSA TAI ADM CUR SAM OUR IND UNI COM INT CNT PRE\""
+          ],
+          "Access-Control-Allow-Origin": [
+            "https://www.bungie.net"
+          ],
+          "X-Selfurl": [
+            "https://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/fred/"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "Bnetlb": [
+            "LB0102"
+          ],
+          "Cf-Cache-Status": [
+            "MISS"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Cf-Ray": [
+            "82f8aea4ff511f64-MEL"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"ErrorCode\":7,\"ThrottleSeconds\":0,\"ErrorStatus\":\"ParameterParseFailure\",\"Message\":\"Unable to parse your parameters.  Please correct them, and try again.\",\"MessageData\":{\"activityId\":\"Could not be parsed.\"}}"
+        }
+      },
+      "recorded_at": "Sun, 03 Dec 2023 03:21:55 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/0/",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{}"
+        },
+        "headers": {
+          "X-Api-Key": [
+            "<API_KEY>"
+          ],
+          "User-Agent": [
+            "restiny v5.0.1"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 404,
+          "message": "Not Found"
+        },
+        "headers": {
+          "Date": [
+            "Sun, 03 Dec 2023 03:21:56 GMT"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Cache-Control": [
+            "public, no-cache=\"Set-Cookie\", max-age=300"
+          ],
+          "Expires": [
+            "Sun, 03 Dec 2023 03:26:56 GMT"
+          ],
+          "Last-Modified": [
+            "Sun, 03 Dec 2023 03:21:56 GMT"
+          ],
+          "Vary": [
+            "*, Accept-Encoding"
+          ],
+          "X-Bungienext-Mid2": [
+            "147"
+          ],
+          "X-Bungienext-Renderer": [
+            "Frog Blast the Ventcore"
+          ],
+          "X-Ua-Compatible": [
+            "IE=edge"
+          ],
+          "X-Ventcore-Status": [
+            "1653"
+          ],
+          "P3p": [
+            "CP=\"ALL DSP COR PSD PSA TAI ADM CUR SAM OUR IND UNI COM INT CNT PRE\""
+          ],
+          "Access-Control-Allow-Origin": [
+            "https://www.bungie.net"
+          ],
+          "X-Selfurl": [
+            "https://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/0/"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "Bnetlb": [
+            "LB0101"
+          ],
+          "Cf-Cache-Status": [
+            "MISS"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Cf-Ray": [
+            "82f8aeaa0f9c5aa4-MEL"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"ErrorCode\":1653,\"ThrottleSeconds\":0,\"ErrorStatus\":\"DestinyPGCRNotFound\",\"Message\":\"The activity you were looking for was not found.\",\"MessageData\":{}}"
+        }
+      },
+      "recorded_at": "Sun, 03 Dec 2023 03:21:56 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/14024618384/",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{}"
+        },
+        "headers": {
+          "X-Api-Key": [
+            "<API_KEY>"
+          ],
+          "User-Agent": [
+            "restiny v5.0.1"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "2"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "Date": [
+            "Sun, 03 Dec 2023 03:21:57 GMT"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Content-Length": [
+            "4220"
+          ],
+          "Cache-Control": [
+            "public, no-cache=\"Set-Cookie\", max-age=300"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Expires": [
+            "Sun, 03 Dec 2023 03:26:57 GMT"
+          ],
+          "Last-Modified": [
+            "Sun, 03 Dec 2023 03:21:57 GMT"
+          ],
+          "Vary": [
+            "*, Accept-Encoding"
+          ],
+          "X-Bungienext-Mid2": [
+            "150"
+          ],
+          "X-Bungienext-Renderer": [
+            "Frog Blast the Ventcore"
+          ],
+          "X-Ua-Compatible": [
+            "IE=edge"
+          ],
+          "X-Ventcore-Status": [
+            "1"
+          ],
+          "P3p": [
+            "CP=\"ALL DSP COR PSD PSA TAI ADM CUR SAM OUR IND UNI COM INT CNT PRE\""
+          ],
+          "Access-Control-Allow-Origin": [
+            "https://www.bungie.net"
+          ],
+          "X-Selfurl": [
+            "https://stats.bungie.net/platform/Destiny2/Stats/PostGameCarnageReport/14024618384/"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "Bnetlb": [
+            "LB0101"
+          ],
+          "Cf-Cache-Status": [
+            "MISS"
+          ],
+          "Accept-Ranges": [
+            "bytes"
+          ],
+          "Server": [
+            "cloudflare"
+          ],
+          "Cf-Ray": [
+            "82f8aeb1f8845a98-MEL"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"Response\":{\"period\":\"2023-11-02T09:32:00Z\",\"startingPhaseIndex\":0,\"activityWasStartedFromBeginning\":true,\"activityDetails\":{\"referenceId\":4179289725,\"directorActivityHash\":4179289725,\"instanceId\":\"14024618384\",\"mode\":4,\"modes\":[7,4],\"isPrivate\":false,\"membershipType\":0},\"entries\":[{\"standing\":0,\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"player\":{\"destinyUserInfo\":{\"iconPath\":\"/common/destiny2_content/icons/faebfbe99297b12668b02d0478e11dc0.jpg\",\"crossSaveOverride\":2,\"applicableMembershipTypes\":[3,2],\"isPublic\":true,\"membershipType\":2,\"membershipId\":\"4611686018434320441\",\"displayName\":\"Jilseret\",\"bungieGlobalDisplayName\":\"Jilseret\",\"bungieGlobalDisplayNameCode\":4469},\"characterClass\":\"Hunter\",\"classHash\":671679327,\"raceHash\":3887404748,\"genderHash\":3111576190,\"characterLevel\":50,\"lightLevel\":1825,\"emblemHash\":298334062},\"characterId\":\"2305843009267453685\",\"values\":{\"assists\":{\"basic\":{\"value\":141.0,\"displayValue\":\"141\"}},\"completed\":{\"basic\":{\"value\":1.0,\"displayValue\":\"Yes\"}},\"deaths\":{\"basic\":{\"value\":11.0,\"displayValue\":\"11\"}},\"kills\":{\"basic\":{\"value\":406.0,\"displayValue\":\"406\"}},\"opponentsDefeated\":{\"basic\":{\"value\":547.0,\"displayValue\":\"547\"}},\"efficiency\":{\"basic\":{\"value\":49.727272727272727,\"displayValue\":\"49.73\"}},\"killsDeathsRatio\":{\"basic\":{\"value\":36.909090909090907,\"displayValue\":\"36.91\"}},\"killsDeathsAssists\":{\"basic\":{\"value\":43.31818181818182,\"displayValue\":\"43.32\"}},\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"activityDurationSeconds\":{\"basic\":{\"value\":4623.0,\"displayValue\":\"1h 17m\"}},\"completionReason\":{\"basic\":{\"value\":0.0,\"displayValue\":\"Objective Completed\"}},\"fireteamId\":{\"basic\":{\"value\":-8.2425183807203666E+18,\"displayValue\":\"-2147483648\"}},\"startSeconds\":{\"basic\":{\"value\":153.0,\"displayValue\":\"2m 33s\"}},\"timePlayedSeconds\":{\"basic\":{\"value\":4470.0,\"displayValue\":\"1h 14m\"}},\"playerCount\":{\"basic\":{\"value\":9.0,\"displayValue\":\"9\"}},\"teamScore\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}}},\"extended\":{\"weapons\":[{\"referenceId\":2119346509,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":198.0,\"displayValue\":\"198\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":59.0,\"displayValue\":\"59\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.29797979797979796,\"displayValue\":\"30%\"}}}},{\"referenceId\":1432682459,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":23.0,\"displayValue\":\"23\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":2.0,\"displayValue\":\"2\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.086956521739130432,\"displayValue\":\"9%\"}}}},{\"referenceId\":1967303408,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":833898322,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":1.0,\"displayValue\":\"100%\"}}}},{\"referenceId\":4036115577,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":2.0,\"displayValue\":\"2\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}}],\"values\":{\"precisionKills\":{\"basic\":{\"value\":62.0,\"displayValue\":\"62\"}},\"weaponKillsGrenade\":{\"basic\":{\"value\":9.0,\"displayValue\":\"9\"}},\"weaponKillsMelee\":{\"basic\":{\"value\":9.0,\"displayValue\":\"9\"}},\"weaponKillsSuper\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"weaponKillsAbility\":{\"basic\":{\"value\":9.0,\"displayValue\":\"9\"}}}}},{\"standing\":0,\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"player\":{\"destinyUserInfo\":{\"iconPath\":\"/common/destiny2_content/icons/3dfdfc97436bc16b71a9f165a89d1908.jpg\",\"crossSaveOverride\":0,\"applicableMembershipTypes\":[3],\"isPublic\":true,\"membershipType\":3,\"membershipId\":\"4611686018467386348\",\"displayName\":\"AmbultoryFungus\",\"bungieGlobalDisplayName\":\"Rambo\",\"bungieGlobalDisplayNameCode\":3521},\"characterClass\":\"Titan\",\"classHash\":3655393761,\"raceHash\":898834093,\"genderHash\":3111576190,\"characterLevel\":50,\"lightLevel\":1826,\"emblemHash\":3373303016},\"characterId\":\"2305843009299166704\",\"values\":{\"assists\":{\"basic\":{\"value\":106.0,\"displayValue\":\"106\"}},\"completed\":{\"basic\":{\"value\":1.0,\"displayValue\":\"Yes\"}},\"deaths\":{\"basic\":{\"value\":8.0,\"displayValue\":\"8\"}},\"kills\":{\"basic\":{\"value\":400.0,\"displayValue\":\"400\"}},\"opponentsDefeated\":{\"basic\":{\"value\":506.0,\"displayValue\":\"506\"}},\"efficiency\":{\"basic\":{\"value\":63.25,\"displayValue\":\"63.25\"}},\"killsDeathsRatio\":{\"basic\":{\"value\":50.0,\"displayValue\":\"50.00\"}},\"killsDeathsAssists\":{\"basic\":{\"value\":56.625,\"displayValue\":\"56.63\"}},\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"activityDurationSeconds\":{\"basic\":{\"value\":4623.0,\"displayValue\":\"1h 17m\"}},\"completionReason\":{\"basic\":{\"value\":0.0,\"displayValue\":\"Objective Completed\"}},\"fireteamId\":{\"basic\":{\"value\":-8.2425183807203666E+18,\"displayValue\":\"-2147483648\"}},\"startSeconds\":{\"basic\":{\"value\":163.0,\"displayValue\":\"2m 43s\"}},\"timePlayedSeconds\":{\"basic\":{\"value\":4460.0,\"displayValue\":\"1h 14m\"}},\"playerCount\":{\"basic\":{\"value\":9.0,\"displayValue\":\"9\"}},\"teamScore\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}}},\"extended\":{\"weapons\":[{\"referenceId\":4066778670,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":12.0,\"displayValue\":\"12\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":4293613902,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":58.0,\"displayValue\":\"58\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":11.0,\"displayValue\":\"11\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.18965517241379309,\"displayValue\":\"19%\"}}}},{\"referenceId\":2779821308,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":6.0,\"displayValue\":\"6\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":2.0,\"displayValue\":\"2\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.33333333333333331,\"displayValue\":\"33%\"}}}},{\"referenceId\":1034055198,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":109.0,\"displayValue\":\"109\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":24.0,\"displayValue\":\"24\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.22018348623853212,\"displayValue\":\"22%\"}}}},{\"referenceId\":4255171531,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":2.0,\"displayValue\":\"2\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":1216319404,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":12.0,\"displayValue\":\"12\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":1478986057,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":2.0,\"displayValue\":\"2\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.5,\"displayValue\":\"50%\"}}}},{\"referenceId\":2591746970,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}}],\"values\":{\"precisionKills\":{\"basic\":{\"value\":38.0,\"displayValue\":\"38\"}},\"weaponKillsGrenade\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"weaponKillsMelee\":{\"basic\":{\"value\":73.0,\"displayValue\":\"73\"}},\"weaponKillsSuper\":{\"basic\":{\"value\":7.0,\"displayValue\":\"7\"}},\"weaponKillsAbility\":{\"basic\":{\"value\":12.0,\"displayValue\":\"12\"}}}}},{\"standing\":0,\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"player\":{\"destinyUserInfo\":{\"iconPath\":\"/common/destiny2_content/icons/41dfcad1288ac3a5373ec8c7e5fff72f.jpg\",\"crossSaveOverride\":2,\"applicableMembershipTypes\":[1,3,2],\"isPublic\":true,\"membershipType\":2,\"membershipId\":\"4611686018462034842\",\"displayName\":\"waferbaby\",\"bungieGlobalDisplayName\":\"waferbaby\",\"bungieGlobalDisplayNameCode\":7260},\"characterClass\":\"Warlock\",\"classHash\":2271682572,\"raceHash\":2803282938,\"genderHash\":2204441813,\"characterLevel\":50,\"lightLevel\":1824,\"emblemHash\":3936625542},\"characterId\":\"2305843009316446082\",\"values\":{\"assists\":{\"basic\":{\"value\":103.0,\"displayValue\":\"103\"}},\"completed\":{\"basic\":{\"value\":1.0,\"displayValue\":\"Yes\"}},\"deaths\":{\"basic\":{\"value\":4.0,\"displayValue\":\"4\"}},\"kills\":{\"basic\":{\"value\":359.0,\"displayValue\":\"359\"}},\"opponentsDefeated\":{\"basic\":{\"value\":462.0,\"displayValue\":\"462\"}},\"efficiency\":{\"basic\":{\"value\":115.5,\"displayValue\":\"115.50\"}},\"killsDeathsRatio\":{\"basic\":{\"value\":89.75,\"displayValue\":\"89.75\"}},\"killsDeathsAssists\":{\"basic\":{\"value\":102.625,\"displayValue\":\"102.63\"}},\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"activityDurationSeconds\":{\"basic\":{\"value\":4623.0,\"displayValue\":\"1h 17m\"}},\"completionReason\":{\"basic\":{\"value\":0.0,\"displayValue\":\"Objective Completed\"}},\"fireteamId\":{\"basic\":{\"value\":-8.2425183807203666E+18,\"displayValue\":\"-2147483648\"}},\"startSeconds\":{\"basic\":{\"value\":1869.0,\"displayValue\":\"31m 9s\"}},\"timePlayedSeconds\":{\"basic\":{\"value\":2754.0,\"displayValue\":\"45m 54s\"}},\"playerCount\":{\"basic\":{\"value\":9.0,\"displayValue\":\"9\"}},\"teamScore\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}}},\"extended\":{\"weapons\":[{\"referenceId\":4289226715,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":115.0,\"displayValue\":\"115\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":28.0,\"displayValue\":\"28\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.24347826086956523,\"displayValue\":\"24%\"}}}},{\"referenceId\":1125217994,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":13.0,\"displayValue\":\"13\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":1471212226,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":11.0,\"displayValue\":\"11\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.090909090909090912,\"displayValue\":\"9%\"}}}},{\"referenceId\":833898322,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":46.0,\"displayValue\":\"46\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":12.0,\"displayValue\":\"12\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.2608695652173913,\"displayValue\":\"26%\"}}}},{\"referenceId\":1395261499,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":6.0,\"displayValue\":\"6\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":2357297366,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":12.0,\"displayValue\":\"12\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":2490988246,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":12.0,\"displayValue\":\"12\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":3.0,\"displayValue\":\"3\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.25,\"displayValue\":\"25%\"}}}},{\"referenceId\":4190156464,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":24.0,\"displayValue\":\"24\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":3886416794,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":12.0,\"displayValue\":\"12\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":4.0,\"displayValue\":\"4\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.33333333333333331,\"displayValue\":\"33%\"}}}}],\"values\":{\"precisionKills\":{\"basic\":{\"value\":53.0,\"displayValue\":\"53\"}},\"weaponKillsGrenade\":{\"basic\":{\"value\":44.0,\"displayValue\":\"44\"}},\"weaponKillsMelee\":{\"basic\":{\"value\":30.0,\"displayValue\":\"30\"}},\"weaponKillsSuper\":{\"basic\":{\"value\":8.0,\"displayValue\":\"8\"}},\"weaponKillsAbility\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}}}}},{\"standing\":0,\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"player\":{\"destinyUserInfo\":{\"iconPath\":\"/common/destiny2_content/icons/b50ef9962d16a792a1829a975d85a294.jpg\",\"crossSaveOverride\":3,\"applicableMembershipTypes\":[1,2,3],\"isPublic\":true,\"membershipType\":3,\"membershipId\":\"4611686018467504265\",\"displayName\":\"Wormy\",\"bungieGlobalDisplayName\":\"Wormy\",\"bungieGlobalDisplayNameCode\":7358},\"characterClass\":\"Warlock\",\"classHash\":2271682572,\"raceHash\":898834093,\"genderHash\":3111576190,\"characterLevel\":50,\"lightLevel\":1824,\"emblemHash\":866034302},\"characterId\":\"2305843009417744632\",\"values\":{\"assists\":{\"basic\":{\"value\":128.0,\"displayValue\":\"128\"}},\"completed\":{\"basic\":{\"value\":1.0,\"displayValue\":\"Yes\"}},\"deaths\":{\"basic\":{\"value\":7.0,\"displayValue\":\"7\"}},\"kills\":{\"basic\":{\"value\":446.0,\"displayValue\":\"446\"}},\"opponentsDefeated\":{\"basic\":{\"value\":574.0,\"displayValue\":\"574\"}},\"efficiency\":{\"basic\":{\"value\":82.0,\"displayValue\":\"82.00\"}},\"killsDeathsRatio\":{\"basic\":{\"value\":63.714285714285715,\"displayValue\":\"63.71\"}},\"killsDeathsAssists\":{\"basic\":{\"value\":72.857142857142861,\"displayValue\":\"72.86\"}},\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"activityDurationSeconds\":{\"basic\":{\"value\":4623.0,\"displayValue\":\"1h 17m\"}},\"completionReason\":{\"basic\":{\"value\":0.0,\"displayValue\":\"Objective Completed\"}},\"fireteamId\":{\"basic\":{\"value\":-8.2425183807203666E+18,\"displayValue\":\"-2147483648\"}},\"startSeconds\":{\"basic\":{\"value\":307.0,\"displayValue\":\"5m 7s\"}},\"timePlayedSeconds\":{\"basic\":{\"value\":4316.0,\"displayValue\":\"1h 11m\"}},\"playerCount\":{\"basic\":{\"value\":9.0,\"displayValue\":\"9\"}},\"teamScore\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}}},\"extended\":{\"weapons\":[{\"referenceId\":2827764482,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":37.0,\"displayValue\":\"37\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":13.0,\"displayValue\":\"13\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.35135135135135137,\"displayValue\":\"35%\"}}}},{\"referenceId\":1432682459,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":16.0,\"displayValue\":\"16\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":8.0,\"displayValue\":\"8\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.5,\"displayValue\":\"50%\"}}}},{\"referenceId\":1034055198,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":101.0,\"displayValue\":\"101\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":14.0,\"displayValue\":\"14\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.13861386138613863,\"displayValue\":\"14%\"}}}},{\"referenceId\":1851777734,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":1392919471,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":14.0,\"displayValue\":\"14\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":4.0,\"displayValue\":\"4\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.2857142857142857,\"displayValue\":\"29%\"}}}},{\"referenceId\":2591746970,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":7.0,\"displayValue\":\"7\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":484515708,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":27.0,\"displayValue\":\"27\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":9.0,\"displayValue\":\"9\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.33333333333333331,\"displayValue\":\"33%\"}}}},{\"referenceId\":3487253372,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":2.0,\"displayValue\":\"2\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}}],\"values\":{\"precisionKills\":{\"basic\":{\"value\":70.0,\"displayValue\":\"70\"}},\"weaponKillsGrenade\":{\"basic\":{\"value\":10.0,\"displayValue\":\"10\"}},\"weaponKillsMelee\":{\"basic\":{\"value\":7.0,\"displayValue\":\"7\"}},\"weaponKillsSuper\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"weaponKillsAbility\":{\"basic\":{\"value\":144.0,\"displayValue\":\"144\"}}}}},{\"standing\":0,\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"player\":{\"destinyUserInfo\":{\"iconPath\":\"/common/destiny2_content/icons/a7cf118e78ec1507f13acd90cfb98207.jpg\",\"crossSaveOverride\":3,\"applicableMembershipTypes\":[1,2,6,3],\"isPublic\":true,\"membershipType\":3,\"membershipId\":\"4611686018490765905\",\"displayName\":\"voltagex\",\"bungieGlobalDisplayName\":\"Ghost 3.11 for Workgroups\",\"bungieGlobalDisplayNameCode\":1781},\"characterClass\":\"Hunter\",\"classHash\":671679327,\"raceHash\":3887404748,\"genderHash\":3111576190,\"characterLevel\":50,\"lightLevel\":1824,\"emblemHash\":2026109715},\"characterId\":\"2305843009508385967\",\"values\":{\"assists\":{\"basic\":{\"value\":36.0,\"displayValue\":\"36\"}},\"completed\":{\"basic\":{\"value\":0.0,\"displayValue\":\"No\"}},\"deaths\":{\"basic\":{\"value\":10.0,\"displayValue\":\"10\"}},\"kills\":{\"basic\":{\"value\":158.0,\"displayValue\":\"158\"}},\"opponentsDefeated\":{\"basic\":{\"value\":194.0,\"displayValue\":\"194\"}},\"efficiency\":{\"basic\":{\"value\":19.4,\"displayValue\":\"19.40\"}},\"killsDeathsRatio\":{\"basic\":{\"value\":15.8,\"displayValue\":\"15.80\"}},\"killsDeathsAssists\":{\"basic\":{\"value\":17.6,\"displayValue\":\"17.60\"}},\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"activityDurationSeconds\":{\"basic\":{\"value\":4623.0,\"displayValue\":\"1h 17m\"}},\"completionReason\":{\"basic\":{\"value\":0.0,\"displayValue\":\"Objective Completed\"}},\"fireteamId\":{\"basic\":{\"value\":-8.2425183807203666E+18,\"displayValue\":\"-2147483648\"}},\"startSeconds\":{\"basic\":{\"value\":71.0,\"displayValue\":\"1m 11s\"}},\"timePlayedSeconds\":{\"basic\":{\"value\":1763.0,\"displayValue\":\"29m 23s\"}},\"playerCount\":{\"basic\":{\"value\":9.0,\"displayValue\":\"9\"}},\"teamScore\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}}},\"extended\":{\"weapons\":[{\"referenceId\":2708806099,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":29.0,\"displayValue\":\"29\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":8.0,\"displayValue\":\"8\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.27586206896551724,\"displayValue\":\"28%\"}}}},{\"referenceId\":3337727085,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":5.0,\"displayValue\":\"5\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}}],\"values\":{\"precisionKills\":{\"basic\":{\"value\":8.0,\"displayValue\":\"8\"}},\"weaponKillsGrenade\":{\"basic\":{\"value\":2.0,\"displayValue\":\"2\"}},\"weaponKillsMelee\":{\"basic\":{\"value\":5.0,\"displayValue\":\"5\"}},\"weaponKillsSuper\":{\"basic\":{\"value\":5.0,\"displayValue\":\"5\"}},\"weaponKillsAbility\":{\"basic\":{\"value\":9.0,\"displayValue\":\"9\"}}}}},{\"standing\":0,\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"player\":{\"destinyUserInfo\":{\"iconPath\":\"/common/destiny2_content/icons/a013f6a56d12bda594d224637c98e08e.jpg\",\"crossSaveOverride\":0,\"applicableMembershipTypes\":[3],\"isPublic\":true,\"membershipType\":3,\"membershipId\":\"4611686018509235078\",\"displayName\":\"Zazz\",\"bungieGlobalDisplayName\":\"Zazz\",\"bungieGlobalDisplayNameCode\":2220},\"characterClass\":\"Titan\",\"classHash\":3655393761,\"raceHash\":2803282938,\"genderHash\":2204441813,\"characterLevel\":50,\"lightLevel\":1828,\"emblemHash\":2069797996},\"characterId\":\"2305843009717724231\",\"values\":{\"assists\":{\"basic\":{\"value\":5.0,\"displayValue\":\"5\"}},\"completed\":{\"basic\":{\"value\":0.0,\"displayValue\":\"No\"}},\"deaths\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1\"}},\"kills\":{\"basic\":{\"value\":10.0,\"displayValue\":\"10\"}},\"opponentsDefeated\":{\"basic\":{\"value\":15.0,\"displayValue\":\"15\"}},\"efficiency\":{\"basic\":{\"value\":15.0,\"displayValue\":\"15.00\"}},\"killsDeathsRatio\":{\"basic\":{\"value\":10.0,\"displayValue\":\"10.00\"}},\"killsDeathsAssists\":{\"basic\":{\"value\":12.5,\"displayValue\":\"12.50\"}},\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"activityDurationSeconds\":{\"basic\":{\"value\":4623.0,\"displayValue\":\"1h 17m\"}},\"completionReason\":{\"basic\":{\"value\":0.0,\"displayValue\":\"Objective Completed\"}},\"fireteamId\":{\"basic\":{\"value\":-8.2425183807203666E+18,\"displayValue\":\"-2147483648\"}},\"startSeconds\":{\"basic\":{\"value\":60.0,\"displayValue\":\"1m 0s\"}},\"timePlayedSeconds\":{\"basic\":{\"value\":204.0,\"displayValue\":\"3m 24s\"}},\"playerCount\":{\"basic\":{\"value\":9.0,\"displayValue\":\"9\"}},\"teamScore\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}}},\"extended\":{\"weapons\":[{\"referenceId\":3659414143,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":3.0,\"displayValue\":\"3\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.33333333333333331,\"displayValue\":\"33%\"}}}}],\"values\":{\"precisionKills\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1\"}},\"weaponKillsGrenade\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"weaponKillsMelee\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1\"}},\"weaponKillsSuper\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"weaponKillsAbility\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}}}}},{\"standing\":0,\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"player\":{\"destinyUserInfo\":{\"iconPath\":\"/common/destiny2_content/icons/4dff669ed6d7273fa751997d09cf2525.jpg\",\"crossSaveOverride\":3,\"applicableMembershipTypes\":[1,6,3],\"isPublic\":true,\"membershipType\":3,\"membershipId\":\"4611686018470914198\",\"displayName\":\"McJones\",\"bungieGlobalDisplayName\":\"Xenophage Therapy\",\"bungieGlobalDisplayNameCode\":514},\"characterClass\":\"Titan\",\"classHash\":3655393761,\"raceHash\":2803282938,\"genderHash\":2204441813,\"characterLevel\":50,\"lightLevel\":1828,\"emblemHash\":1784442048},\"characterId\":\"2305843009756205536\",\"values\":{\"assists\":{\"basic\":{\"value\":124.0,\"displayValue\":\"124\"}},\"completed\":{\"basic\":{\"value\":1.0,\"displayValue\":\"Yes\"}},\"deaths\":{\"basic\":{\"value\":8.0,\"displayValue\":\"8\"}},\"kills\":{\"basic\":{\"value\":790.0,\"displayValue\":\"790\"}},\"opponentsDefeated\":{\"basic\":{\"value\":914.0,\"displayValue\":\"914\"}},\"efficiency\":{\"basic\":{\"value\":114.25,\"displayValue\":\"114.25\"}},\"killsDeathsRatio\":{\"basic\":{\"value\":98.75,\"displayValue\":\"98.75\"}},\"killsDeathsAssists\":{\"basic\":{\"value\":106.5,\"displayValue\":\"106.50\"}},\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"activityDurationSeconds\":{\"basic\":{\"value\":4623.0,\"displayValue\":\"1h 17m\"}},\"completionReason\":{\"basic\":{\"value\":0.0,\"displayValue\":\"Objective Completed\"}},\"fireteamId\":{\"basic\":{\"value\":-8.2425183807203666E+18,\"displayValue\":\"-2147483648\"}},\"startSeconds\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0m 0s\"}},\"timePlayedSeconds\":{\"basic\":{\"value\":4623.0,\"displayValue\":\"1h 17m\"}},\"playerCount\":{\"basic\":{\"value\":9.0,\"displayValue\":\"9\"}},\"teamScore\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}}},\"extended\":{\"weapons\":[{\"referenceId\":2481881293,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":6.0,\"displayValue\":\"6\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":3163900678,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":13.0,\"displayValue\":\"13\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":2.0,\"displayValue\":\"2\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.15384615384615385,\"displayValue\":\"15%\"}}}},{\"referenceId\":1973107014,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":68.0,\"displayValue\":\"68\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":29.0,\"displayValue\":\"29\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.4264705882352941,\"displayValue\":\"43%\"}}}},{\"referenceId\":3257091167,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":4.0,\"displayValue\":\"4\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":1875512595,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":59.0,\"displayValue\":\"59\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":23.0,\"displayValue\":\"23\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.38983050847457629,\"displayValue\":\"39%\"}}}},{\"referenceId\":120706239,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":76.0,\"displayValue\":\"76\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":29.0,\"displayValue\":\"29\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.38157894736842107,\"displayValue\":\"38%\"}}}},{\"referenceId\":2715240478,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":2.0,\"displayValue\":\"2\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":833898322,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":100.0,\"displayValue\":\"100\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":37.0,\"displayValue\":\"37\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.37,\"displayValue\":\"37%\"}}}},{\"referenceId\":1866778462,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":16.0,\"displayValue\":\"16\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":3371017761,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":10.0,\"displayValue\":\"10\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":2827764482,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":47.0,\"displayValue\":\"47\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.021276595744680851,\"displayValue\":\"2%\"}}}},{\"referenceId\":2591746970,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":5.0,\"displayValue\":\"5\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}}],\"values\":{\"precisionKills\":{\"basic\":{\"value\":121.0,\"displayValue\":\"121\"}},\"weaponKillsGrenade\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"weaponKillsMelee\":{\"basic\":{\"value\":148.0,\"displayValue\":\"148\"}},\"weaponKillsSuper\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"weaponKillsAbility\":{\"basic\":{\"value\":21.0,\"displayValue\":\"21\"}}}}},{\"standing\":0,\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"player\":{\"destinyUserInfo\":{\"iconPath\":\"/common/destiny2_content/icons/527eb9dde6b8df7f900a24cb712b4894.jpg\",\"crossSaveOverride\":0,\"applicableMembershipTypes\":[3],\"isPublic\":true,\"membershipType\":3,\"membershipId\":\"4611686018509235078\",\"displayName\":\"Zazz\",\"bungieGlobalDisplayName\":\"Zazz\",\"bungieGlobalDisplayNameCode\":2220},\"characterClass\":\"Hunter\",\"classHash\":671679327,\"raceHash\":898834093,\"genderHash\":2204441813,\"characterLevel\":50,\"lightLevel\":1799,\"emblemHash\":3352019292},\"characterId\":\"2305843009756605194\",\"values\":{\"assists\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"completed\":{\"basic\":{\"value\":0.0,\"displayValue\":\"No\"}},\"deaths\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"kills\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1\"}},\"opponentsDefeated\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1\"}},\"efficiency\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1.00\"}},\"killsDeathsRatio\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1.00\"}},\"killsDeathsAssists\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1.00\"}},\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"activityDurationSeconds\":{\"basic\":{\"value\":4623.0,\"displayValue\":\"1h 17m\"}},\"completionReason\":{\"basic\":{\"value\":0.0,\"displayValue\":\"Objective Completed\"}},\"fireteamId\":{\"basic\":{\"value\":-8.2425183807203666E+18,\"displayValue\":\"-2147483648\"}},\"startSeconds\":{\"basic\":{\"value\":295.0,\"displayValue\":\"4m 55s\"}},\"timePlayedSeconds\":{\"basic\":{\"value\":92.0,\"displayValue\":\"1m 32s\"}},\"playerCount\":{\"basic\":{\"value\":9.0,\"displayValue\":\"9\"}},\"teamScore\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}}},\"extended\":{\"weapons\":[{\"referenceId\":3257091167,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":1.0,\"displayValue\":\"1\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}}],\"values\":{\"precisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"weaponKillsGrenade\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"weaponKillsMelee\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"weaponKillsSuper\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"weaponKillsAbility\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}}}}},{\"standing\":0,\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"player\":{\"destinyUserInfo\":{\"iconPath\":\"/common/destiny2_content/icons/618611d4b365cec7621d17b750389465.jpg\",\"crossSaveOverride\":0,\"applicableMembershipTypes\":[3],\"isPublic\":true,\"membershipType\":3,\"membershipId\":\"4611686018509235078\",\"displayName\":\"Zazz\",\"bungieGlobalDisplayName\":\"Zazz\",\"bungieGlobalDisplayNameCode\":2220},\"characterClass\":\"Warlock\",\"classHash\":2271682572,\"raceHash\":3887404748,\"genderHash\":2204441813,\"characterLevel\":50,\"lightLevel\":1828,\"emblemHash\":2962058750},\"characterId\":\"2305843009756605196\",\"values\":{\"assists\":{\"basic\":{\"value\":186.0,\"displayValue\":\"186\"}},\"completed\":{\"basic\":{\"value\":1.0,\"displayValue\":\"Yes\"}},\"deaths\":{\"basic\":{\"value\":7.0,\"displayValue\":\"7\"}},\"kills\":{\"basic\":{\"value\":409.0,\"displayValue\":\"409\"}},\"opponentsDefeated\":{\"basic\":{\"value\":595.0,\"displayValue\":\"595\"}},\"efficiency\":{\"basic\":{\"value\":85.0,\"displayValue\":\"85.00\"}},\"killsDeathsRatio\":{\"basic\":{\"value\":58.428571428571431,\"displayValue\":\"58.43\"}},\"killsDeathsAssists\":{\"basic\":{\"value\":71.714285714285708,\"displayValue\":\"71.71\"}},\"score\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"activityDurationSeconds\":{\"basic\":{\"value\":4623.0,\"displayValue\":\"1h 17m\"}},\"completionReason\":{\"basic\":{\"value\":0.0,\"displayValue\":\"Objective Completed\"}},\"fireteamId\":{\"basic\":{\"value\":-8.2425183807203666E+18,\"displayValue\":\"-2147483648\"}},\"startSeconds\":{\"basic\":{\"value\":545.0,\"displayValue\":\"9m 5s\"}},\"timePlayedSeconds\":{\"basic\":{\"value\":4078.0,\"displayValue\":\"1h 7m\"}},\"playerCount\":{\"basic\":{\"value\":9.0,\"displayValue\":\"9\"}},\"teamScore\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}}},\"extended\":{\"weapons\":[{\"referenceId\":1345867571,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":35.0,\"displayValue\":\"35\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":1432682459,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":46.0,\"displayValue\":\"46\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":16.0,\"displayValue\":\"16\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.34782608695652173,\"displayValue\":\"35%\"}}}},{\"referenceId\":3257091167,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":2.0,\"displayValue\":\"2\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}},{\"referenceId\":1135050595,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":88.0,\"displayValue\":\"88\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":28.0,\"displayValue\":\"28\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.31818181818181818,\"displayValue\":\"32%\"}}}},{\"referenceId\":4103414242,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":19.0,\"displayValue\":\"19\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":3.0,\"displayValue\":\"3\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.15789473684210525,\"displayValue\":\"16%\"}}}},{\"referenceId\":2828278545,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":31.0,\"displayValue\":\"31\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":11.0,\"displayValue\":\"11\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.35483870967741937,\"displayValue\":\"35%\"}}}},{\"referenceId\":1471212226,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":33.0,\"displayValue\":\"33\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":2.0,\"displayValue\":\"2\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.060606060606060608,\"displayValue\":\"6%\"}}}},{\"referenceId\":2357297366,\"values\":{\"uniqueWeaponKills\":{\"basic\":{\"value\":16.0,\"displayValue\":\"16\"}},\"uniqueWeaponPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0\"}},\"uniqueWeaponKillsPrecisionKills\":{\"basic\":{\"value\":0.0,\"displayValue\":\"0%\"}}}}],\"values\":{\"precisionKills\":{\"basic\":{\"value\":64.0,\"displayValue\":\"64\"}},\"weaponKillsGrenade\":{\"basic\":{\"value\":13.0,\"displayValue\":\"13\"}},\"weaponKillsMelee\":{\"basic\":{\"value\":2.0,\"displayValue\":\"2\"}},\"weaponKillsSuper\":{\"basic\":{\"value\":14.0,\"displayValue\":\"14\"}},\"weaponKillsAbility\":{\"basic\":{\"value\":13.0,\"displayValue\":\"13\"}}}}}],\"teams\":[]},\"ErrorCode\":1,\"ThrottleSeconds\":0,\"ErrorStatus\":\"Success\",\"Message\":\"Ok\",\"MessageData\":{}}"
+        }
+      },
+      "recorded_at": "Sun, 03 Dec 2023 03:21:57 GMT"
     }
   ],
   "recorded_with": "VCR 6.2.0"
