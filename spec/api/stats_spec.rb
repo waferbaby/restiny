@@ -5,59 +5,43 @@ require 'spec_helper'
 describe Restiny do
   include_context 'with api calls'
 
-  describe '#get_post_game_carnage_report', vcr: { cassette_name: 'restiny/get_post_game_carnage_report' } do
+  describe '#get_post_game_carnage_report', vcr: { cassette_name: 'stats/pgcr' } do
+    let(:pgcr_response) { subject.get_post_game_carnage_report(activity_id: activity_id) }
+
     context 'with a nil activity id' do
       let(:activity_id) { nil }
-      let(:pgcr_response) do
-        subject.get_post_game_carnage_report(activity_id: activity_id)
-      end
 
       it 'raises an error' do
-        expect do
-          pgcr_response
-        end.to raise_error(Restiny::InvalidParamsError, 'Please provide an activity ID')
+        expect { pgcr_response }.to raise_error(Restiny::InvalidParamsError, 'Please provide an activity ID')
       end
     end
 
     context 'with a non-integer activity id' do
       let(:activity_id) { 'fred' }
-      let(:pgcr_response) do
-        subject.get_post_game_carnage_report(activity_id: activity_id)
-      end
 
       it 'raises an error' do
-        expect do
-          pgcr_response
-        end.to raise_error(Restiny::ResponseError,
-                           'Unable to parse your parameters.  Please correct them, and try again.')
+        expect { pgcr_response }.to raise_error(
+          Restiny::ResponseError,
+          'ParameterParseFailure (7): Unable to parse your parameters.  Please correct them, and try again.'
+        )
       end
     end
 
     context 'with a non-existent, but valid, activity id' do
       let(:activity_id) { 0o0000000000 }
-      let(:pgcr_response) do
-        subject.get_post_game_carnage_report(activity_id: activity_id)
-      end
 
       it 'raises an error' do
-        expect do
-          pgcr_response
-        end.to raise_error(Restiny::RequestError,
-                           'The activity you were looking for was not found.')
+        expect { pgcr_response }.to raise_error(
+          Restiny::RequestError,
+          'DestinyPGCRNotFound (1653): The activity you were looking for was not found.'
+        )
       end
     end
 
     context 'with an existing known activity id' do
       let(:activity_id) { 14_024_618_384 }
-      let(:pgcr_response) do
-        subject.get_post_game_carnage_report(activity_id: activity_id)
-      end
 
       it 'returns the correct PGCR' do
-        expect do
-          pgcr_response
-        end.not_to raise_error
-
         expect(pgcr_response).to include('period' => '2023-11-02T09:32:00Z') # correct timestamp for activity_id 14024618384
       end
     end
