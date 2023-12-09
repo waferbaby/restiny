@@ -10,7 +10,7 @@ module Restiny
       def get_post_game_carnage_report(activity_id:)
         raise Restiny::InvalidParamsError, 'Please provide an activity ID' if activity_id.nil?
 
-        get(endpoint: "/Destiny2/Stats/PostGameCarnageReport/#{activity_id}/")
+        get("/Destiny2/Stats/PostGameCarnageReport/#{activity_id}/")
       end
 
       alias get_pgcr get_post_game_carnage_report

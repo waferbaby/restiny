@@ -11,7 +11,7 @@ module Restiny
       include Base
 
       def fetch_manifest
-        result = get(endpoint: '/Destiny2/Manifest/')
+        result = get('/Destiny2/Manifest/')
         return result unless result.nil?
 
         raise Restiny::ResponseError, 'Unable to fetch manifest details'
@@ -26,7 +26,7 @@ module Restiny
 
         {}.tap do |files|
           definitions.each do |definition|
-            files[definition] = download_manifest_json_by_url(url: BUNGIE_URL + paths[definition])
+            files[definition] = download_manifest_json_by_url(BUNGIE_URL + paths[definition])
           end
         end
       end
@@ -35,7 +35,7 @@ module Restiny
         definitions.difference(Restiny::ManifestDefinition.values).empty?
       end
 
-      def download_manifest_json_by_url(url:)
+      def download_manifest_json_by_url(url)
         filename = URI(url).path.split('/').last
         path = File.join(Dir.tmpdir, filename)
 

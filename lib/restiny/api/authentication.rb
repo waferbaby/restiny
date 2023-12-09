@@ -28,7 +28,7 @@ module Restiny
         "#{BUNGIE_URL}/en/oauth/authorize/?#{query}"
       end
 
-      def request_access_token(code:, redirect_url: nil)
+      def request_access_token(code, redirect_url: nil)
         check_oauth_client_id
 
         params = { code: code, grant_type: AUTH_CODE_GRANT_TYPE, client_id: @oauth_client_id }

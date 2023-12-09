@@ -14,7 +14,7 @@ module Restiny
         url += type_url if type_url
         url += "?components=#{components.join(',')}"
 
-        get(endpoint: url)
+        get(url)
       end
 
       def get_character_profile(character_id:, membership_id:, membership_type:, components:)
