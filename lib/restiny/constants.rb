@@ -46,7 +46,7 @@ module Restiny
     BASIC = 2
     COMMON = 3
     RARE = 4
-    SUPERIOR = 5
+    LEGENDARY = 5
     EXOTIC = 6
 
     def self.names
@@ -56,7 +56,7 @@ module Restiny
         BASIC => 'Basic',
         COMMON => 'Common',
         RARE => 'Rare',
-        SUPERIOR => 'Superior',
+        LEGENDARY => 'Legendary',
         EXOTIC => 'Exotic'
       }
     end
@@ -143,6 +143,30 @@ module Restiny
         SPECIAL => 'Special',
         HEAVY => 'Heavy',
         UNKNOWN => 'Unknown'
+      }
+    end
+  end
+
+  module DamageType
+    NONE = 0
+    KINETIC = 1
+    ARC = 2
+    SOLAR = 3
+    VOID = 4
+    RAID = 5
+    STASIS = 6
+    STRAND = 7
+
+    def self.names
+      {
+        NONE => 'None',
+        KINETIC => 'Kinetic',
+        ARC => 'Arc',
+        SOLAR => 'Solar',
+        VOID => 'Void',
+        RAID => 'Raid',
+        STASIS => 'Stasis',
+        STRAND => 'Strand'
       }
     end
   end
