@@ -111,6 +111,23 @@ module Restiny
     end
   end
 
+  # Definitions for the Champion breaker types used in the game.
+  module Breaker
+    NONE = 0
+    SHIELD_PIERCING = 1
+    DISRUPTION = 2
+    STAGGER = 3
+
+    def self.names
+      {
+        NONE: 'None',
+        SHIELD_PIERCING: 'Shield-Piercing',
+        DISRUPTION: 'Disruption',
+        STAGGER: 'Stagger'
+      }
+    end
+  end
+
   # Definitions for the various types of ammunition used in the game.
   module Ammunition
     NONE = 0
