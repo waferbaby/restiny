@@ -171,6 +171,20 @@ module Restiny
     end
   end
 
+  module WeaponSlot
+    KINETIC = 1
+    ENERGY = 2
+    POWER = 3
+
+    def self.names
+      {
+        KINETIC => 'Kinetic',
+        ENERGY => 'Energy',
+        POWER => 'Power'
+      }
+    end
+  end
+
   module Faction
     CRUCIBLE = 1
     DEAD_ORBIT = 2
@@ -272,14 +286,14 @@ module Restiny
     GRENADE_LAUNCHER = 5
     HAND_CANON = 6
     LINEAR_FUSION_RIFLE = 7
-    MACHINEGUN = 8
+    MACHINE_GUN = 8
     PULSE_RIFLE = 9
     ROCKET_LAUNCHER = 10
     SCOUT_RIFLE = 11
     SHOTGUN = 12
     SIDEARM = 13
     SNIPER_RIFLE = 14
-    SUBMACHINEGUN = 15
+    SUBMACHINE_GUN = 15
     SWORD = 16
     TRACE_RIFLE = 17
 
@@ -292,14 +306,14 @@ module Restiny
         GRENADE_LAUNCHER => 'Grenade Launcher',
         HAND_CANON => 'Hand Canon',
         LINEAR_FUSION_RIFLE => 'Linear Fusion Rifle',
-        MACHINEGUN => 'Machinegun',
+        MACHINE_GUN => 'Machine Gun',
         PULSE_RIFLE => 'Pulse Rifle',
         ROCKET_LAUNCHER => 'Rocket Launcher',
         SCOUT_RIFLE => 'Scout Rifle',
         SHOTGUN => 'Shotgun',
         SIDEARM => 'Sidearm',
         SNIPER_RIFLE => 'Sniper Rifle',
-        SUBMACHINEGUN => 'Submachinegun',
+        SUBMACHINE_GUN => 'Submachine Gun',
         SWORD => 'Sword',
         TRACE_RIFLE => 'Trace Rifle'
       }
@@ -314,14 +328,14 @@ module Restiny
         'item.weapon.grenade_launcher' => GRENADE_LAUNCHER,
         'item.weapon.hand_cannon' => HAND_CANON,
         'item.weapon.linear_fusion_rifle' => LINEAR_FUSION_RIFLE,
-        'item.weapon.machinegun' => MACHINEGUN,
+        'item.weapon.machinegun' => MACHINE_GUN,
         'item.weapon.pulse_rifle' => PULSE_RIFLE,
         'item.weapon.rocket_launcher' => ROCKET_LAUNCHER,
         'item.weapon.scout_rifle' => SCOUT_RIFLE,
         'item.weapon.shotgun' => SHOTGUN,
         'item.weapon.sidearm' => SIDEARM,
         'item.weapon.sniper_rifle' => SNIPER_RIFLE,
-        'item.weapon.submachinegun' => SUBMACHINEGUN,
+        'item.weapon.submachinegun' => SUBMACHINE_GUN,
         'item.weapon.sword' => SWORD,
         'item.weapon.trace_rifle' => TRACE_RIFLE
       }
