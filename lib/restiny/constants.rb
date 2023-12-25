@@ -171,6 +171,163 @@ module Restiny
     end
   end
 
+  module Faction
+    CRUCIBLE = 1
+    DEAD_ORBIT = 2
+    FUTURE_WAR_CULT = 3
+    NEW_MONARCHY = 4
+    VANGUARD = 5
+
+    def self.names
+      {
+        CRUCIBLE => 'Crucible',
+        DEAD_ORBIT => 'Dead Orbit',
+        FUTURE_WAR_CULT => 'Future War Cult',
+        NEW_MONARCHY => 'New Monarchy',
+        VANGUARD => 'Vanguard'
+      }
+    end
+
+    def self.mapping
+      {
+        'faction.crucible' => CRUCIBLE,
+        'faction.dead_orbit' => DEAD_ORBIT,
+        'faction.future_war_cult' => FUTURE_WAR_CULT,
+        'faction.new_monarchy' => NEW_MONARCHY,
+        'faction.vanguard' => VANGUARD
+      }
+    end
+  end
+
+  module Foundry
+    DAITO = 1
+    FIELD_FORGED = 2
+    FOTC = 3
+    HAKKE = 4
+    OMOLON = 5
+    SUROS = 6
+    TEX_MECHANICA = 7
+    VEIST = 8
+
+    def self.names
+      {
+        DAITO => 'Daito',
+        FIELD_FORGED => 'Field Forged',
+        FOTC => 'Forces of the City',
+        HAKKE => 'Häkke',
+        OMOLON => 'Omolon',
+        SUROS => 'Suros',
+        TEX_MECHANICA => 'Tex Mechanica',
+        VEIST => 'VEIST'
+      }
+    end
+
+    def self.mapping
+      {
+        'foundry.daito' => DAITO,
+        'foundry.field_forged' => FIELD_FORGED,
+        'foundry.fotc' => FOTC,
+        'foundry.hakke' => HAKKE,
+        'foundry.omolon' => OMOLON,
+        'foundry.suros' => SUROS,
+        'foundry.tex_mechanica' => TEX_MECHANICA,
+        'foundry.veist' => VEIST
+      }
+    end
+  end
+
+  module Armor
+    ARMS = 1
+    CHEST = 2
+    CLASS = 3
+    HEAD = 4
+    LEGS = 5
+
+    def self.names
+      {
+        ARMS => 'Gauntlet',
+        CHEST => 'Chest',
+        CLASS => 'Class Item',
+        HEAD => 'Helmet',
+        LEGS => 'Leg'
+      }
+    end
+
+    def self.mapping
+      {
+        'item.armor.arms' => ARMS,
+        'item.armor.chest' => CHEST,
+        'item.armor.class' => CLASS,
+        'item.armor.head' => HEAD,
+        'item.armor.legs' => LEGS
+      }
+    end
+  end
+
+  module Weapon
+    AUTO_RIFLE = 1
+    BOW = 2
+    FUSION_RIFLE = 3
+    GLAIVE = 4
+    GRENADE_LAUNCHER = 5
+    HAND_CANON = 6
+    LINEAR_FUSION_RIFLE = 7
+    MACHINEGUN = 8
+    PULSE_RIFLE = 9
+    ROCKET_LAUNCHER = 10
+    SCOUT_RIFLE = 11
+    SHOTGUN = 12
+    SIDEARM = 13
+    SNIPER_RIFLE = 14
+    SUBMACHINEGUN = 15
+    SWORD = 16
+    TRACE_RIFLE = 17
+
+    def self.names
+      {
+        AUTO_RIFLE => 'Auto Rifle',
+        BOW => 'Bow',
+        FUSION_RIFLE => 'Fusion Rifle',
+        GLAIVE => 'Glaive',
+        GRENADE_LAUNCHER => 'Grenade Launcher',
+        HAND_CANON => 'Hand Canon',
+        LINEAR_FUSION_RIFLE => 'Linear Fusion Rifle',
+        MACHINEGUN => 'Machinegun',
+        PULSE_RIFLE => 'Pulse Rifle',
+        ROCKET_LAUNCHER => 'Rocket Launcher',
+        SCOUT_RIFLE => 'Scout Rifle',
+        SHOTGUN => 'Shotgun',
+        SIDEARM => 'Sidearm',
+        SNIPER_RIFLE => 'Sniper Rifle',
+        SUBMACHINEGUN => 'Submachinegun',
+        SWORD => 'Sword',
+        TRACE_RIFLE => 'Trace Rifle'
+      }
+    end
+
+    def self.mapping
+      {
+        'item.weapon.auto_rifle' => AUTO_RIFLE,
+        'item.weapon.bow' => BOW,
+        'item.weapon.fusion_rifle' => FUSION_RIFLE,
+        'item.weapon.glaive' => GLAIVE,
+        'item.weapon.grenade_launcher' => GRENADE_LAUNCHER,
+        'item.weapon.hand_cannon' => HAND_CANON,
+        'item.weapon.linear_fusion_rifle' => LINEAR_FUSION_RIFLE,
+        'item.weapon.machinegun' => MACHINEGUN,
+        'item.weapon.pulse_rifle' => PULSE_RIFLE,
+        'item.weapon.rocket_launcher' => ROCKET_LAUNCHER,
+        'item.weapon.scout_rifle' => SCOUT_RIFLE,
+        'item.weapon.shotgun' => SHOTGUN,
+        'item.weapon.sidearm' => SIDEARM,
+        'item.weapon.sniper_rifle' => SNIPER_RIFLE,
+        'item.weapon.submachinegun' => SUBMACHINEGUN,
+        'item.weapon.sword' => SWORD,
+        'item.weapon.trace_rifle' => TRACE_RIFLE
+      }
+    end
+  end
+
   # Definitions for the various component types used when requesting a profile entry.
   module ComponentType
     PROFILES = '100'
