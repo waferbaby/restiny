@@ -20,8 +20,8 @@ module Restiny
     end
   end
 
+  # Definitions for the possible locations an item can be related to a character.
   module ItemLocation
-    # Definitions for the possible locations an item can be related to a character.
     UNKNOWN = 0
     INVENTORY = 1
     VAULT = 2
@@ -147,6 +147,7 @@ module Restiny
     end
   end
 
+  # Definitions for the various damage types in the game.
   module DamageType
     NONE = 0
     KINETIC = 1
@@ -171,6 +172,7 @@ module Restiny
     end
   end
 
+  # Definitions for the slots a weapon can be placed in.
   module WeaponSlot
     KINETIC = 1
     ENERGY = 2
@@ -185,6 +187,7 @@ module Restiny
     end
   end
 
+  # Definitions for the various gear-related groups within Destiny 2.
   module Faction
     CRUCIBLE = 1
     DEAD_ORBIT = 2
@@ -213,6 +216,7 @@ module Restiny
     end
   end
 
+  # Definitions for the weapon manufacturers in Destiny 2.
   module Foundry
     DAITO = 1
     FIELD_FORGED = 2
@@ -250,6 +254,7 @@ module Restiny
     end
   end
 
+  # Definitions for the various types of armour in the game.
   module Armor
     ARM = 1
     CHEST = 2
@@ -278,6 +283,7 @@ module Restiny
     end
   end
 
+  # Definitions for the various types of weapons in the game.
   module Weapon
     AUTO_RIFLE = 1
     BOW = 2
