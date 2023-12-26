@@ -9,7 +9,7 @@ module Restiny
     STEAM = 3
     EPIC = 6
 
-    def self.names
+    def self.all
       {
         ALL => 'All',
         XBOX => 'Xbox',
@@ -28,7 +28,7 @@ module Restiny
     VENDOR = 3
     POSTMASTER = 4
 
-    def self.names
+    def self.all
       {
         UNKNOWN => 'Unknown',
         INVENTORY => 'Inventory',
@@ -49,7 +49,7 @@ module Restiny
     LEGENDARY = 5
     EXOTIC = 6
 
-    def self.names
+    def self.all
       {
         UNKNOWN => 'Unknown',
         CURRENCY => 'Currency',
@@ -69,7 +69,7 @@ module Restiny
     WARLOCK = 2
     UNKNOWN = 3
 
-    def self.names
+    def self.all
       {
         TITAN => 'Titan',
         HUNTER => 'Hunter',
@@ -86,7 +86,7 @@ module Restiny
     EXO = 2
     UNKNOWN = 3
 
-    def self.names
+    def self.all
       {
         HUMAN => 'Human',
         AWOKEN => 'Awoken',
@@ -102,7 +102,7 @@ module Restiny
     FEMININE = 1
     UNKNOWN = 2
 
-    def self.names
+    def self.all
       {
         MASCULINE => 'Masculine',
         FEMININE => 'Feminine',
@@ -118,7 +118,7 @@ module Restiny
     DISRUPTION = 2
     STAGGER = 3
 
-    def self.names
+    def self.all
       {
         NONE: 'None',
         SHIELD_PIERCING: 'Shield-Piercing',
@@ -136,7 +136,7 @@ module Restiny
     HEAVY = 3
     UNKNOWN = 4
 
-    def self.names
+    def self.all
       {
         NONE => 'None',
         PRIMARY => 'Primary',
@@ -158,7 +158,7 @@ module Restiny
     STASIS = 6
     STRAND = 7
 
-    def self.names
+    def self.all
       {
         NONE => 'None',
         KINETIC => 'Kinetic',
@@ -178,7 +178,7 @@ module Restiny
     ENERGY = 2
     POWER = 3
 
-    def self.names
+    def self.all
       {
         KINETIC => 'Kinetic',
         ENERGY => 'Energy',
@@ -195,7 +195,7 @@ module Restiny
     NEW_MONARCHY = 4
     VANGUARD = 5
 
-    def self.names
+    def self.all
       {
         CRUCIBLE => 'Crucible',
         DEAD_ORBIT => 'Dead Orbit',
@@ -227,7 +227,7 @@ module Restiny
     TEX_MECHANICA = 7
     VEIST = 8
 
-    def self.names
+    def self.all
       {
         DAITO => 'Daito',
         FIELD_FORGED => 'Field Forged',
@@ -262,7 +262,7 @@ module Restiny
     HEAD = 4
     LEG = 5
 
-    def self.names
+    def self.all
       {
         ARM => 'Gauntlet',
         CHEST => 'Chest',
@@ -303,7 +303,7 @@ module Restiny
     SWORD = 16
     TRACE_RIFLE = 17
 
-    def self.names
+    def self.all
       {
         AUTO_RIFLE => 'Auto Rifle',
         BOW => 'Bow',
