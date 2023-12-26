@@ -251,29 +251,29 @@ module Restiny
   end
 
   module Armor
-    ARMS = 1
+    ARM = 1
     CHEST = 2
-    CLASS = 3
+    CLASS_ITEM = 3
     HEAD = 4
-    LEGS = 5
+    LEG = 5
 
     def self.names
       {
-        ARMS => 'Gauntlet',
+        ARM => 'Gauntlet',
         CHEST => 'Chest',
-        CLASS => 'Class Item',
+        CLASS_ITEM => 'Class Item',
         HEAD => 'Helmet',
-        LEGS => 'Leg'
+        LEG => 'Leg'
       }
     end
 
     def self.mapping
       {
-        'item.armor.arms' => ARMS,
+        'item.armor.arms' => ARM,
         'item.armor.chest' => CHEST,
-        'item.armor.class' => CLASS,
+        'item.armor.class' => CLASS_ITEM,
         'item.armor.head' => HEAD,
-        'item.armor.legs' => LEGS
+        'item.armor.legs' => LEG
       }
     end
   end
