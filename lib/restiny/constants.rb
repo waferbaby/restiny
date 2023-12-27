@@ -22,7 +22,6 @@ module Restiny
 
   # Definitions for the possible locations an item can be related to a character.
   module ItemLocation
-    UNKNOWN = 0
     INVENTORY = 1
     VAULT = 2
     VENDOR = 3
@@ -30,7 +29,6 @@ module Restiny
 
     def self.all
       {
-        UNKNOWN => 'Unknown',
         INVENTORY => 'Inventory',
         VAULT => 'Vault',
         VENDOR => 'Vendor',
@@ -41,7 +39,6 @@ module Restiny
 
   # Definitions for the tier/rarity of a particular item.
   module TierType
-    UNKNOWN = 0
     CURRENCY = 1
     BASIC = 2
     COMMON = 3
@@ -51,7 +48,6 @@ module Restiny
 
     def self.all
       {
-        UNKNOWN => 'Unknown',
         CURRENCY => 'Currency',
         BASIC => 'Basic',
         COMMON => 'Common',
@@ -67,14 +63,14 @@ module Restiny
     TITAN = 0
     HUNTER = 1
     WARLOCK = 2
-    UNKNOWN = 3
+    ANY = 3
 
     def self.all
       {
         TITAN => 'Titan',
         HUNTER => 'Hunter',
         WARLOCK => 'Warlock',
-        UNKNOWN => 'Unknown'
+        ANY => 'Any'
       }
     end
   end
@@ -84,14 +80,12 @@ module Restiny
     HUMAN = 0
     AWOKEN = 1
     EXO = 2
-    UNKNOWN = 3
 
     def self.all
       {
         HUMAN => 'Human',
         AWOKEN => 'Awoken',
-        EXO => 'Exo',
-        UNKNOWN => 'Unknown'
+        EXO => 'Exo'
       }
     end
   end
@@ -100,27 +94,23 @@ module Restiny
   module Gender
     MASCULINE = 0
     FEMININE = 1
-    UNKNOWN = 2
 
     def self.all
       {
         MASCULINE => 'Masculine',
-        FEMININE => 'Feminine',
-        UNKNOWN => 'Unknown'
+        FEMININE => 'Feminine'
       }
     end
   end
 
   # Definitions for the Champion breaker types used in the game.
   module Breaker
-    NONE = 0
     SHIELD_PIERCING = 1
     DISRUPTION = 2
     STAGGER = 3
 
     def self.all
       {
-        NONE: 'None',
         SHIELD_PIERCING: 'Shield-Piercing',
         DISRUPTION: 'Disruption',
         STAGGER: 'Stagger'
@@ -130,26 +120,21 @@ module Restiny
 
   # Definitions for the various types of ammunition used in the game.
   module Ammunition
-    NONE = 0
     PRIMARY = 1
     SPECIAL = 2
     HEAVY = 3
-    UNKNOWN = 4
 
     def self.all
       {
-        NONE => 'None',
         PRIMARY => 'Primary',
         SPECIAL => 'Special',
-        HEAVY => 'Heavy',
-        UNKNOWN => 'Unknown'
+        HEAVY => 'Heavy'
       }
     end
   end
 
   # Definitions for the various damage types in the game.
   module DamageType
-    NONE = 0
     KINETIC = 1
     ARC = 2
     SOLAR = 3
@@ -160,7 +145,6 @@ module Restiny
 
     def self.all
       {
-        NONE => 'None',
         KINETIC => 'Kinetic',
         ARC => 'Arc',
         SOLAR => 'Solar',
@@ -234,7 +218,7 @@ module Restiny
         FOTC => 'Forces of the City',
         HAKKE => 'Häkke',
         OMOLON => 'Omolon',
-        SUROS => 'Suros',
+        SUROS => 'SUROS',
         TEX_MECHANICA => 'Tex Mechanica',
         VEIST => 'VEIST'
       }
