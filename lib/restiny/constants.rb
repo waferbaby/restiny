@@ -104,7 +104,7 @@ module Restiny
   end
 
   # Definitions for the Champion breaker types used in the game.
-  module Breaker
+  module BreakerType
     SHIELD_PIERCING = 1
     DISRUPTION = 2
     STAGGER = 3
