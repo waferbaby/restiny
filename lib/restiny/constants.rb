@@ -111,9 +111,9 @@ module Restiny
 
     def self.all
       {
-        SHIELD_PIERCING: 'Shield-Piercing',
-        DISRUPTION: 'Disruption',
-        STAGGER: 'Stagger'
+        SHIELD_PIERCING => 'Shield-Piercing',
+        DISRUPTION => 'Disruption',
+        STAGGER => 'Stagger'
       }
     end
   end
