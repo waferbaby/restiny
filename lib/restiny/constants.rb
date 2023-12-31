@@ -158,15 +158,15 @@ module Restiny
 
   # Definitions for the slots a weapon can be placed in.
   module WeaponSlot
-    KINETIC = 1
-    ENERGY = 2
-    POWER = 3
+    KINETIC_SLOT = 1
+    ENERGY_SLOT = 2
+    POWER_SLOT = 3
 
     def self.all
       {
-        KINETIC => 'Kinetic',
-        ENERGY => 'Energy',
-        POWER => 'Power'
+        KINETIC_SLOT => 'Kinetic',
+        ENERGY_SLOT => 'Energy',
+        POWER_SLOT => 'Power'
       }
     end
   end
