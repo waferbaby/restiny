@@ -373,6 +373,23 @@ module Restiny
     SOCIAL_COMMENDATIONS = '1400'
   end
 
+  module SocketPlugSource
+    NONE = 0
+    INVENTORY_SOURCED = 1
+    REUSABLE_PLUG_ITEMS = 2
+    PROFILE_PLUG_SET = 4
+    CHARACTER_PLUG_SET = 8
+
+    def self.sources_for_value(value)
+      [].tap do |sources|
+        constants.each do |source|
+          source_value = const_get(source)
+          sources << source_value if (value & source_value) != 0
+        end
+      end
+    end
+  end
+
   # The categories of data stored in the manifest.
   module ManifestDefinition
     def self.values
