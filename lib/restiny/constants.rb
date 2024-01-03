@@ -274,7 +274,7 @@ module Restiny
     FUSION_RIFLE = 3
     GLAIVE = 4
     GRENADE_LAUNCHER = 5
-    HAND_CANON = 6
+    HAND_CANNON = 6
     LINEAR_FUSION_RIFLE = 7
     MACHINE_GUN = 8
     PULSE_RIFLE = 9
@@ -294,7 +294,7 @@ module Restiny
         FUSION_RIFLE => 'Fusion Rifle',
         GLAIVE => 'Glaive',
         GRENADE_LAUNCHER => 'Grenade Launcher',
-        HAND_CANON => 'Hand Canon',
+        HAND_CANNON => 'Hand Cannon',
         LINEAR_FUSION_RIFLE => 'Linear Fusion Rifle',
         MACHINE_GUN => 'Machine Gun',
         PULSE_RIFLE => 'Pulse Rifle',
@@ -316,7 +316,7 @@ module Restiny
         'item.weapon.fusion_rifle' => FUSION_RIFLE,
         'item.weapon.glaive' => GLAIVE,
         'item.weapon.grenade_launcher' => GRENADE_LAUNCHER,
-        'item.weapon.hand_cannon' => HAND_CANON,
+        'item.weapon.hand_cannon' => HAND_CANNON,
         'item.weapon.linear_fusion_rifle' => LINEAR_FUSION_RIFLE,
         'item.weapon.machinegun' => MACHINE_GUN,
         'item.weapon.pulse_rifle' => PULSE_RIFLE,
