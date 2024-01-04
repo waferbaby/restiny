@@ -240,29 +240,29 @@ module Restiny
 
   # Definitions for the various types of armour in the game.
   module Armor
-    ARM = 1
+    ARMS = 1
     CHEST = 2
-    CLASS_ITEM = 3
+    CLASS = 3
     HEAD = 4
-    LEG = 5
+    LEGS = 5
 
     def self.all
       {
-        ARM => 'Gauntlet',
+        ARMS => 'Gauntlet',
         CHEST => 'Chest',
-        CLASS_ITEM => 'Class Item',
+        CLASS => 'Class Item',
         HEAD => 'Helmet',
-        LEG => 'Leg'
+        LEGS => 'Leg'
       }
     end
 
     def self.mapping
       {
-        'item.armor.arms' => ARM,
+        'item.armor.arms' => ARMS,
         'item.armor.chest' => CHEST,
-        'item.armor.class' => CLASS_ITEM,
+        'item.armor.class' => CLASS,
         'item.armor.head' => HEAD,
-        'item.armor.legs' => LEG
+        'item.armor.legs' => LEGS
       }
     end
   end
