@@ -239,7 +239,7 @@ module Restiny
   end
 
   # Definitions for the various types of armour in the game.
-  module ArmorType
+  module Armor
     ARM = 1
     CHEST = 2
     CLASS_ITEM = 3
@@ -268,7 +268,7 @@ module Restiny
   end
 
   # Definitions for the various types of weapons in the game.
-  module WeaponType
+  module Weapon
     AUTO_RIFLE = 1
     BOW = 2
     FUSION_RIFLE = 3
