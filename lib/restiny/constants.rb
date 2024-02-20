@@ -373,6 +373,7 @@ module Restiny
     SOCIAL_COMMENDATIONS = '1400'
   end
 
+  # The source location of a socket plug.
   module SocketPlugSource
     NONE = 0
     INVENTORY_SOURCED = 1
