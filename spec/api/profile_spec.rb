@@ -7,7 +7,8 @@ describe Restiny do
 
   describe '#get_profile' do
     let(:profile_response) do
-      described_class.get_profile(membership_id: membership_id, membership_type: membership_type, components: components)
+      described_class.get_profile(membership_id: membership_id, membership_type: membership_type,
+                                  components: components)
     end
 
     let(:component_source) { JSON.parse(File.read(File.join(__dir__, 'data', 'components.json')))['components'] }
@@ -24,11 +25,11 @@ describe Restiny do
     end
 
     Restiny::ComponentType.constants.map(&:downcase).each do |component|
-      context "with the #{component} component", vcr: { cassette_name: "profile/components/#{component}" }  do
+      context "with the #{component} component", vcr: { cassette_name: "profile/components/#{component}" } do
         let(:components) { [Restiny::ComponentType.const_get(component.upcase)] }
 
         it 'returns the correct response' do
-          expected_keys = ["responseMintedTimestamp", "secondaryComponentsMintedTimestamp"]
+          expected_keys = %w[responseMintedTimestamp secondaryComponentsMintedTimestamp]
           component_keys = component_source[component.to_s]
           expected_keys.concat(component_keys) unless component_keys.nil?
 
