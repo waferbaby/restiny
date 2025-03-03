@@ -12,6 +12,8 @@ module Restiny
 
   module Api
     module Base
+      private
+
       def get(endpoint)
         make_api_request(endpoint, method: :get)
       end
@@ -20,18 +22,23 @@ module Restiny
         make_api_request(endpoint, method: :post, params: params)
       end
 
-      private
-
       def http_client
-        HTTPX.with(origin: BUNGIE_URL, headers: api_headers).plugin(:follow_redirects, follow_insecure_redirects: true)
+        HTTPX.with(
+          origin: BUNGIE_URL,
+          headers: api_headers,
+          base_path: '/platform/'
+        ).plugin(
+          :follow_redirects,
+          follow_insecure_redirects: true
+        )
       end
 
       def make_api_request(endpoint, method: :get, params: {})
         raise Restiny::InvalidParamsError, 'You need to set an API key (Restiny.api_key)' if @api_key.nil?
 
-        response = http_client.with(base_path: '/platform/').request(method, endpoint, json: params)
-        response.raise_for_status
+        response = http_client.request(method, endpoint, json: params)
 
+        response.raise_for_status
         response.json['Response']
       rescue HTTPX::TimeoutError, HTTPX::ResolveError => e
         raise Restiny::RequestError, e.message
