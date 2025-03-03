@@ -2,6 +2,7 @@
 
 module Restiny
   class Error < StandardError; end
+
   class NetworkError < Error; end
   class RequestError < Error; end
   class InvalidParamsError < RequestError; end
