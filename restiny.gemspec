@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.description = "A gem for interacting with Bungie's Destiny API."
   s.license = 'MIT'
 
-  s.required_ruby_version = '> 3.0'
+  s.required_ruby_version = '> 3.3'
 
   s.files = Dir['lib/**/*']
   s.require_path = 'lib'
