@@ -26,6 +26,7 @@ module Restiny
 
         {}.tap do |files|
           definitions.each do |definition|
+            next unless paths.key?(definition)
             files[definition] = download_manifest_json_by_url(BUNGIE_URL + paths[definition])
           end
         end
