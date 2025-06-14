@@ -31,10 +31,10 @@ module Restiny
       def request_access_token(code, redirect_url: nil)
         check_oauth_client_id
 
-        params = { code: code, grant_type: AUTH_CODE_GRANT_TYPE, client_id: @oauth_client_id }
+        params = { code:, grant_type: AUTH_CODE_GRANT_TYPE, client_id: @oauth_client_id }
         params['redirect_url'] = redirect_url unless redirect_url.nil?
 
-        response = http_client.post('/platform/app/oauth/token/', form: params)
+        response = http_client.post('app/oauth/token/', form: params)
         response.raise_for_status
 
         response.json
