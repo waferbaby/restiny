@@ -6,7 +6,7 @@ describe Restiny do
   include_context 'with api calls'
 
   describe '#get_post_game_carnage_report', vcr: { cassette_name: 'stats/pgcr' } do
-    let(:pgcr_response) { subject.get_post_game_carnage_report(activity_id: activity_id) }
+    let(:pgcr_response) { subject.get_post_game_carnage_report(activity_id:) }
 
     context 'with a nil activity id' do
       let(:activity_id) { nil }

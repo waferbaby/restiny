@@ -7,8 +7,8 @@ describe Restiny do
 
   describe '#get_profile' do
     let(:profile_response) do
-      described_class.get_profile(membership_id: membership_id, membership_type: membership_type,
-                                  components: components)
+      described_class.get_profile(membership_id:, membership_type:,
+                                  components:)
     end
 
     let(:component_source) { JSON.parse(File.read(File.join(__dir__, 'data', 'components.json')))['components'] }

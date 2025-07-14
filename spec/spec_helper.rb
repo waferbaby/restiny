@@ -4,11 +4,14 @@ require 'simplecov'
 
 SimpleCov.start
 
+require 'dotenv'
 require 'restiny'
 require 'rspec'
 require 'vcr'
 require 'webmock/rspec'
 require 'httpx/adapters/webmock'
+
+Dotenv.load('.env.test')
 
 Restiny.api_key = ENV.fetch('DESTINY_API_KEY')
 Restiny.oauth_client_id = ENV.fetch('DESTINY_OAUTH_CLIENT_ID')
